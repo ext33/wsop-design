@@ -1,3 +1,4 @@
+import {NavLink} from "react-router-dom";
 
 function Nav() {
 
@@ -5,17 +6,17 @@ function Nav() {
         <>
             <div className="nav-left">
                 <div className="sub">
-                    <a href="" className="logo">SUBMIT.POST</a>
+                    <NavLink to="/submit-post" exact className="logo">SUBMIT.POST</NavLink>
                 </div>
             </div>
             <div className="nav-right">
                 <div className="adm">
-                    <a href="" className="logo">GO.MODERS</a>
+                    <NavLink to="/admin" exact className="logo">GO.MODERS</NavLink>
                 </div>
             </div>
             <div className="nav-top">
                 <div className="div-logo">
-                    <a href="" className="logo">WSOP.DESIGN</a>
+                    <NavLink to="/" exact className="logo">WSOP.DESIGN</NavLink>
                 </div>
             </div>
         </>

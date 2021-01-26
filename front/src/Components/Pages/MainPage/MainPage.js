@@ -1,9 +1,10 @@
+import React from 'react'
 
 function MainPage() {
 
     return(
-        <div className="main">
-
+        <div id='MainPage'>
+            228
         </div>
     )
 }
