@@ -4,7 +4,7 @@ function MainPage() {
 
     return(
         <div id='MainPage'>
-            228
+            main
         </div>
     )
 }

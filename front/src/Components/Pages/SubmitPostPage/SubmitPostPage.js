@@ -4,7 +4,7 @@ function SubmitPostPage() {
 
     return(
         <div id='SubmitPostPage'>
-            1337
+            submit
         </div>
     )
 }
