@@ -1,5 +1,6 @@
 import React from 'react'
 import './Styles/App.sass'
+import './Styles/Form.sass'
 import {Route, Switch} from 'react-router-dom'
 import Nav from "./Components/Nav";
 import MainPage from "./Components/Pages/MainPage/MainPage";
