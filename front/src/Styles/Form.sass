@@ -1,17 +1,19 @@
+$font: "Bitstream Vera Sans Mono", Monaco, "Courier New", Courier, monospace
+  
 form
-  font-family: "Bitstream Vera Sans Mono", Monaco, "Courier New", Courier, monospace
+  font-family: $font
   display: flex
   align-items: center
   flex-direction: column
   flex-wrap: wrap
-  font-size: 18px
+  font-size: 16px
 
 .form-title
   text-align: center
 
 input
   margin: 15px 0
-  font-family: "Bitstream Vera Sans Mono", Monaco, "Courier New", Courier, monospace
+  font-family: $font
   font-size: 18px
 
 .input-main
@@ -23,7 +25,7 @@ input
   background: none
   border: 1px solid gray
   border-radius: 5px
-  font-family: "Bitstream Vera Sans Mono", Monaco, "Courier New", Courier, monospace
+  font-family: $font
   font-size: 18px
 
 .form-main
@@ -32,13 +34,28 @@ input
   flex-direction: column
   margin-top: 30px
 
-#image
+.imageprev
+  width: 300px
+  min-height: 220px
+  height: auto
+  cursor: pointer
   border: 1px solid gray
-  padding: 100px 0 100px 10px
-  overflow: hidden
+  margin-bottom: 15px
+  display: flex
+  align-items: center
+
+.prev
+  margin: 20px auto
+  max-width: 290px
+  height: auto
+  background-size: cover
+  border-radius: 5px
+
+#image
+  display: none
 
 #description
   border: 1px solid gray
   height: 100px
   padding: 10px
-  font-size: 18px
+  font-size: 16px
