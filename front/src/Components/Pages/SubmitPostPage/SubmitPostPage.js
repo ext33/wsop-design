@@ -3,6 +3,7 @@ import Form from './Form'
 
 function SubmitPostPage() {
     let [state, setState] = useState({
+        username: null,
         email: null,
         description: null,
         image: null,
@@ -17,7 +18,7 @@ function SubmitPostPage() {
         })
     }
 
-    function Submit(){
+    function SubmitForm(){
 
     }
 
@@ -25,7 +26,7 @@ function SubmitPostPage() {
         <div id='SubmitPostPage'>
             <Form
                 changeHandler={event=>ChangeInput(event.target.value, event.target.id)}
-                submitHandler={Submit}
+                submitHandler={SubmitForm}
             />
         </div>
     )

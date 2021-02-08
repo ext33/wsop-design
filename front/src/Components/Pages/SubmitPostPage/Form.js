@@ -6,10 +6,19 @@ function Form (props){
             <div className='form-title'>
                 SUBMIT POST
             </div>
-            <input className='input input-main' placeholder={'email'} type={'email'} id={'email'} onChange={props.changeHandler} />
-            <input className='input input-main' placeholder={'description'} type={'textarea'} id={'description'} onChange={props.changeHandler} />
-            <input className='input input-main' placeholder={'choose image'} type={'file'} id={'image'} onChange={props.changeHandler} />
-            <input className='input input-submit' value={'Submit'} type={'submit'} onClick={props.submitHandler} />
+            <div className='form-main'>
+            <label>Username</label>
+            <input className='input input-main' type={'text'} id={'username'} onChange={props.changeHandler} />
+            <label>Email</label>
+            <input className='input input-main' type={'email'} id={'email'} onChange={props.changeHandler} />
+            <label>Image</label>
+            <input className='input input-main' type={'file'} id={'image'} onChange={props.changeHandler} />
+            <label>Description</label>
+            <textarea className='input' id={'description'} onChange={props.changeHandler} />
+            <button className='input input-submit' onClick={props.submitHandler}>
+                Submit post
+            </button>
+            </div>
         </form>
     )
 }
