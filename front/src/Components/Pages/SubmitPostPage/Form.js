@@ -9,7 +9,6 @@ function Form (props){
 
     useEffect(()=>{
         document.getElementById('image').addEventListener('change', changeHandler)
-        return ()=>{ document.getElementById('image').removeEventListener('change', changeHandler) }
     })
 
     function changeHandler(event){
