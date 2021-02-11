@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import Form from './Form'
+import {sendSubmitPost} from '../../../Api/axios'
 
 function SubmitPostPage() {
     let [state, setState] = useState({
@@ -18,8 +19,9 @@ function SubmitPostPage() {
         })
     }
 
-    function SubmitForm(){
-
+    async function SubmitForm(){
+        // emulate submit form
+        await sendSubmitPost(state)
     }
 
     return(
