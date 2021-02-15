@@ -1,4 +1,7 @@
 import React, {useEffect, useState} from "react";
+import {connect} from 'react-redux'
+import {submitPostAction, clearState} from '../../../Redux/actions/submitPost'
+import ModalWindow from "./ModalWindow";
 
 function Form (props){
 
@@ -6,12 +9,35 @@ function Form (props){
         base64: null,
         alt: null,
     })
+    const [formData, setFormData] = useState({
+        username: null,
+        email: null,
+        description: null,
+        image: null,
+    })
+    const [modal, setModal] = useState(false)
 
     useEffect(()=>{
-        document.getElementById('image').addEventListener('change', changeHandler)
-    })
+        document.getElementById('image').addEventListener('change', changeImageHandler)
+        if (props.message || props.error){
+            setModal(true)
+        }
+    }, [props.message, props.error])
 
-    function changeHandler(event){
+    function ChangeInput(newValue, param){
+        setFormData((prevState)=>{
+            return{
+                ...prevState,
+                [param]: newValue
+            }
+        })
+    }
+
+    function SubmitForm(){
+        props.submitPostAction(formData)
+    }
+
+    function changeImageHandler(event){
         const files = Array.from(event.target.files)
         files.forEach(file => {
             const reader = new FileReader()
@@ -27,28 +53,49 @@ function Form (props){
             reader.readAsDataURL(file)
         })
     }
-
-
     return(
+        <>
         <form>
+            <ModalWindow 
+                showModal={modal} 
+                message={props.message} 
+                error={props.error}
+                closeHandler={()=>{setModal(false); props.clearState()}}
+            />
             <div className='form-main'>
             <label>Username</label>
-            <input className='input input-main' type={'text'} id={'username'} onChange={props.changeHandler} />
+            <input className='input input-main' type={'text'} id={'username'} onChange={(event)=>ChangeInput(event.target.value, event.target.id)} />
             <label>Email</label>
-            <input className='input input-main' type={'email'} id={'email'} onChange={props.changeHandler} />
+            <input className='input input-main' type={'email'} id={'email'} onChange={(event)=>ChangeInput(event.target.value, event.target.id)} />
             <label>Image</label>
             <div className='imageprev' onClick={()=>{document.getElementById('image').click()}}>
                 { image ? <img className='prev' src={image.base64} alt={image.alt}/> : null }
             </div>
-            <input className='input input-main' type={'file'} id={'image'} onChange={props.changeHandler} />
+            <input className='input input-main' type={'file'} id={'image'} onChange={(event)=>ChangeInput(event.target.value, event.target.id)} />
             <label>Description</label>
-            <textarea className='input' id={'description'} onChange={props.changeHandler} />
-            <button className='input input-submit' onClick={props.submitHandler}>
+            <textarea className='input' id={'description'} onChange={(event)=>ChangeInput(event.target.value, event.target.id)} />
+            <button className='input input-submit' type='button' onClick={()=>SubmitForm()}>
                 Submit post
             </button>
             </div>
         </form>
+        
+        </>
     )
 }
 
-export default Form
+function mapStateToProps(state){
+    return{
+        message: state.submitFormReducer.message,
+        error: state.submitFormReducer.error,
+    }
+}
+
+function mapDispatchToProps(dispatch){
+    return{
+        submitPostAction: (data)=> dispatch(submitPostAction(data)),
+        clearState: () => dispatch(clearState())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Form)

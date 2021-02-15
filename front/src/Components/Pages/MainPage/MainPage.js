@@ -3,7 +3,7 @@ import ImageBlock from './ImageBlock'
 import Loading from '../../Loading'
 import {fetchImages} from '../../../Api/axios'
 
-function MainPage() {
+function MainPage(props) {
     const [images, setImages] = useState({
         imagesObj: [],
         dataIsReady: false,

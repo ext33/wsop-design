@@ -15,6 +15,9 @@ export async function fetchImages(){
 
 // emulate fetching images
 export async function sendSubmitPost(data){
-    console.log(data)
-    return 
+    let response = {
+        status: 200,
+        message: 'OK'
+    }
+    return response
 }
