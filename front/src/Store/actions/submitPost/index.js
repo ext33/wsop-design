@@ -16,19 +16,19 @@ export function submitPostAction(data) {
         if(isValid){
             result = await sendSubmitPost(data)
             if(result.status === 200){
-                dispatch({type: 'ADD'})
+                dispatch({type: 'FORM-ADD'})
                 
             } else {
-                dispatch({type: 'ERROR', error: 'Sending error'})
+                dispatch({type: 'FORM-ERROR', error: 'Sending error'})
             }
         } else {
-            dispatch({type: 'ERROR', error: 'Invalid form data'})
+            dispatch({type: 'FORM-ERROR', error: 'Invalid form data'})
         }
     }
 }
 
 export function clearState(){
     return {
-        type: 'CLEAR'
+        type: 'FORM-CLEAR'
     }
 }

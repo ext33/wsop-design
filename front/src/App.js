@@ -7,7 +7,7 @@ import {Route, Switch} from 'react-router-dom'
 import Nav from "./Components/Nav";
 import MainPage from "./Components/Pages/MainPage/MainPage";
 import SubmitPostPage from "./Components/Pages/SubmitPostPage/SubmitPostPage";
-import Page404 from "./Components/Pages/404/Page404";
+import ErrorPage from "./Components/Pages/Error/ErrorPage";
 
 function App() {
   return (
@@ -18,7 +18,8 @@ function App() {
               <Route path='/' exact component={MainPage} />
               <Route path='/submit-post' exact component={SubmitPostPage} />
               <Route path='/admin' exact />
-              <Route component={Page404} />
+              <Route path='/error' exact component={ErrorPage} />
+              <Route component={ErrorPage} />
           </Switch>
       </div>
     </div>

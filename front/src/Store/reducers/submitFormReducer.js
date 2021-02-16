@@ -5,17 +5,17 @@ const initialState = {
 
 export default function submitFormReducer(state = initialState, action){
     switch (action.type) {
-        case 'ADD':
+        case 'FORM-ADD':
             return {
                 ...state,
                 message: 'Post submitted!'
             }
-            case 'ERROR':
+            case 'FORM-ERROR':
             return {
                 message: null,
                 error: action.error
             }
-            case 'CLEAR':
+            case 'FORM-CLEAR':
                 return {
                     initialState    
                 }

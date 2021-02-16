@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {connect} from 'react-redux'
-import {submitPostAction, clearState} from '../../../Redux/actions/submitPost'
+import {submitPostAction, clearState} from '../../../Store/actions/submitPost'
 import ModalWindow from "./ModalWindow";
 
 function Form (props){
