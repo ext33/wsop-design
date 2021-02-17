@@ -1,7 +1,6 @@
 import {fetchImages} from '../../../Api/axios'
 
 export function fetchImageData () {
-    console.log(11)
     return async (dispatch) => {
         console.log(3)
         let result = await fetchImages()

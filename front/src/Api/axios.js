@@ -14,6 +14,10 @@ export async function fetchImages(){
         status: 200,
         images: img
     }
+    // response = {
+    //     status: 500,
+    //     error: 'Server connection error'
+    // }
     return response
 }
 

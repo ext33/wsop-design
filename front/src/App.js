@@ -19,7 +19,7 @@ function App() {
               <Route path='/submit-post' exact component={SubmitPostPage} />
               <Route path='/admin' exact />
               <Route path='/error' exact component={ErrorPage} />
-              <Route component={ErrorPage} />
+              <Route path='*' component={ErrorPage} />
           </Switch>
       </div>
     </div>

@@ -1,22 +1,15 @@
 import React from 'react'
 
 function ModalWindow(props) {
-    if (props.showModal) {
-        return (
-            <div className={'modal'}>
-                <div className={'modal-layout'}>
-                    <div className={'modal-header'}>
-                        <button onClick={()=>props.closeHandler()}>&times;</button>
-                    </div>
-                    <div className={'modal-body'}>
-                        {props.message ? <p>{props.message}</p> : <p>{props.error}</p>}
-                    </div>
-                </div>
-            </div>
-        )
-    } else {
-        return null
+    let cls = ['modal']
+    if (props.message) {
+        cls.push('modal-message')
     }
+    return (
+        <div className={cls.join(' ')}>  
+            {props.message ? <p>{props.message}</p> : <p>{props.error}</p>}    
+        </div>
+    )
 }
 
 export default ModalWindow

@@ -1,6 +1,5 @@
 const initialState = {
     imagesObj: [],
-    dataIsReady: false,
     error: null
 }
 
@@ -9,7 +8,6 @@ export default function imagesReducer(state = initialState, action){
         case 'IMAGE-FETCH':
             return {
                 imagesObj: action.images,
-                dataIsReady: true,
             }
         case 'IMAGE-ERROR':
             return {

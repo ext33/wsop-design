@@ -6,20 +6,24 @@ function ErrorPage(props){
     let [title, setTitle] = useState(null);
 
     useEffect(() => {
-        if(props.type === 404){
-            setTitle('Page not found')
+        if (props.location.state) {
+            if (props.location.state.type === 500){
+                setTitle('Error! Try again later...')
+            } else {
+                setTitle('Page not found')
+            }
         } else {
-            setTitle('Error! Try again later...')
+            setTitle('Page not found')
         }
-    }, [props.type])
+    }, [props.location.state])
 
     function goHome(){
         props.history.push('/')
     }
 
-    return(
+    return (
         <div className={'page404 container'}>
-            {props.error ? <h1>this.props.error</h1>: null}
+            {props.error? <h1>{this.props.error}</h1>: null}
             <h1>{title}</h1>
             <button className={'main-button'} onClick={goHome}>Go to home page</button>
         </div>

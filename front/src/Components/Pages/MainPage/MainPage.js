@@ -3,27 +3,28 @@ import ImageBlock from './ImageBlock'
 import Loading from '../../Loading'
 import {connect} from 'react-redux'
 import {fetchImageData} from '../../../Store/actions/fetchImages'
+import { Redirect } from 'react-router-dom'
 
 
 function MainPage(props) {
 
     useEffect(()=>{
-        console.log(2)
-        fetchImageData()
-        if(props.error){
-            props.history.push({
-                pathname: '/error',
-                props: {
-                    type: 500,
-                    error: props.error,
-                }
-            })
-        } 
-    }, [props.imagesObj, props.dataIsReady, props.error, props.history])
+        props.fetchImages()
+        
+    }, [props])
+
+    if(props.error){
+        return (<Redirect to={{
+            pathname: "/error",
+            state: {
+                type: 500,
+            }
+        }} p/>)
+    }
 
     return(
         <div id='MainPage'>
-            {   props.dataIsReady ? 
+            { props.imagesObj ? 
                 props.imagesObj.map((elem, index) => {
                     return(
                         <ImageBlock 
@@ -41,9 +42,8 @@ function MainPage(props) {
 function mapStateToProps(state){
     console.log(state)
     return{
-        imagesObj: state.imagesObj,
-        dataIsReady: state.dataIsReady,
-        error: state.error,
+        imagesObj: state.imagesReducer.imagesObj,
+        error: state.imagesReducer.error,
     }
 }
 

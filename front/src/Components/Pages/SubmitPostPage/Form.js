@@ -16,15 +16,23 @@ function Form (props){
         image: null,
     })
     const [modal, setModal] = useState(false)
+    const [successModal, setSuccessModal] = useState(false)
 
     useEffect(()=>{
         document.getElementById('image').addEventListener('change', changeImageHandler)
-        if (props.message || props.error){
+        if (props.error){
             setModal(true)
+        } else if (props.message && !props.error){
+            setSuccessModal(true)
         }
+
     }, [props.message, props.error])
 
     function ChangeInput(newValue, param){
+        if (modal === true) {
+            setModal(false)
+            props.clearState()
+        }
         setFormData((prevState)=>{
             return{
                 ...prevState,
@@ -56,28 +64,34 @@ function Form (props){
     return(
         <>
         <form>
+            { modal ?
             <ModalWindow 
-                showModal={modal} 
                 message={props.message} 
                 error={props.error}
-                closeHandler={()=>{setModal(false); props.clearState()}}
             />
-            <div className='form-main'>
-            <label>Username</label>
-            <input className='input input-main' type={'text'} id={'username'} onChange={(event)=>ChangeInput(event.target.value, event.target.id)} />
-            <label>Email</label>
-            <input className='input input-main' type={'email'} id={'email'} onChange={(event)=>ChangeInput(event.target.value, event.target.id)} />
-            <label>Image</label>
-            <div className='imageprev' onClick={()=>{document.getElementById('image').click()}}>
-                { image ? <img className='prev' src={image.base64} alt={image.alt}/> : null }
-            </div>
-            <input className='input input-main' type={'file'} id={'image'} onChange={(event)=>ChangeInput(event.target.value, event.target.id)} />
-            <label>Description</label>
-            <textarea className='input' id={'description'} onChange={(event)=>ChangeInput(event.target.value, event.target.id)} />
-            <button className='input input-submit' type='button' onClick={()=>SubmitForm()}>
-                Submit post
-            </button>
-            </div>
+            : null }       
+            { successModal? 
+                <ModalWindow 
+                    message={props.message} 
+                    error={props.error}
+                /> :
+                <div className='form-main'>
+                <label>Username</label>
+                <input className='input input-main' type={'text'} id={'username'} onChange={(event)=>ChangeInput(event.target.value, event.target.id)} />
+                <label>Email</label>
+                <input className='input input-main' type={'email'} id={'email'} onChange={(event)=>ChangeInput(event.target.value, event.target.id)} />
+                <label>Image</label>
+                <div className='imageprev' onClick={()=>{document.getElementById('image').click()}}>
+                    { image ? <img className='prev' src={image.base64} alt={image.alt}/> : null }
+                </div>
+                <input className='input input-main' type={'file'} id={'image'} onChange={(event)=>ChangeInput(event.target.value, event.target.id)} />
+                <label>Description</label>
+                <textarea className='input' id={'description'} onChange={(event)=>ChangeInput(event.target.value, event.target.id)} />
+                <button className='input input-submit' type='button' onClick={()=>SubmitForm()}>
+                    Submit post
+                </button>
+                </div>
+            }           
         </form>
         
         </>
