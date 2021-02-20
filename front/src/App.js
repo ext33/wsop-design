@@ -1,15 +1,24 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import './Styles/App.sass'
 import './Styles/Form.sass'
-import'./Styles/Main.sass'
-import'./Styles/Media.sass'
-import {Route, Switch} from 'react-router-dom'
+import './Styles/Main.sass'
+import './Styles/Media.sass'
+import {Route, Switch, withRouter} from 'react-router-dom'
+import {connect} from 'react-redux'
 import Nav from "./Components/Nav";
 import MainPage from "./Components/Pages/MainPage/MainPage";
 import SubmitPostPage from "./Components/Pages/SubmitPostPage/SubmitPostPage";
 import ErrorPage from "./Components/Pages/Error/ErrorPage";
+import {clearState} from './Store/actions/submitPost'
 
-function App() {
+function App(props) {
+
+  useEffect(()=>{
+    if(props.location.pathname !== '/submit-post'){
+      props.clearState()
+    }
+})
+
   return (
     <div className="App">
       <Nav/>
@@ -26,4 +35,17 @@ function App() {
   );
 }
 
-export default App;
+function mapStateToProps(state){
+  return{
+      message: state.submitFormReducer.message,
+      error: state.submitFormReducer.error,
+  }
+}
+
+function mapDispatchToProps(dispatch){
+  return{
+      clearState: () => dispatch(clearState())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(App));

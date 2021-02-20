@@ -98,17 +98,37 @@ a:hover
 
 // loading styles
 .loading
-  border: 16px solid #f3f3f3
-  border-top: 16px solid gray
-  border-radius: 50%
-  width: 120px
-  height: 120px
-  animation: spin 2s linear infinite
+  font-size: 28px
 
-@keyframes spin 
-  0% 
-    transform: rotate(0deg) 
-  100% 
-    transform: rotate(360deg) 
+  @mixin animation-opacity($delay)
+    animation: load-dot .8s $delay ease-in-out infinite  
 
+  span:nth-child(1)
+    @include animation-opacity(0s)
+  
+  span:nth-child(2)
+    @include animation-opacity(.2s)
 
+  span:nth-child(3)
+    @include animation-opacity(.4s)
+
+  @keyframes load-dot
+    0%
+      opacity: 0
+    50%
+      opacity: 1
+    100%
+      opacity: 0
+  
+
+.info-button
+  transition: ease-in-out .2s
+  outline: none
+  border: none
+  background: none
+  margin: 10px
+  padding: 20px
+  cursor: pointer
+  
+  &:hover
+    text-decoration: underline

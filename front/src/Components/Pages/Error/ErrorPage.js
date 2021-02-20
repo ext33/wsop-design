@@ -25,7 +25,7 @@ function ErrorPage(props){
         <div className={'page404 container'}>
             {props.error? <h1>{this.props.error}</h1>: null}
             <h1>{title}</h1>
-            <button className={'main-button'} onClick={goHome}>Go to home page</button>
+            <button className={'info-button'} onClick={goHome}>Go to home page</button>
         </div>
     )
 }

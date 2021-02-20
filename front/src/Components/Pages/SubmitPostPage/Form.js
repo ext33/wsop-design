@@ -22,11 +22,11 @@ function Form (props){
         document.getElementById('image').addEventListener('change', changeImageHandler)
         if (props.error){
             setModal(true)
+
         } else if (props.message && !props.error){
             setSuccessModal(true)
         }
-
-    }, [props.message, props.error])
+    }, [props])
 
     function ChangeInput(newValue, param){
         if (modal === true) {

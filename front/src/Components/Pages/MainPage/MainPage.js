@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useRef} from 'react'
 import ImageBlock from './ImageBlock'
 import Loading from '../../Loading'
 import {connect} from 'react-redux'
@@ -8,10 +8,15 @@ import { Redirect } from 'react-router-dom'
 
 function MainPage(props) {
 
+    let rendered = useRef(false)
+
     useEffect(()=>{
-        props.fetchImages()
-        
-    }, [props])
+        if(rendered.current === false) {
+            props.fetchImages()
+            rendered.current = true
+        }
+    })
+
 
     if(props.error){
         return (<Redirect to={{
@@ -40,8 +45,7 @@ function MainPage(props) {
 }
 
 function mapStateToProps(state){
-    console.log(state)
-    return{
+    return {
         imagesObj: state.imagesReducer.imagesObj,
         error: state.imagesReducer.error,
     }
