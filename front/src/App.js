@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import './Styles/App.sass'
 import './Styles/Form.sass'
 import './Styles/Main.sass'
@@ -13,15 +13,23 @@ import {clearState} from './Store/actions/submitPost'
 
 function App(props) {
 
+  const [layout, setLayout] = useState(true)
+
   useEffect(()=>{
-    if(props.location.pathname !== '/submit-post'){
+    if (props.location.pathname !== '/submit-post') {
       props.clearState()
     }
-})
+    if (props.location.pathname === '/error') {
+      setLayout(false)
+    }
+    else {
+      setLayout(true)
+    }
+}, [props])
 
   return (
     <div className="App">
-      <Nav/>
+      <Nav sideLayout={layout} />
       <div className={'main container'}>
           <Switch>
               <Route path='/' exact component={MainPage} />

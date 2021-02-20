@@ -1,3 +1,6 @@
+$main-font: "Bitstream Vera Sans Mono", Monaco, "Courier New", Courier, monospace
+$logos-font: 'Inconsolata', monospace
+
 *
   margin: 0
   padding: 0
@@ -75,7 +78,7 @@
 h4
   font-size: 22px !important
   font-weight: bold !important
-  font-family: "Bitstream Vera Sans Mono", Monaco, "Courier New", Courier, monospace
+  font-family: $main-font
 
 .div-logo
   height: 30px
@@ -89,27 +92,37 @@ a:hover
   color: black
   font-weight: bold
   font-size: 22px
-  font-family: 'Inconsolata', monospace
+  font-family: $logos-font
   white-space: nowrap
 
 .page404
   flex-direction: column
   height: 70vh
+  font-family: $main-font
+
 
 // loading styles
 .loading
-  font-size: 28px
+  font-size: 26px
+  display: flex
+  align-items: center
+  justify-content: center
+  height: 80vh
+  font-family: $main-font
+  
+  p
+    padding-right: 2px
 
   @mixin animation-opacity($delay)
     animation: load-dot .8s $delay ease-in-out infinite  
 
-  span:nth-child(1)
+  span:nth-child(2)
     @include animation-opacity(0s)
   
-  span:nth-child(2)
+  span:nth-child(3)
     @include animation-opacity(.2s)
 
-  span:nth-child(3)
+  span:nth-child(4)
     @include animation-opacity(.4s)
 
   @keyframes load-dot

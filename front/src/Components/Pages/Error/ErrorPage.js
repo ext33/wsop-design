@@ -1,9 +1,9 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect} from "react"
 import {withRouter} from 'react-router-dom'
 
 function ErrorPage(props){
 
-    let [title, setTitle] = useState(null);
+    let [title, setTitle] = useState(null)
 
     useEffect(() => {
         if (props.location.state) {
@@ -24,7 +24,7 @@ function ErrorPage(props){
     return (
         <div className={'page404 container'}>
             {props.error? <h1>{this.props.error}</h1>: null}
-            <h1>{title}</h1>
+            <h2>{title}</h2>
             <button className={'info-button'} onClick={goHome}>Go to home page</button>
         </div>
     )
