@@ -1,0 +1,54 @@
+@import ../Mixins
+    
+// loading styles
+.loading
+  font-size: 26px
+  display: flex
+  align-items: center
+  justify-content: center
+  height: 80vh
+  font-family: $main-font
+  
+  p
+    padding-right: 2px
+
+  span:nth-child(2)
+    @include loading-animation(0s)
+  
+  span:nth-child(3)
+    @include loading-animation(.2s)
+
+  span:nth-child(4)
+    @include loading-animation(.4s)
+
+  
+// form submit info styles
+.form-main .error-modal-an
+    position: absolute
+
+.error-modal-an.entering
+    animation: error-an .8s ease-in forwards
+
+.error-modal-an.exiting
+    animation: error-an .8s ease-out alternate-reverse
+
+.error-modal-an.exited
+    opacity: 0
+    
+
+.success-modal-an.entering
+    animation: success-an .9s ease-out forwards
+
+.success-modal-an.exited
+    opacity: 0
+
+
+.form-main.entering
+    animation: form-an .5s ease-in forwards
+
+.form-main.exiting
+    animation: form-an .5s ease-out alternate-reverse
+
+.form-main.exited
+    opacity: 0
+    display: none

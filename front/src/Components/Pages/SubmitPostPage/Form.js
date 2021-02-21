@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import {connect} from 'react-redux'
 import {submitPostAction, clearState} from '../../../Store/actions/submitPost'
 import ModalWindow from "./ModalWindow";
+import {Transition} from "react-transition-group"
 
 function Form (props){
 
@@ -9,13 +10,16 @@ function Form (props){
         base64: null,
         alt: null,
     })
+
     const [formData, setFormData] = useState({
         username: null,
         email: null,
         description: null,
         image: null,
     })
+
     const [modal, setModal] = useState(false)
+
     const [successModal, setSuccessModal] = useState(false)
 
     useEffect(()=>{
@@ -61,40 +65,61 @@ function Form (props){
             reader.readAsDataURL(file)
         })
     }
+    
     return(
-        <>
         <form>
-            { modal ?
-            <ModalWindow 
-                message={props.message} 
-                error={props.error}
-            />
-            : null }       
-            { successModal? 
-                <ModalWindow 
-                    message={props.message} 
-                    error={props.error}
-                /> :
-                <div className='form-main'>
-                <label>Username</label>
-                <input className='input input-main' type={'text'} id={'username'} onChange={(event)=>ChangeInput(event.target.value, event.target.id)} />
-                <label>Email</label>
-                <input className='input input-main' type={'email'} id={'email'} onChange={(event)=>ChangeInput(event.target.value, event.target.id)} />
-                <label>Image</label>
-                <div className='imageprev' onClick={()=>{document.getElementById('image').click()}}>
-                    { image ? <img className='prev' src={image.base64} alt={image.alt}/> : null }
-                </div>
-                <input className='input input-main' type={'file'} id={'image'} onChange={(event)=>ChangeInput(event.target.value, event.target.id)} />
-                <label>Description</label>
-                <textarea className='input' id={'description'} onChange={(event)=>ChangeInput(event.target.value, event.target.id)} />
-                <button className='input input-submit' type='button' onClick={()=>SubmitForm()}>
-                    Submit post
-                </button>
-                </div>
-            }           
-        </form>
+            <div className='error-container'>
+            <Transition in={modal} timeout={800} mountOnEnter unmountOnExit>
+                { state =>
+                    <div className={`error-modal-an ${state}`}>
+                        <ModalWindow 
+                            message={props.message} 
+                            error={props.error}
+                        />
+                    </div>
+                }
+            </Transition>
+            </div>
         
-        </>
+            <Transition in={successModal} timeout={900}
+                onEntering={() => {
+                    document.body.style.overflow='hidden'
+                }}
+                onEntered={() => {
+                    document.body.style.overflow='visible'
+                }}
+            >
+                {state =>
+                    <div className={`success-modal-an ${state}`}>
+                        <ModalWindow
+                            message={props.message} 
+                            error={props.error}
+                        />
+                    </div>
+                }
+            </Transition>
+
+            <Transition in={!successModal} timeout={500} mountOnEnter unmountOnExit>
+                { state =>
+                    <div className={`form-main ${state}`}>
+                        <label>Username</label>
+                        <input className='input input-main' type={'text'} id={'username'} onChange={(event)=>ChangeInput(event.target.value, event.target.id)} />
+                        <label>Email</label>
+                        <input className='input input-main' type={'email'} id={'email'} onChange={(event)=>ChangeInput(event.target.value, event.target.id)} />
+                        <label>Image</label>
+                        <div className='imageprev' onClick={()=>{document.getElementById('image').click()}}>
+                            { image ? <img className='prev' src={image.base64} alt={image.alt}/> : null }
+                        </div>
+                        <input className='input input-main' type={'file'} id={'image'} onChange={(event)=>ChangeInput(event.target.value, event.target.id)} />
+                        <label>Description</label>
+                        <textarea className='input' id={'description'} onChange={(event)=>ChangeInput(event.target.value, event.target.id)} />
+                        <button className='input input-submit' type='button' onClick={()=>SubmitForm()}>
+                            Submit post
+                        </button>
+                    </div> 
+                }
+            </Transition>
+        </form>
     )
 }
 

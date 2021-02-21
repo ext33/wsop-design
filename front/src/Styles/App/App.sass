@@ -5,6 +5,9 @@ $logos-font: 'Inconsolata', monospace
   margin: 0
   padding: 0
 
+body html
+  height: 100%
+
 .nav-top
   position: fixed
   height: 60px
@@ -99,40 +102,6 @@ a:hover
   flex-direction: column
   height: 70vh
   font-family: $main-font
-
-
-// loading styles
-.loading
-  font-size: 26px
-  display: flex
-  align-items: center
-  justify-content: center
-  height: 80vh
-  font-family: $main-font
-  
-  p
-    padding-right: 2px
-
-  @mixin animation-opacity($delay)
-    animation: load-dot .8s $delay ease-in-out infinite  
-
-  span:nth-child(2)
-    @include animation-opacity(0s)
-  
-  span:nth-child(3)
-    @include animation-opacity(.2s)
-
-  span:nth-child(4)
-    @include animation-opacity(.4s)
-
-  @keyframes load-dot
-    0%
-      opacity: 0
-    50%
-      opacity: 1
-    100%
-      opacity: 0
-  
 
 .info-button
   transition: ease-in-out .2s

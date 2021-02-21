@@ -1,8 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import './Styles/App.sass'
-import './Styles/Form.sass'
-import './Styles/Main.sass'
-import './Styles/Media.sass'
+import './Styles/Root.sass'
 import {Route, Switch, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 import Nav from "./Components/Nav";
