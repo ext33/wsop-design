@@ -34,5 +34,6 @@ export async function sendSubmitPost(data){
     //     status: 500,
     //     error: 'Server connection error'
     // }
+
     return response
 }

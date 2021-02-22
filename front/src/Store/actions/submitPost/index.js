@@ -15,7 +15,8 @@ export function submitPostAction(data) {
         }
         if(isValid){
             result = await sendSubmitPost(data)
-            if(result.status === 200){
+            console.log(result)
+            if(result && result.status === 200){
                 dispatch({type: 'FORM-ADD'})
                 
             } else {

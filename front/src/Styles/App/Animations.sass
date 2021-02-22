@@ -23,32 +23,50 @@
 
   
 // form submit info styles
-.form-main .error-modal-an
+.form-main .modal
     position: absolute
-
-.error-modal-an.entering
-    animation: error-an .8s ease-in forwards
-
-.error-modal-an.exiting
-    animation: error-an .8s ease-out alternate-reverse
-
-.error-modal-an.exited
-    opacity: 0
     
 
-.success-modal-an.entering
-    animation: success-an .9s ease-out forwards
-
-.success-modal-an.exited
+.error-modal-an-enter
     opacity: 0
 
+.error-modal-an-enter-active
+    opacity: 1
+    transition: opacity 500ms
 
-.form-main.entering
-    animation: form-an .5s ease-in forwards
+.error-modal-an-exit
+    opacity: 1
 
-.form-main.exiting
-    animation: form-an .5s ease-out alternate-reverse
-
-.form-main.exited
+.error-modal-an-exit-active
     opacity: 0
-    display: none
+    transition: opacity 500ms
+
+
+.success-modal-an-enter
+    opacity: 0
+
+.success-modal-an-enter-active
+    opacity: 1
+    transition: opacity 500ms
+
+.success-modal-an-exit
+    opacity: 1
+
+.success-modal-an-exit-active
+    opacity: 0
+    transition: opacity 500ms
+
+
+.form-main-enter
+    opacity: 0
+
+.form-main-enter-active
+    opacity: 1
+    transition: opacity 500ms
+
+.form-main-exit
+    opacity: 1
+
+.form-main-exit-active
+    opacity: 0
+    transition: opacity 500ms

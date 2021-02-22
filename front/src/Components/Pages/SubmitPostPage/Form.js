@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from "react";
-import {connect} from 'react-redux'
+import React, { useEffect, useState } from "react";
+import { connect } from 'react-redux'
 import {submitPostAction, clearState} from '../../../Store/actions/submitPost'
 import ModalWindow from "./ModalWindow";
-import {Transition} from "react-transition-group"
+import { CSSTransition } from "react-transition-group"
 
 function Form (props){
 
@@ -68,57 +68,48 @@ function Form (props){
     
     return(
         <form>
-            <div className='error-container'>
-            <Transition in={modal} timeout={800} mountOnEnter unmountOnExit>
-                { state =>
-                    <div className={`error-modal-an ${state}`}>
-                        <ModalWindow 
-                            message={props.message} 
-                            error={props.error}
-                        />
-                    </div>
+            <div className='error-cont'>
+                { modal ? 
+                    <ModalWindow 
+                        message={props.message} 
+                        error={props.error}
+                    />
+                : null
                 }
-            </Transition>
             </div>
         
-            <Transition in={successModal} timeout={900}
-                onEntering={() => {
-                    document.body.style.overflow='hidden'
-                }}
-                onEntered={() => {
-                    document.body.style.overflow='visible'
-                }}
+            <CSSTransition in={successModal} timeout={500} classNames='success-modal-an'
+                // onEntering={() => {
+                //     document.body.style.overflow='hidden'
+                // }}
+                // onEntered={() => {
+                //     document.body.style.overflow='visible'
+                // }}
             >
-                {state =>
-                    <div className={`success-modal-an ${state}`}>
-                        <ModalWindow
-                            message={props.message} 
-                            error={props.error}
-                        />
-                    </div>
-                }
-            </Transition>
+                <ModalWindow
+                    message={props.message} 
+                    error={props.error}
+                />
+            </CSSTransition>
 
-            <Transition in={!successModal} timeout={500} mountOnEnter unmountOnExit>
-                { state =>
-                    <div className={`form-main ${state}`}>
-                        <label>Username</label>
-                        <input className='input input-main' type={'text'} id={'username'} onChange={(event)=>ChangeInput(event.target.value, event.target.id)} />
-                        <label>Email</label>
-                        <input className='input input-main' type={'email'} id={'email'} onChange={(event)=>ChangeInput(event.target.value, event.target.id)} />
-                        <label>Image</label>
-                        <div className='imageprev' onClick={()=>{document.getElementById('image').click()}}>
-                            { image ? <img className='prev' src={image.base64} alt={image.alt}/> : null }
-                        </div>
-                        <input className='input input-main' type={'file'} id={'image'} onChange={(event)=>ChangeInput(event.target.value, event.target.id)} />
-                        <label>Description</label>
-                        <textarea className='input' id={'description'} onChange={(event)=>ChangeInput(event.target.value, event.target.id)} />
-                        <button className='input input-submit' type='button' onClick={()=>SubmitForm()}>
-                            Submit post
-                        </button>
-                    </div> 
-                }
-            </Transition>
+            <CSSTransition in={!successModal} timeout={500} classNames='form-main' unmountOnExit>
+                <div className='form-main-cont'>
+                    <label>Username</label>
+                    <input className='input input-main' type={'text'} id={'username'} onChange={(event)=>ChangeInput(event.target.value, event.target.id)} />
+                    <label>Email</label>
+                    <input className='input input-main' type={'email'} id={'email'} onChange={(event)=>ChangeInput(event.target.value, event.target.id)} />
+                    <label>Image</label>
+                    <div className='imageprev' onClick={()=>{document.getElementById('image').click()}}>
+                        { image ? <img className='prev' src={image.base64} alt={image.alt}/> : null }
+                    </div>
+                    <input className='input input-main' type={'file'} id={'image'} onChange={(event)=>ChangeInput(event.target.value, event.target.id)} />
+                    <label>Description</label>
+                    <textarea className='input' id={'description'} onChange={(event)=>ChangeInput(event.target.value, event.target.id)} />
+                    <button className='input input-submit' type='button' onClick={()=>SubmitForm()}>
+                        Submit post
+                    </button>
+                </div>
+            </CSSTransition>
         </form>
     )
 }

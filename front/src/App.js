@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import './Styles/Root.sass'
+import 'animate.css'
 import {Route, Switch, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 import Nav from "./Components/Nav";
