@@ -1,9 +1,13 @@
 import React, {useState, useEffect} from "react"
 import {withRouter} from 'react-router-dom'
+import {connect} from 'react-redux';
+import {setNavLayout} from '../../../Store/actions/layout'
 
 function ErrorPage(props){
 
     let [title, setTitle] = useState(null)
+
+    props.showNav(false)
 
     useEffect(() => {
         if (props.location.state) {
@@ -30,4 +34,18 @@ function ErrorPage(props){
     )
 }
 
-export default withRouter(ErrorPage)
+function mapStateToProps(state){
+    return{
+        message: state.submitFormReducer.message,
+        error: state.submitFormReducer.error,
+        layout: state.layoutReducer.showNav,
+    }
+  }
+  
+  function mapDispatchToProps(dispatch){
+    return{
+        showNav: (data) => dispatch(setNavLayout(data))
+    }
+  }
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(ErrorPage))
