@@ -1,11 +1,32 @@
 import React from 'react'
+import {connect} from 'react-redux';
+import LineChart from './LineChart'
 
-function DashboardPage() {
+function DashboardPage(props) {
+
     return (
-        <div className='animate__animated animate__fadeIn'>
-            dashboard
+        <div id='dashboard'>
+            <div className='chart'>
+                <span>Activity</span>
+                <LineChart data={props.data} />
+            </div>
+            <div className=''>
+                
+            </div>
         </div>
     )
 }
 
-export default DashboardPage
+function mapStateToProps(state){
+    return {
+        data: state.dashboardReducer.data
+    }
+}
+
+function mapDispatchToProps(dispatch){
+    return {
+          
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DashboardPage)

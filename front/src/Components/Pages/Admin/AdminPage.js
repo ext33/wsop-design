@@ -10,7 +10,7 @@ function AdminPage() {
     return (
         <div className='admin-main'>
             <AdminNav />
-            <div className='main container'>
+            <div className='main container n-padding  animate__animated animate__fadeIn'>
                 <Switch>
                     <Route 
                         path='/admin'  
