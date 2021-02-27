@@ -1,13 +1,8 @@
-import React, {useState, useEffect} from "react"
-import {withRouter} from 'react-router-dom'
-import {connect} from 'react-redux';
-import {setNavLayout} from '../../../Store/actions/layout'
+import React, {useState, useEffect,} from "react"
 
 function ErrorPage(props){
 
     let [title, setTitle] = useState(null)
-
-    props.showNav(false)
 
     useEffect(() => {
         if (props.location.state) {
@@ -19,14 +14,16 @@ function ErrorPage(props){
         } else {
             setTitle('Page not found')
         }
-    }, [props.location.state])
+    }, [props])
 
     function goHome(){
-        props.history.push('/')
+        return(
+            props.history.push('/')
+        )
     }
 
     return (
-        <div className='page404 container'>
+        <div className='page404 container animate__animated animate__fadeIn'>
             {props.error? <h1>{this.props.error}</h1>: null}
             <h2>{title}</h2>
             <button className='info-button' onClick={goHome}>Go to home page</button>
@@ -34,18 +31,5 @@ function ErrorPage(props){
     )
 }
 
-function mapStateToProps(state){
-    return{
-        message: state.submitFormReducer.message,
-        error: state.submitFormReducer.error,
-        layout: state.layoutReducer.showNav,
-    }
-  }
-  
-  function mapDispatchToProps(dispatch){
-    return{
-        showNav: (data) => dispatch(setNavLayout(data))
-    }
-  }
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(ErrorPage))
+export default ErrorPage

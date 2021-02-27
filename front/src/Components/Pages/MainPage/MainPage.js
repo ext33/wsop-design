@@ -17,14 +17,15 @@ function MainPage(props) {
         }
     })
 
-
+    // TODO:
+    // drag in router
     if(props.error){
         return (<Redirect to={{
             pathname: "/error",
             state: {
                 type: 500,
             }
-        }} p/>)
+        }}/>)
     }
 
     return(
