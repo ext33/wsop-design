@@ -5,13 +5,26 @@ import LineChart from './LineChart'
 function DashboardPage(props) {
 
     return (
-        <div id='dashboard'>
-            <div className='chart'>
-                <span>Activity</span>
-                <LineChart data={props.data} />
-            </div>
-            <div className=''>
+        <div id='dashboard' className='flex'>
+            <div className='dashboard-row flex'>
+                <div className='dashboard-item flex'>
+                    <span>Activity</span>
+                    <LineChart data={props.data} />
+                </div>
                 
+                <div className='dashboard-item flex'>
+                    
+                </div>
+            </div>
+
+            <div className='dashboard-row flex'>
+                <div className='dashboard-item flex'>
+                    
+                </div>
+                
+                <div className='dashboard-item flex'>
+                    
+                </div>
             </div>
         </div>
     )

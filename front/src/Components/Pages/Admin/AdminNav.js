@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function AdminNav() {
     return (
-        <div className='admin-nav border-container animate__animated animate__fadeIn'>
+        <div className='admin-nav border-container'>
             <NavLink to="/admin" strict className="admin-nav-link">
                 <FontAwesomeIcon icon={['fas', 'tachometer-alt']} /> DASHBOARD
             </NavLink>

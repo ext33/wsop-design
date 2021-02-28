@@ -8,9 +8,9 @@ import ProfilePage from './AdminProfile/ProfilePage'
 
 function AdminPage() {
     return (
-        <div className='admin-main'>
+        <div className='admin-main animate__animated animate__fadeIn'>
             <AdminNav />
-            <div className='main container n-padding  animate__animated animate__fadeIn'>
+            <div className='main container n-padding'>
                 <Switch>
                     <Route 
                         path='/admin'  
