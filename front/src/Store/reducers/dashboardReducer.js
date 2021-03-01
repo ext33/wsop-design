@@ -1,5 +1,5 @@
 const initialState={
-    data: [
+    data1: [
     {
       "id": "new posts",
       "color": "hsl(174, 70%, 50%)",
@@ -108,8 +108,18 @@ const initialState={
         }
       ]
     },
-    
-   
+  ],
+  data2: [
+    {
+      "activity": "Posts",
+      "all": 159,
+      "today": 82,
+    },
+    {
+      "activity": "Visits",
+      "all": 173,
+      "today": 120,
+    }
   ]
 }
 

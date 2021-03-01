@@ -13,7 +13,7 @@ function Nav(props) {
     return(
         <>
             { props.location.pathname === '/' || props.location.pathname === '/submit-post' ?
-               <>
+            <>
                <div className="nav-left animate__animated animate__fadeIn">
                    <div className="sub">
                        <NavLink to="/submit-post" exact className="logo">SUBMIT.POST</NavLink>
@@ -24,14 +24,16 @@ function Nav(props) {
                        <NavLink to="/admin" exact className="logo">GO.MODERS</NavLink>
                    </div>
                </div>
-               </> 
+            </> 
             : null}
             
+            { props.location.pathname.includes('admin') ? null :
             <div className={navTopStyles.join(' ')}>
                 <div className="div-logo">
                     <NavLink to="/" exact className="logo">WSOP.DESIGN</NavLink>
                 </div>
             </div>
+            }
         </>
     )
 }

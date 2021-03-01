@@ -1,30 +1,18 @@
 import React from 'react'
 import {connect} from 'react-redux';
 import LineChart from './LineChart'
+import BarChart from './BarChart'
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function DashboardPage(props) {
 
     return (
         <div id='dashboard' className='flex'>
-            <div className='dashboard-row flex'>
-                <div className='dashboard-item flex'>
-                    <span>Activity</span>
-                    <LineChart data={props.data} />
-                </div>
-                
-                <div className='dashboard-item flex'>
-                    
-                </div>
+            <div className='dashboard-item line-chart flex'>
+                <LineChart data={props.data1} />
             </div>
-
-            <div className='dashboard-row flex'>
-                <div className='dashboard-item flex'>
-                    
-                </div>
-                
-                <div className='dashboard-item flex'>
-                    
-                </div>
+            <div className='dashboard-item line-chart flex'>
+                <BarChart data={props.data2} />
             </div>
         </div>
     )
@@ -32,7 +20,8 @@ function DashboardPage(props) {
 
 function mapStateToProps(state){
     return {
-        data: state.dashboardReducer.data
+        data1: state.dashboardReducer.data1,
+        data2: state.dashboardReducer.data2
     }
 }
 
