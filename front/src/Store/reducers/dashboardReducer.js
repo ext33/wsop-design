@@ -2,7 +2,6 @@ const initialState={
     data1: [
     {
       "id": "new posts",
-      "color": "hsl(174, 70%, 50%)",
       "data": [
         {
           "x": 1,
@@ -56,7 +55,6 @@ const initialState={
     },
     {
       "id": "visits",
-      "color": "hsl(332, 70%, 50%)",
       "data": [
         {
           "x": 1,

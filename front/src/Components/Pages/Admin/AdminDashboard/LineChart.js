@@ -14,16 +14,20 @@ function LineChart(props) {
         axisTop={null}
         axisRight={null}
         enablePoints={false}
-        enableGridY={true}
+        enableGridY={false}
         enableGridX={false}
-        colors={{scheme: 'accent'}}
+        colors={
+            [
+                '#90caf9',
+                '#80b3dd'
+            ]
+        }
         curve="cardinal"
         axisBottom={{
             orient: 'bottom',
             tickSize: 5,
             tickPadding: 5,
             tickRotation: 0,
-            legend: 'date',
             legendOffset: 36,
             legendPosition: 'middle'
         }}
