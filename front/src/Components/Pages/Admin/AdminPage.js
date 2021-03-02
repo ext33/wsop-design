@@ -8,34 +8,32 @@ import ProfilePage from './AdminProfile/ProfilePage'
 
 function AdminPage() {
     return (
-        <div>
-            <div className='admin-main animate__animated animate__fadeIn'>
-                <AdminNav />
-                <div className='main-admin container'>
-                    <Switch>
-                        <Route 
-                            path='/admin'  
-                            exact
-                            component={DashboardPage}
-                        />
-                        <Route 
-                            path='/admin/post-list'
-                            exact
-                            component={PostListPage}
-                        />
-                        <Route 
-                            path='/admin/post/:id'
-                            exact
-                            component={PostPage}
-                        />
-                        <Route 
-                            path='/admin/profile'
-                            exact
-                            component={ProfilePage}
-                        />
-                    </Switch>
-                </div>
-            </div>  
+        <div className='admin-main animate__animated animate__fadeIn'>
+            <AdminNav />
+            <div className='main-admin container'>
+                <Switch>
+                    <Route 
+                        path='/admin'  
+                        exact
+                        component={DashboardPage}
+                    />
+                    <Route 
+                        path='/admin/post-list'
+                        exact
+                        component={PostListPage}
+                    />
+                    <Route 
+                        path='/admin/post/:id'
+                        exact
+                        component={PostPage}
+                    />
+                    <Route 
+                        path='/admin/profile'
+                        exact
+                        component={ProfilePage}
+                    />
+                </Switch>
+            </div>
         </div>
     )
 }

@@ -7,14 +7,21 @@ import LineChart from './LineChart'
 function DashboardPage(props) {
 
     return (
-        <div id='dashboard' className='flex'>
+        <div id='dashboard' className='flex animate__animated animate__fadeIn'>
             <div className='dashboard-item line-chart flex'>
                 <span>Today</span>
-                <LineChart data={props.data1} />
+                <div className='chart-container'>
+                    <LineChart data={props.data1} />
+                </div>
             </div>
-            {/* <div className='dashboard-item line-chart flex'>
-                <BarChart data={props.data2} />
-            </div> */}
+            <div className='dashboard-item total-view'>
+                <span>All time</span>
+                <div className='total-info'>
+                    <p>2000 views</p>
+                    <p>321 posts</p>
+                    <p className='total-info-date'>on 02.03.2021</p>
+                </div>
+            </div>
         </div>
     )
 }

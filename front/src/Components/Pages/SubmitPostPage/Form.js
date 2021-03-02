@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { connect } from 'react-redux'
 import {submitPostAction, clearState} from '../../../Store/actions/submitPost'
-import ModalWindow from "./ModalWindow";
+import Info from "./ModalWindow";
 import { CSSTransition } from "react-transition-group"
 
 function Form (props){
@@ -70,7 +70,7 @@ function Form (props){
         <form>
             <div className='error-cont'>
                 { modal ? 
-                    <ModalWindow 
+                    <Info 
                         message={props.message} 
                         error={props.error}
                     />
@@ -86,7 +86,7 @@ function Form (props){
                 //     document.body.style.overflow='visible'
                 // }}
             >
-                <ModalWindow
+                <Info
                     message={props.message} 
                     error={props.error}
                 />

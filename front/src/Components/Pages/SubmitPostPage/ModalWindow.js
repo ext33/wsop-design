@@ -1,12 +1,9 @@
 import React from 'react'
 
-function ModalWindow(props) {
+function Info(props) {
     let cls = ['modal']
     if (props.message) {
         cls.push('modal-message')
-    }
-    else {
-        // cls.push('animate__animated animate__fadeInDown')    
     }
 
     return (
@@ -16,4 +13,4 @@ function ModalWindow(props) {
     )
 }
 
-export default ModalWindow
+export default Info

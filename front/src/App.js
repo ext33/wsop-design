@@ -9,9 +9,9 @@ import Nav from './Components/Nav'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
-import { far } from '@fortawesome/free-regular-svg-icons'
+// import { far } from '@fortawesome/free-regular-svg-icons'
 
-library.add(fas, far)
+library.add(fas)
 
 function App(props) {
   let [styles, setStyles] = useState(true)
@@ -29,9 +29,9 @@ function App(props) {
   }, [props])
 
   return (
-    <div className="App">
+    <div className="App animate__animated animate__fadeIn">
       <Nav />
-      <div className={ styles ? 'main container' : 'admin-nav' }>
+      <div className={ styles ? 'main container' : 'admin' }>
           <RouterView />
       </div>
     </div>
