@@ -1,8 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux';
 import LineChart from './LineChart'
-// import BarChart from './BarChart'
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function DashboardPage(props) {
 
@@ -20,6 +18,42 @@ function DashboardPage(props) {
                     <p>2000 views</p>
                     <p>321 posts</p>
                     <p className='total-info-date'>on 02.03.2021</p>
+                </div>
+            </div>
+            <div className='dashboard-item posts-ds-view'>
+                <span>Recent posts</span>
+                <div className='posts-table-container'>
+                    <table className='posts-table'>
+                        <thead>
+                            <tr className='posts-table-row posts-table-head'>
+                                <th className='table-cell'>username</th>
+                                <th className='table-cell'>email</th>
+                                <th className='table-cell'>image</th>
+                                <th className='table-cell'>upload date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {/* example data */}
+                            <tr className='posts-table-row'>
+                                <th className='table-cell'>user1</th>
+                                <th className='table-cell'>user1@test.com</th>
+                                <th className='table-cell'>jkhHJgN65F.png</th>
+                                <th className='table-cell'>01-02-2021</th>
+                            </tr>
+                            <tr className='posts-table-row'>
+                                <th className='table-cell'>user1</th>
+                                <th className='table-cell'>user1@test.com</th>
+                                <th className='table-cell'>jkhHJgN65F.png</th>
+                                <th className='table-cell'>01-02-2021</th>
+                            </tr>
+                            <tr className='posts-table-row'>
+                                <th className='table-cell'>user1</th>
+                                <th className='table-cell'>user1@test.com</th>
+                                <th className='table-cell'>jkhHJgN65F.png</th>
+                                <th className='table-cell'>01-02-2021</th>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

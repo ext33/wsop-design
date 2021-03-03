@@ -3,6 +3,7 @@
     
 .admin-nav-top
     position: fixed
+    z-index: 999999
     width: calc(100% - 240px)
     height: 60px
     top: 0
@@ -11,6 +12,7 @@
     padding: 7px 40px 4px
     margin-left: 240px  
     background-color: $second-color
+    opacity: 1
     box-shadow: 0px 5px 8px 0px rgba(34, 60, 80, 0.2)
 
 .admin-nav-sidebar
@@ -65,8 +67,8 @@
     padding: 20px 80px
 
 .dashboard-item
+    width: auto
     flex-wrap: nowrap
-    // align-items: center
     justify-content: center
     flex-direction: column
     padding: 30px
@@ -87,11 +89,10 @@
 
 .total-view
     min-width: 300px
-    width: auto
     
 
 .total-info
-    margin-top: 60px
+    margin-top: 40px
     width: 100%
 
     p
@@ -100,5 +101,38 @@
 
     .total-info-date
         font-family: "Roboto", "Helvetica", "Arial", sans-serif
-        padding-top: 20px
+        padding-top: 40px
         font-size: 20px
+
+.posts-ds-view
+    width: 100%
+
+// posts table
+
+.posts-table
+    border-collapse: separate
+    empty-cells: hide
+    width: 100%
+    margin-top: 5px 0 
+    
+.posts-table-head
+    margin-top: 25px !important
+    font-weight: bold !important
+
+.posts-table-row
+    display: table-row
+    // justify-content: space-between
+    border-spacing: 0
+    outline: 0
+    vertical-align: middle
+    border-bottom: 1px solid lightgray
+    
+th
+    font-weight: 200
+
+.table-cell
+    padding: 6px 24px 6px 16px
+    text-align: left
+
+
+   
