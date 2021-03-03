@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux';
 import LineChart from './LineChart'
+import {NavLink} from "react-router-dom";
 
 function DashboardPage(props) {
 
@@ -23,37 +24,38 @@ function DashboardPage(props) {
             <div className='dashboard-item posts-ds-view'>
                 <span>Recent posts</span>
                 <div className='posts-table-container'>
-                    <table className='posts-table'>
-                        <thead>
-                            <tr className='posts-table-row posts-table-head'>
-                                <th className='table-cell'>username</th>
-                                <th className='table-cell'>email</th>
-                                <th className='table-cell'>image</th>
-                                <th className='table-cell'>upload date</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+                    <div className='posts-table'>
+                        <div className='posts-table-row posts-table-head'>
+                            <div className='table-cell'>username</div>
+                            <div className='table-cell'>email</div>
+                            <div className='table-cell'>image</div>
+                            <div className='table-cell'>upload date</div>
+                        </div>
                         {/* example data */}
-                            <tr className='posts-table-row'>
-                                <th className='table-cell'>user1</th>
-                                <th className='table-cell'>user1@test.com</th>
-                                <th className='table-cell'>jkhHJgN65F.png</th>
-                                <th className='table-cell'>01-02-2021</th>
-                            </tr>
-                            <tr className='posts-table-row'>
-                                <th className='table-cell'>user1</th>
-                                <th className='table-cell'>user1@test.com</th>
-                                <th className='table-cell'>jkhHJgN65F.png</th>
-                                <th className='table-cell'>01-02-2021</th>
-                            </tr>
-                            <tr className='posts-table-row'>
-                                <th className='table-cell'>user1</th>
-                                <th className='table-cell'>user1@test.com</th>
-                                <th className='table-cell'>jkhHJgN65F.png</th>
-                                <th className='table-cell'>01-02-2021</th>
-                            </tr>
-                        </tbody>
-                    </table>
+                        <div className='posts-table-row'>
+                            <div className='table-cell'>user1</div>
+                            <div className='table-cell'>user1@test.com</div>
+                            <div className='table-cell'>jkhHJgN65F.png</div>
+                            <div className='table-cell'>01-02-2021</div>
+                        </div>
+                        <div className='posts-table-row'>
+                            <div className='table-cell'>user1</div>
+                            <div className='table-cell'>@test.com</div>
+                            <div className='table-cell'>jkhHJgN65F.png</div>
+                            <div className='table-cell'>01-02-2021</div>
+                        </div>
+                        <div className='posts-table-row'>
+                            <div className='table-cell'>user1</div>
+                            <div className='table-cell'>user1@test.com</div>
+                            <div className='table-cell'>.png</div>
+                            <div className='table-cell'>01-02-2021</div>
+                        </div>
+                    </div>
+                </div>
+                <div className='posts-link'>
+                    <NavLink to="/admin/post-list" strict >
+                        See more posts
+                    </NavLink>
                 </div>
             </div>
         </div>
