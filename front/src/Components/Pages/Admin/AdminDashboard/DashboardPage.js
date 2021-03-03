@@ -1,23 +1,47 @@
-import React from 'react'
-import {connect} from 'react-redux';
+import React, {useEffect, useRef} from 'react'
+import {connect} from 'react-redux'
 import LineChart from './LineChart'
-import {NavLink} from "react-router-dom";
+import {NavLink, Redirect} from "react-router-dom"
+import {fetchImageData} from '../../../../Store/actions/fetchImages'
+import {fetchStatsData} from '../../../../Store/actions/fetchDashboardStats'
+import Loading from '../../../Loading'
 
 function DashboardPage(props) {
 
+    let rendered = useRef(false)
+    console.log(props.imagesData)
+    useEffect(()=>{
+        if(rendered.current === false) {
+            props.fetchStatsData()
+            props.fetchImagesData()
+            rendered.current = true
+        }
+    })
+
+    if(props.statsError || props.imagesError){
+        return (<Redirect to={{
+            pathname: "/error",
+            state: {
+                type: 500,
+            }
+        }}/>)
+    }
+
     return (
         <div id='dashboard' className='flex animate__animated animate__fadeIn'>
+        { props.imagesData.length > 0 ?
+            <>
             <div className='dashboard-item line-chart flex'>
                 <span>Today</span>
                 <div className='chart-container'>
-                    <LineChart data={props.data1} />
+                    <LineChart data={props.daysTimeData} />
                 </div>
             </div>
             <div className='dashboard-item total-view'>
                 <span>All time</span>
                 <div className='total-info'>
-                    <p>2000 views</p>
-                    <p>321 posts</p>
+                    <p>{props.allTimeData.visits} views</p>
+                    <p>{props.allTimeData.posts} posts</p>
                     <p className='total-info-date'>on 02.03.2021</p>
                 </div>
             </div>
@@ -32,24 +56,18 @@ function DashboardPage(props) {
                             <div className='table-cell'>upload date</div>
                         </div>
                         {/* example data */}
-                        <div className='posts-table-row'>
-                            <div className='table-cell'>user1</div>
-                            <div className='table-cell'>user1@test.com</div>
-                            <div className='table-cell'>jkhHJgN65F.png</div>
-                            <div className='table-cell'>01-02-2021</div>
-                        </div>
-                        <div className='posts-table-row'>
-                            <div className='table-cell'>user1</div>
-                            <div className='table-cell'>@test.com</div>
-                            <div className='table-cell'>jkhHJgN65F.png</div>
-                            <div className='table-cell'>01-02-2021</div>
-                        </div>
-                        <div className='posts-table-row'>
-                            <div className='table-cell'>user1</div>
-                            <div className='table-cell'>user1@test.com</div>
-                            <div className='table-cell'>.png</div>
-                            <div className='table-cell'>01-02-2021</div>
-                        </div>
+                        {
+                            props.imagesData.map((elem, index) => {
+                                return(
+                                    <div className='posts-table-row' index={index}>
+                                        <div className='table-cell'>{elem.username}</div>
+                                        <div className='table-cell'>{elem.email}</div>
+                                        <div className='table-cell'>{elem.imageSrc.length>15 ? elem.imageSrc.slice(0, 15)+'...' : elem.imageSrc}</div>
+                                        <div className='table-cell'>{elem.uploadDate}</div>
+                                    </div>
+                                )
+                            })
+                        }
                     </div>
                 </div>
                 <div className='posts-link'>
@@ -58,20 +76,27 @@ function DashboardPage(props) {
                     </NavLink>
                 </div>
             </div>
+            </>
+            : <Loading />
+        }
         </div>
     )
 }
 
 function mapStateToProps(state){
     return {
-        data1: state.dashboardReducer.data1,
-        data2: state.dashboardReducer.data2
+        allTimeData: state.dashboardReducer.allTimeData,
+        daysTimeData: state.dashboardReducer.daysTimeData,
+        statsError: state.dashboardReducer.error,
+        imagesError:  state.imagesReducer.error,
+        imagesData: state.imagesReducer.imagesObj,
     }
 }
 
 function mapDispatchToProps(dispatch){
     return {
-          
+        fetchImagesData: () => dispatch(fetchImageData()),
+        fetchStatsData: () => dispatch(fetchStatsData())
     }
 }
 

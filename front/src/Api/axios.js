@@ -2,16 +2,53 @@
 
 // emulating data fetch
 // emulate fetching images
-export async function fetchImages(){
+export async function fetchImages() {
     const img = [
-        {imageSrc: 'https://i.pinimg.com/236x/df/df/6c/dfdf6ca5c620a7981d8b2da2fd22d37a.jpg', imageAlt: '1'},
-        {imageSrc: 'https://i.pinimg.com/236x/df/df/6c/dfdf6ca5c620a7981d8b2da2fd22d37a.jpg', imageAlt: '2'},
-        {imageSrc: 'https://i.pinimg.com/236x/df/df/6c/dfdf6ca5c620a7981d8b2da2fd22d37a.jpg', imageAlt: '3'},
-        {imageSrc: 'https://i.pinimg.com/236x/df/df/6c/dfdf6ca5c620a7981d8b2da2fd22d37a.jpg', imageAlt: '4'},
-        {imageSrc: 'https://i.pinimg.com/236x/51/ea/31/51ea31bf0289e426508410aac54ed2a7.jpg', imageAlt: '4'},
-        {imageSrc: 'https://i.pinimg.com/236x/51/ea/31/51ea31bf0289e426508410aac54ed2a7.jpg', imageAlt: '4'},
-        {imageSrc: 'https://i.pinimg.com/236x/51/ea/31/51ea31bf0289e426508410aac54ed2a7.jpg', imageAlt: '4'},
-        {imageSrc: 'https://i.pinimg.com/236x/51/ea/31/51ea31bf0289e426508410aac54ed2a7.jpg', imageAlt: '4'},
+        {
+            imageSrc: 'https://i.pinimg.com/236x/df/df/6c/dfdf6ca5c620a7981d8b2da2fd22d37a.jpg', 
+            imageAlt: '1', 
+            username: 'user',
+            email: 'email',
+            description: 'description',
+            uploadDate: '01-02-2021',
+            submited: 'true'
+        },
+        {
+            imageSrc: 'https://i.pinimg.com/236x/df/df/6c/dfdf6ca5c620a7981d8b2da2fd22d37a.jpg', 
+            imageAlt: '1', 
+            username: 'user',
+            email: 'email',
+            description: 'description',
+            uploadDate: '01-02-2021',
+            submited: 'true'
+        },
+        {
+            imageSrc: 'https://i.pinimg.com/236x/df/df/6c/dfdf6ca5c620a7981d8b2da2fd22d37a.jpg', 
+            imageAlt: '1', 
+            username: 'user',
+            email: 'email',
+            description: 'description',
+            uploadDate: '01-02-2021',
+            submited: 'true'
+        },
+        {
+            imageSrc: 'https://i.pinimg.com/236x/df/df/6c/dfdf6ca5c620a7981d8b2da2fd22d37a.jpg', 
+            imageAlt: '1', 
+            username: 'user',
+            email: 'email',
+            description: 'description',
+            uploadDate: '01-02-2021',
+            submited: 'true'
+        },
+        {
+            imageSrc: 'https://i.pinimg.com/236x/df/df/6c/dfdf6ca5c620a7981d8b2da2fd22d37a.jpg', 
+            imageAlt: '1', 
+            username: 'user',
+            email: 'email',
+            description: 'description',
+            uploadDate: '01-02-2021',
+            submited: 'false'
+        },
     ]
     let response = {
         status: 200,
@@ -25,7 +62,7 @@ export async function fetchImages(){
 }
 
 // emulate fetching images
-export async function sendSubmitPost(data){
+export async function sendSubmitPost(data) {
     let response = {
         status: 200,
         message: 'OK'
@@ -34,6 +71,87 @@ export async function sendSubmitPost(data){
     //     status: 500,
     //     error: 'Server connection error'
     // }
+
+    return response
+}
+
+
+export async function getStatsData () {
+    let response = {
+        status: 200,
+        allTimeData: {
+            visits: 1200,
+            posts: 220
+        },
+        daysTimeData: [
+            {
+              "id": "new posts",
+              "data": [
+                {
+                  "x": '01.02',
+                  "y": 21
+                },
+                {
+                  "x": '02.02',
+                  "y": 56
+                },
+                {
+                  "x": '03.02',
+                  "y": 104
+                },
+                {
+                  "x": '04.02',
+                  "y": 119
+                },
+                {
+                  "x": '05.02',
+                  "y": 258
+                },
+                {
+                  "x": '06.02',
+                  "y": 269
+                },
+                {
+                  "x": '07.02',
+                  "y": 265
+                },
+              ]
+            },
+            {
+              "id": "visits",
+              "data": [
+                {
+                  "x": '01.02',
+                  "y": 248
+                },
+                {
+                  "x": '02.02',
+                  "y": 76
+                },
+                {
+                  "x": '03.02',
+                  "y": 29
+                },
+                {
+                  "x": '04.02',
+                  "y": 100
+                },
+                {
+                  "x": '05.02',
+                  "y": 89
+                },
+                {
+                  "x": '06.02',
+                  "y": 278
+                },
+                {
+                  "x": '07.02',
+                  "y": 213
+                },
+              ]
+            },
+        ]
+    }
 
     return response
 }
