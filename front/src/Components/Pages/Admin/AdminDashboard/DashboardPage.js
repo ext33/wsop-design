@@ -29,7 +29,7 @@ function DashboardPage(props) {
 
     return (
         <div id='dashboard' className='flex animate__animated animate__fadeIn'>
-        { props.imagesData.length > 0 ?
+        { props.imagesData.length > 0 && props.allTimeData ?
             <>
             <div className='dashboard-item line-chart flex'>
                 <span>Today</span>
