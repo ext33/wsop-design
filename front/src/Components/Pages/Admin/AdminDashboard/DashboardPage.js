@@ -9,7 +9,6 @@ import Loading from '../../../Loading'
 function DashboardPage(props) {
 
     let rendered = useRef(false)
-    console.log(props.imagesData)
     useEffect(()=>{
         if(rendered.current === false) {
             props.fetchStatsData()
@@ -55,11 +54,10 @@ function DashboardPage(props) {
                             <div className='table-cell'>image</div>
                             <div className='table-cell'>upload date</div>
                         </div>
-                        {/* example data */}
                         {
                             props.imagesData.map((elem, index) => {
                                 return(
-                                    <div className='posts-table-row' index={index}>
+                                    <div className='posts-table-row' key={index}>
                                         <div className='table-cell'>{elem.username}</div>
                                         <div className='table-cell'>{elem.email}</div>
                                         <div className='table-cell'>{elem.imageSrc.length>15 ? elem.imageSrc.slice(0, 15)+'...' : elem.imageSrc}</div>

@@ -1,15 +1,28 @@
 import React from 'react'
-import {Route, Switch} from 'react-router-dom';
+import {Route, Switch, withRouter} from 'react-router-dom';
 import AdminNav from './AdminNav';
 import DashboardPage from './AdminDashboard/DashboardPage'
 import PostListPage from './AdminPostList/PostListPage'
 import PostPage from './AdminPost/PostPage'
 import ProfilePage from './AdminProfile/ProfilePage'
 
-function AdminPage() {
+function AdminPage(props) {
+
+    let page = 'Dashboard'
+    if (props.location.pathname === '/admin/profile'){
+        page = 'Profile'
+    }
+    if (props.location.pathname === '/admin/post-list'){
+        page = 'Posts'
+    }
+    if (props.location.pathname.includes('/post/')){
+        page = 'Post'
+    }
+
+    
     return (
         <div className='admin-main animate__animated animate__fadeIn'>
-            <AdminNav />
+            <AdminNav pageTitle={page} />
             <div className='main-admin container'>
                 <Switch>
                     <Route 
@@ -38,4 +51,4 @@ function AdminPage() {
     )
 }
 
-export default AdminPage
+export default withRouter(AdminPage)

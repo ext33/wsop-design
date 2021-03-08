@@ -1,11 +1,77 @@
-import React from 'react'
+import React, {useEffect, useRef} from 'react'
+import PostListItem from './PostListItem'
+import {connect} from 'react-redux'
+import {Redirect} from "react-router-dom"
+import {fetchImageData} from '../../../../Store/actions/fetchImages'
+import Loading from '../../../Loading'
 
-function PostListPage() {
+function PostListPage(props) {
+
+    let rendered = useRef(false)
+    useEffect(()=>{
+        if(rendered.current === false) {
+            props.fetchImagesData()
+            rendered.current = true
+        }
+    })
+
+    if(props.imagesError){
+        return (<Redirect to={{
+            pathname: "/error",
+            state: {
+                type: 500,
+            }
+        }}/>)
+    }
+
     return (
-        <div className='animate__animated animate__fadeIn'>
-            post list
+        <div className='flex animate__animated animate__fadeIn'>
+            {/* TODO: add search and filters */}
+            {/* <div className='list-container'>
+
+            </div> */}
+            <div className='list-container'>
+                { 
+                    props.imagesData ?
+                    <>
+                    <div className='list-item list-head'>
+                        <div className='list-item-prop'>username</div>
+                        <div className='list-item-prop'>email</div>
+                        <div className='list-item-prop'>image</div>
+                        <div className='list-item-prop'>upload date</div>
+                        <div className='list-item-prop'>approved</div>
+                    </div>
+                        { props.imagesData.map((elem, i)=>{
+                            return(
+                                <PostListItem 
+                                    key={i}
+                                    username={elem.username}
+                                    email={elem.email}
+                                    imageSrc={elem.imageSrc}
+                                    uploadDate={elem.uploadDate}
+                                    submitted={elem.submitted}
+                                />
+                            )
+                        }) }
+                    </>
+                    : <Loading />
+                }
+            </div>
         </div>
     )
 }
 
-export default PostListPage
+function mapStateToProps(state){
+    return {
+        imagesError:  state.imagesReducer.error,
+        imagesData: state.imagesReducer.imagesObj,
+    }
+}
+
+function mapDispatchToProps(dispatch){
+    return {
+        fetchImagesData: () => dispatch(fetchImageData()),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostListPage)

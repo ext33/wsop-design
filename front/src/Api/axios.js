@@ -11,7 +11,7 @@ export async function fetchImages() {
             email: 'email',
             description: 'description',
             uploadDate: '01-02-2021',
-            submited: 'true'
+            submitted: 'true'
         },
         {
             imageSrc: 'https://i.pinimg.com/236x/df/df/6c/dfdf6ca5c620a7981d8b2da2fd22d37a.jpg', 
@@ -20,7 +20,7 @@ export async function fetchImages() {
             email: 'email',
             description: 'description',
             uploadDate: '01-02-2021',
-            submited: 'true'
+            submitted: 'true'
         },
         {
             imageSrc: 'https://i.pinimg.com/236x/df/df/6c/dfdf6ca5c620a7981d8b2da2fd22d37a.jpg', 
@@ -29,7 +29,7 @@ export async function fetchImages() {
             email: 'email',
             description: 'description',
             uploadDate: '01-02-2021',
-            submited: 'true'
+            submitted: 'true'
         },
         {
             imageSrc: 'https://i.pinimg.com/236x/df/df/6c/dfdf6ca5c620a7981d8b2da2fd22d37a.jpg', 
@@ -38,7 +38,7 @@ export async function fetchImages() {
             email: 'email',
             description: 'description',
             uploadDate: '01-02-2021',
-            submited: 'true'
+            submitted: 'true'
         },
         {
             imageSrc: 'https://i.pinimg.com/236x/df/df/6c/dfdf6ca5c620a7981d8b2da2fd22d37a.jpg', 
@@ -47,7 +47,7 @@ export async function fetchImages() {
             email: 'email',
             description: 'description',
             uploadDate: '01-02-2021',
-            submited: 'false'
+            submitted: 'false'
         },
     ]
     let response = {

@@ -2,7 +2,7 @@ import React from 'react'
 import {NavLink} from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-function AdminNav() {
+function AdminNav(props) {
     return (
         <>
             <div className='admin-nav-sidebar'>
@@ -21,8 +21,8 @@ function AdminNav() {
             </div>
             <div className='admin-nav-top'>
                 <div className='nav-top-items'>
-                    <div className='nav-top-item admin-title'>
-                        Dashboard
+                    <div className='nav-top-item admin-title animate__animated animate__fadeIn'>
+                        {props.pageTitle}
                     </div>
                     <div className='nav-top-item'>
                         <FontAwesomeIcon icon={['fas', 'bell']} />
