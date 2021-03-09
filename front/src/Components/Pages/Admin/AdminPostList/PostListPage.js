@@ -1,7 +1,6 @@
 import React, {useEffect, useRef} from 'react'
 import PostListItem from './PostListItem'
 import {connect} from 'react-redux'
-import {Redirect} from "react-router-dom"
 import {fetchImageData} from '../../../../Store/actions/fetchImages'
 import Loading from '../../../Loading'
 
@@ -14,15 +13,6 @@ function PostListPage(props) {
             rendered.current = true
         }
     })
-
-    if(props.imagesError){
-        return (<Redirect to={{
-            pathname: "/error",
-            state: {
-                type: 500,
-            }
-        }}/>)
-    }
 
     return (
         <div className='flex animate__animated animate__fadeIn'>
@@ -45,6 +35,7 @@ function PostListPage(props) {
                             return(
                                 <PostListItem 
                                     key={i}
+                                    id={elem.id}
                                     username={elem.username}
                                     email={elem.email}
                                     imageSrc={elem.imageSrc}

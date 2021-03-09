@@ -1,9 +1,10 @@
 import React from 'react'
+import {NavLink} from 'react-router-dom'
 
 function PostListItem(props) {
     return (
         <div className='list-item'>
-            <a className='list-item-prop' href={props.imageSrc}>{props.imageSrc.length>15 ? props.imageSrc.slice(0, 15)+'...' : props.imageSrc}</a>
+            <NavLink className='list-item-prop' to={`/admin/post/${props.id}`}>{props.imageSrc.length>15 ? props.imageSrc.slice(0, 15)+'...' : props.imageSrc}</NavLink>
             <div className='list-item-prop'>{props.username}</div>
             <div className='list-item-prop'>{props.email}</div>
             <div className='list-item-prop'>{props.uploadDate}</div>

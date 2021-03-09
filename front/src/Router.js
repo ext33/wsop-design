@@ -6,7 +6,7 @@ import ErrorPage from "./Components/Pages/Error/ErrorPage";
 import AdminPage from './Components/Pages/Admin/AdminPage';
 import LoginPage from './Components/Pages/LoginPage/LoginPage';
 
-function RouterView() {
+export default function RouterView() {
 
     return (
         <Switch>
@@ -42,6 +42,3 @@ function RouterView() {
         </Switch>
     )
 }
-
-  
-export default RouterView

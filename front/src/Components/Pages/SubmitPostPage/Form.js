@@ -78,14 +78,7 @@ function Form (props){
                 }
             </div>
         
-            <CSSTransition in={successModal} timeout={500} classNames='success-modal-an'
-                // onEntering={() => {
-                //     document.body.style.overflow='hidden'
-                // }}
-                // onEntered={() => {
-                //     document.body.style.overflow='visible'
-                // }}
-            >
+            <CSSTransition in={successModal} timeout={500} classNames='success-modal-an'>
                 <Info
                     message={props.message} 
                     error={props.error}

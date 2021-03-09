@@ -6,7 +6,8 @@ export async function fetchImages() {
     const img = [
         {
             imageSrc: 'https://i.pinimg.com/236x/df/df/6c/dfdf6ca5c620a7981d8b2da2fd22d37a.jpg', 
-            imageAlt: '1', 
+            imageAlt: '1',
+            id: '121', 
             username: 'user',
             email: 'email',
             description: 'description',
@@ -16,6 +17,17 @@ export async function fetchImages() {
         {
             imageSrc: 'https://i.pinimg.com/236x/df/df/6c/dfdf6ca5c620a7981d8b2da2fd22d37a.jpg', 
             imageAlt: '1', 
+            id: '122',
+            username: 'user',
+            email: 'email',
+            description: 'description',
+            uploadDate: '01-02-2021',
+            submitted: 'true'
+        },
+        {
+            imageSrc: 'https://i.pinimg.com/236x/df/df/6c/dfdf6ca5c620a7981d8b2da2fd22d37a.jpg', 
+            imageAlt: '1',
+            id: '123', 
             username: 'user',
             email: 'email',
             description: 'description',
@@ -25,6 +37,7 @@ export async function fetchImages() {
         {
             imageSrc: 'https://i.pinimg.com/236x/df/df/6c/dfdf6ca5c620a7981d8b2da2fd22d37a.jpg', 
             imageAlt: '1', 
+            id: '124',
             username: 'user',
             email: 'email',
             description: 'description',
@@ -34,15 +47,7 @@ export async function fetchImages() {
         {
             imageSrc: 'https://i.pinimg.com/236x/df/df/6c/dfdf6ca5c620a7981d8b2da2fd22d37a.jpg', 
             imageAlt: '1', 
-            username: 'user',
-            email: 'email',
-            description: 'description',
-            uploadDate: '01-02-2021',
-            submitted: 'true'
-        },
-        {
-            imageSrc: 'https://i.pinimg.com/236x/df/df/6c/dfdf6ca5c620a7981d8b2da2fd22d37a.jpg', 
-            imageAlt: '1', 
+            id: '125',
             username: 'user',
             email: 'email',
             description: 'description',
@@ -59,6 +64,57 @@ export async function fetchImages() {
     //     error: 'Server connection error'
     // }
     return response
+}
+
+export async function fetchImageById(id) {
+    let data = {
+      imageSrc: 'https://i.pinimg.com/236x/df/df/6c/dfdf6ca5c620a7981d8b2da2fd22d37a.jpg', 
+      imageAlt: '1', 
+      id: id,
+      username: 'user',
+      email: 'email',
+      description: 'description',
+      uploadDate: '01-02-2021',
+      submitted: 'false'
+    }
+    let response = {
+      status: 200,
+      image: data
+    }
+    // response = {
+    //     status: 404,
+    //     error: 'Not found'
+    // }
+    return response
+}
+
+export async function updateImageById(id) {
+  let data = {
+    imageSrc: 'https://i.pinimg.com/236x/df/df/6c/dfdf6ca5c620a7981d8b2da2fd22d37a.jpg', 
+    imageAlt: '1', 
+    id: id,
+    username: 'user',
+    email: 'email',
+    description: 'description',
+    uploadDate: '01-02-2021',
+    submitted: 'true'
+  }
+  let response = {
+    status: 200,
+    image: data
+  }
+  // response = {
+  //     status: 500,
+  //     error: 'Server connection error'
+  // }
+  return response
+}
+
+export async function deleteImageById(id) {
+  let response = {
+    status: 200,
+  }
+  return response
 }
 
 // emulate fetching images
@@ -152,6 +208,11 @@ export async function getStatsData () {
             },
         ]
     }
+
+    // response = {
+    //     status: 500,
+    //     error: 'Server connection error'
+    // }
 
     return response
 }

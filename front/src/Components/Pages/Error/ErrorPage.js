@@ -7,12 +7,12 @@ function ErrorPage(props){
     useEffect(() => {
         if (props.location.state) {
             if (props.location.state.type === 500){
-                setTitle('Error! Try again later...')
+                setTitle('500 | Server connection error')
             } else {
-                setTitle('Page not found')
+                setTitle('404 | Page not found')
             }
         } else {
-            setTitle('Page not found')
+            setTitle('404 | Page not found')
         }
     }, [props])
 
