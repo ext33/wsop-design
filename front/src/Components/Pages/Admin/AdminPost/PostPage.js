@@ -9,13 +9,13 @@ function PostPage(props) {
     let {id} = useParams()
 
     let rendered = useRef(false)
+
     useEffect(() => {
         if(rendered.current === false) {
             props.fetchPostData(id)
             rendered.current = true
         }
     })
-    console.log(props.post)
 
     if(props.error) {
         if(props.error===500){
@@ -43,22 +43,27 @@ function PostPage(props) {
             {
                 props.post ?
                     <div className='flex post-container'>
-                        <div className='post-image'>
-                            <img src={props.post.imageSrc} alt={props.post.imageAlt} />
+                        <div className='post-head'>
+                            <h3>Post ID {props.post.id}</h3>
                         </div>
-                        <div className='flex post-description'>
-                            <p>Username: {props.post.username}</p>
-                            <p>Email: {props.post.email}</p>
-                            <p>Upload Date: {props.post.uploadDate}</p>
-                            <p>Description: {props.post.description}</p>
-                            <p>Submitted: {props.post.submitted}</p>
-                            <div className='flex post-button-container'>
-                                <button onClick={() => props.updatePostData(props.post.id)}>
-                                    Submit post
-                                </button>
-                                <button onClick={() => props.deletePost(props.post.id)}>
-                                    Delete post
-                                </button>
+                        <div className='flex post-body'>
+                            <div className='post-image'>
+                                <img src={props.post.imageSrc} alt={props.post.imageAlt} />
+                            </div>
+                            <div className='flex post-description'>
+                                <p>Username: {props.post.username}</p>
+                                <p>Email: {props.post.email}</p>
+                                <p>Upload Date: {props.post.uploadDate}</p>
+                                <p>Description: {props.post.description}</p>
+                                <p>Submitted: {props.post.submitted}</p>
+                                <div className='flex post-button-container'>
+                                    <button onClick={() => props.updatePostData(props.post.id)}>
+                                        Submit post
+                                    </button>
+                                    <button onClick={() => props.deletePost(props.post.id)}>
+                                        Delete post
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>

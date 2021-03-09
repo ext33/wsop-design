@@ -25,7 +25,6 @@ export function updatePost(id) {
 
 export function deletePost(id) {
     return async (dispatch) => {
-        console.log(1)
         let result = await deleteImageById(id)
         if (result.status === 200) {
             dispatch({type: 'POST-DELETE'})

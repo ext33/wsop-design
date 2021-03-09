@@ -3,7 +3,6 @@ import { ResponsiveLine } from '@nivo/line'
 import React from 'react'
 
 function LineChart(props) {
-    console.log(props.data)
     return (
         <ResponsiveLine
         data={props.data}
