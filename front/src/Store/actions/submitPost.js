@@ -1,5 +1,5 @@
 import is from 'is_js'
-import {sendSubmitPost} from '../../../Api/axios'
+import {sendSubmitPost} from '../../Api/axios'
 
 export function submitPostAction(data) {
     return async (dispatch)=>{

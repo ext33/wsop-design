@@ -1,4 +1,4 @@
-import {fetchImageById, updateImageById, deleteImageById} from '../../../Api/axios'
+import {fetchImageById, updateImageById, deleteImageById} from '../../Api/axios'
 
 export function fetchPost(id) {
     return async (dispatch) => {

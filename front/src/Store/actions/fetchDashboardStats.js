@@ -1,4 +1,4 @@
-import {getStatsData} from '../../../Api/axios'
+import {getStatsData} from '../../Api/axios'
 
 export function fetchStatsData() {
     return async (dispatch) => {

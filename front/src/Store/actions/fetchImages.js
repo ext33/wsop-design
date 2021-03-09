@@ -1,4 +1,4 @@
-import {fetchImages} from '../../../Api/axios'
+import {fetchImages} from '../../Api/axios'
 
 export function fetchImageData () {
     return async (dispatch) => {
