@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { connect } from 'react-redux'
 import {submitPostAction, clearState} from '../../../Store/actions/submitPost'
-import Info from "./ModalWindow";
+import Info from "../../UI/FormMessage";
 import { CSSTransition } from "react-transition-group"
 
 function Form (props){
@@ -26,7 +26,6 @@ function Form (props){
         document.getElementById('image').addEventListener('change', changeImageHandler)
         if (props.error){
             setModal(true)
-
         } else if (props.message && !props.error){
             setSuccessModal(true)
         }
@@ -67,7 +66,7 @@ function Form (props){
     }
     
     return(
-        <form>
+        <form id='submitForm'>
             <div className='error-cont'>
                 { modal ? 
                     <Info 

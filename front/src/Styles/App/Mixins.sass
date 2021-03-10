@@ -1,3 +1,16 @@
+// loading
+@mixin loading-animation($delay)
+    animation: load-dot .8s $delay ease-in-out infinite
+
+@keyframes load-dot
+    0%
+      opacity: 0
+    50%
+      opacity: 1
+    100%
+      opacity: 0
+
+
 // loading styles
 .loading
   font-size: 26px

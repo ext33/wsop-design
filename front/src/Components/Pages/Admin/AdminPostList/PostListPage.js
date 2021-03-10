@@ -2,14 +2,26 @@ import React, {useEffect, useRef} from 'react'
 import PostListItem from './PostListItem'
 import {connect} from 'react-redux'
 import {fetchImageData} from '../../../../Store/actions/fetchImages'
-import Loading from '../../../Loading'
+import Loading from '../../../UI/Loading'
+import { useHistory } from 'react-router'
 
 function PostListPage(props) {
 
+    let history = useHistory()
+
     let rendered = useRef(false)
+
     useEffect(()=>{
         if(rendered.current === false) {
             props.fetchImagesData()
+            if (props.imagesError){
+                history.push({
+                    pathname: "/error",
+                    state: {
+                        type: 500,
+                    }
+                })
+            }
             rendered.current = true
         }
     })
@@ -25,9 +37,9 @@ function PostListPage(props) {
                     props.imagesData ?
                     <>
                     <div className='list-item list-head'>
+                        <div className='list-item-prop'>image</div>
                         <div className='list-item-prop'>username</div>
                         <div className='list-item-prop'>email</div>
-                        <div className='list-item-prop'>image</div>
                         <div className='list-item-prop'>upload date</div>
                         <div className='list-item-prop'>approved</div>
                     </div>

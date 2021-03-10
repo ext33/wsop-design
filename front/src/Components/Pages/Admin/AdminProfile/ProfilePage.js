@@ -1,13 +1,18 @@
 import React from 'react'
 import {Redirect} from 'react-router-dom'
-import {connect} from 'react-redux'
 
 function ProfilePage(props) {
     return (
         <div className='animate__animated animate__fadeIn'>
-            { props.username && !props.error ? 
-            <div>
-                {props.username}
+            { localStorage.username ? 
+            <div className='flex profile-container'>
+                <div className='profile-image'>
+                    <img className='user-image' alt='' src={localStorage.userImage} />
+                </div>
+                <div className='profile-info flex'>
+                    <p>Username: {localStorage.username}</p>
+                    <p>Email: {localStorage.email}</p>
+                </div>
             </div>
             : <Redirect to={{
                 pathname: "/error",
@@ -20,13 +25,4 @@ function ProfilePage(props) {
     )
 }
 
-function mapStateToProps(state){
-    return {
-        username: state.authReducer.username,
-        email: state.authReducer.email,
-        userImage: state.authReducer.userImage,
-        error: state.authReducer.error
-    }
-}
-
-export default connect(mapStateToProps, null)(ProfilePage)
+export default ProfilePage

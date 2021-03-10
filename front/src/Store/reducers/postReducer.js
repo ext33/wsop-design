@@ -1,7 +1,6 @@
 const initialState = {
     post: {},
     errorStatus: null,
-    deleted: false
 }
 
 export default function postReducer(state = initialState, action){
@@ -19,9 +18,7 @@ export default function postReducer(state = initialState, action){
                 post: action.post,
             }
         case 'POST-DELETE':
-            return {
-                deleted: true
-            }
+            return state
         default:
             return state
     }

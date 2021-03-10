@@ -1,30 +1,32 @@
 import React, {useEffect, useRef} from 'react'
 import {connect} from 'react-redux'
 import LineChart from './LineChart'
-import {NavLink, Redirect} from "react-router-dom"
+import {NavLink, useHistory} from "react-router-dom"
 import {fetchImageData} from '../../../../Store/actions/fetchImages'
 import {fetchStatsData} from '../../../../Store/actions/fetchDashboardStats'
-import Loading from '../../../Loading'
+import Loading from '../../../UI/Loading'
 
 function DashboardPage(props) {
 
     let rendered = useRef(false)
+
+    let history = useHistory()
+
     useEffect(()=>{
         if(rendered.current === false) {
             props.fetchStatsData()
             props.fetchImagesData()
+            if(props.statsError || props.imagesError) {
+                history.push({
+                    pathname: "/error",
+                    state: {
+                        type: 500,
+                    }
+                })
+            }
             rendered.current = true
         }
     })
-
-    if(props.statsError || props.imagesError){
-        return (<Redirect to={{
-            pathname: "/error",
-            state: {
-                type: 500,
-            }
-        }}/>)
-    }
 
     return (
         <div id='dashboard' className='flex animate__animated animate__fadeIn'>

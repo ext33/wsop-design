@@ -1,41 +1,38 @@
 import React, {useEffect, useRef} from 'react'
-import {useParams, Redirect} from 'react-router-dom'
+import {useParams, useHistory} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {fetchPost, updatePost, deletePost} from '../../../../Store/actions/fetchPost'
-import Loading from '../../../Loading'
+import Loading from '../../../UI/Loading'
 
 function PostPage(props) {
 
     let {id} = useParams()
+    let history = useHistory()
 
     let rendered = useRef(false)
 
     useEffect(() => {
         if(rendered.current === false) {
             props.fetchPostData(id)
+            if(props.error) {
+                if(props.error===500){
+                    history.push({
+                        pathname: "/error",
+                        state: {
+                            type: 500,
+                        }
+                    })
+                } else {
+                    history.push('/error')
+                }
+            }
             rendered.current = true
         }
     })
 
-    if(props.error) {
-        if(props.error===500){
-            return (<Redirect to={{
-                pathname: "/error",
-                state: {
-                    type: 500,
-                }
-            }}/>)
-        } else {
-            return (
-                <Redirect to = {{pathname: "/error"}} />
-            )
-        }
-    }
-
-    if(props.deleted) {
-        return (
-            <Redirect to = {{pathname: "/admin/post-list"}} />
-        )
+    function deleteHandler() {
+        props.deletePost(props.post.id)
+        history.push('/admin/post-list')
     }
 
     return (
@@ -60,7 +57,7 @@ function PostPage(props) {
                                     <button onClick={() => props.updatePostData(props.post.id)}>
                                         Submit post
                                     </button>
-                                    <button onClick={() => props.deletePost(props.post.id)}>
+                                    <button onClick={() => deleteHandler()}>
                                         Delete post
                                     </button>
                                 </div>
@@ -77,7 +74,6 @@ function mapStateToProps(state){
     return {
         error: state.postReducer.errorStatus,
         post: state.postReducer.post,
-        deleted: state.postReducer.deleted
     }
 }
 
