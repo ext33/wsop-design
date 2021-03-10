@@ -3,10 +3,12 @@ import imagesReducer from './reducers/imagesReducer'
 import submitFormReducer from './reducers/submitFormReducer'
 import dashboardReducer from './reducers/dashboardReducer'
 import postReducer from './reducers/postReducer'
+import authReducer from './reducers/authReducer'
 
 export default combineReducers({
     imagesReducer, 
     submitFormReducer,
     dashboardReducer,
     postReducer,
+    authReducer,
 })

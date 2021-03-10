@@ -22,7 +22,10 @@ export default function RouterView() {
             />
             <Route 
                 path='/admin' 
-                component={AdminPage}
+                render={ () => (
+                    localStorage.getItem('token') ? <AdminPage /> : <Redirect to={{pathname: '/login'}} />
+                    )
+                }
             />
             <Route 
                 path='/error' 

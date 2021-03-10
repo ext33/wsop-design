@@ -216,3 +216,25 @@ export async function getStatsData () {
 
     return response
 }
+
+export async function loginUser(data) {
+  
+  let userData = {
+    user: {
+      uid: '212132',
+      username: 'admin',
+      userImage: 'https://i.pinimg.com/236x/df/df/6c/dfdf6ca5c620a7981d8b2da2fd22d37a.jpg',
+      email: 'admin@admin.ru',
+    },
+    token: 'gjGH5GFH6ewjbGH5ghj',
+    refreshToken: 'jkh4bBKH5cgv434Jh3l'
+  }
+
+  let response = {
+    user: userData.user,
+    token: userData.token,
+    refreshToken: userData.refreshToken,
+    status: 200
+  }
+  return response
+}

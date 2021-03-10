@@ -2,7 +2,7 @@ import is from 'is_js'
 import {sendSubmitPost} from '../../Api/axios'
 
 export function submitPostAction(data) {
-    return async (dispatch)=>{
+    return async (dispatch) => {
         let isValid = true
         let result
         if(data.username && data.email && data.description && data.image){
@@ -28,7 +28,7 @@ export function submitPostAction(data) {
 }
 
 export function clearState(){
-    return {
-        type: 'FORM-CLEAR'
+    return async (dispatch) => {
+        return dispatch ({type: 'FORM-CLEAR'})
     }
 }

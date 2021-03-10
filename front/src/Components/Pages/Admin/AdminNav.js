@@ -1,8 +1,18 @@
 import React from 'react'
-import {NavLink} from "react-router-dom";
+import {NavLink, useHistory} from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {connect} from 'react-redux'
+import {logout} from '../../../Store/actions/auth'
 
 function AdminNav(props) {
+
+    let history = useHistory()
+
+    function logoutHandler() {
+        props.logoutUser()
+        history.push('/')
+    }
+
     return (
         <>
             <div className='admin-nav-sidebar'>
@@ -24,8 +34,8 @@ function AdminNav(props) {
                     <div className='nav-top-item admin-title animate__animated animate__fadeIn'>
                         {props.pageTitle}
                     </div>
-                    <div className='nav-top-item'>
-                        <FontAwesomeIcon icon={['fas', 'bell']} />
+                    <div onClick={logoutHandler} className='nav-top-item nav-top-icon'>
+                        <FontAwesomeIcon icon={['fas', 'sign-out-alt']} />
                     </div>
                 </div>
             </div>
@@ -34,4 +44,10 @@ function AdminNav(props) {
     )
 }
 
-export default AdminNav
+function mapDispatchToProps(dispatch){
+    return {
+        logoutUser: () => dispatch(logout())
+    }
+}
+
+export default connect(null, mapDispatchToProps)(AdminNav)

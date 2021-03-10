@@ -1,7 +1,6 @@
 import React from 'react'
 import {NavLink, withRouter} from "react-router-dom";
 
-
 function Nav(props) {
 
     let navTopStyles = ['nav-top', 'animate__animated ', 'animate__fadeIn']
@@ -37,5 +36,6 @@ function Nav(props) {
         </>
     )
 }
+
 
 export default withRouter(Nav)
