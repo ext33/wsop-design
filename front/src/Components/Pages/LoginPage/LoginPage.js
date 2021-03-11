@@ -3,7 +3,7 @@ import LoginForm from './Form'
 
 function LoginPage() {
     return (
-        <div className='animate__animated animate__fadeIn'>
+        <div id='login-page' className='flex animate__animated animate__fadeIn'>
             <LoginForm />
         </div>
     )

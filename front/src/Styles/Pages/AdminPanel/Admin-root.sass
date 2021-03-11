@@ -1,0 +1,72 @@
+// main admin panel styles
+
+.admin
+    display: block
+    
+.admin-nav-top
+    position: fixed
+    z-index: 999999
+    width: calc(100% - 240px)
+    height: 60px
+    top: 0
+    display: flex
+    align-items: center
+    padding: 7px 40px 4px
+    margin-left: 240px  
+    background-color: $second-color
+    opacity: 1
+    box-shadow: 0px 5px 8px 0px rgba(34, 60, 80, 0.2)
+
+.admin-nav-sidebar
+    position: fixed
+    height: 100%
+    width: 200px
+    left: 0
+    background-color: transparent
+    display: flex
+    align-items: left
+    flex-direction: column
+    padding: 24px 20px
+    box-shadow: 5px 0px 8px 0px rgba(34, 60, 80, 0.2)
+
+.admin-nav-link
+    padding: 10px
+    margin: 5px 0
+    text-decoration: none
+    color: black
+    font-size: 18px
+    font-family: $logos-font
+    white-space: nowrap
+
+.main-admin
+    display: flex
+    justify-content: center
+    margin-left: 240px
+    padding: 100px 0 20px
+    width: 90%
+
+.nav-logo
+    margin: 0 0 40px 15px
+
+.nav-top-items
+    width: calc(100% - 80px)
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+
+.nav-top-icon
+    margin-right: 10px
+    cursor: pointer
+
+.nav-top-item
+    font-size: 20px
+
+.admin-title
+    font-family: $second-font
+    
+// including admin panel pages styles
+
+@import ./Admin-dashboard
+@import ./Admin-posts-list
+@import ./Admin-profile
+@import ./Admin-post
