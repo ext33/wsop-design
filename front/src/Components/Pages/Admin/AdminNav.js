@@ -34,7 +34,7 @@ function AdminNav(props) {
                     <div className='nav-top-item admin-title animate__animated animate__fadeIn'>
                         {props.pageTitle}
                     </div>
-                    <div onClick={logoutHandler} className='nav-top-item nav-top-icon'>
+                    <div onClick={() => logoutHandler()} className='nav-top-item nav-top-icon'>
                         <FontAwesomeIcon icon={['fas', 'sign-out-alt']} />
                     </div>
                 </div>

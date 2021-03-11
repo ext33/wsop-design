@@ -1,7 +1,16 @@
 import React from 'react'
-import {Redirect} from 'react-router-dom'
+import {Redirect, useHistory} from 'react-router-dom'
+import {connect} from 'react-redux'
+import {logout} from '../../../../Store/actions/auth'
 
 function ProfilePage(props) {
+    let history = useHistory()
+
+    function logoutHandler() {
+        props.logoutUser()
+        history.push('/')
+    }
+
     return (
         <div className='animate__animated animate__fadeIn'>
             { localStorage.username ? 
@@ -12,6 +21,7 @@ function ProfilePage(props) {
                 <div className='profile-info flex'>
                     <p>Username: {localStorage.username}</p>
                     <p>Email: {localStorage.email}</p>
+                    <button type='button' className='input-submit' onClick={() => logoutHandler()}>Exit from account</button>
                 </div>
             </div>
             : <Redirect to={{
@@ -25,4 +35,10 @@ function ProfilePage(props) {
     )
 }
 
-export default ProfilePage
+function mapDispatchToProps(dispatch){
+    return {
+        logoutUser: () => dispatch(logout())
+    }
+}
+
+export default connect(null, mapDispatchToProps)(ProfilePage)
