@@ -9,5 +9,5 @@ const main_1 = __importDefault(require("./Routes/main"));
 const router = express_1.Router();
 router.use('/', main_1.default);
 router.use('/api', api_1.default);
-module.exports = router;
+exports.default = router;
 //# sourceMappingURL=router.js.map

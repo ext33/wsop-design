@@ -7,4 +7,4 @@ const router = Router()
 router.use('/', mainRoutes)
 router.use('/api', apiRoutes)
 
-module.exports = router
+export default router
