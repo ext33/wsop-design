@@ -28,7 +28,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getPosts = exports.createPost = void 0;
+exports.archivePost = exports.acceptPost = exports.deletePost = exports.getPost = exports.getPosts = exports.createPost = void 0;
 const models = __importStar(require("../../app/api/models"));
 function createPost(imageSrc, imageAlt, username, email, description) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -57,4 +57,72 @@ function getPosts() {
     });
 }
 exports.getPosts = getPosts;
+function getPost(id) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return new Promise((resolve, reject) => {
+            models.Post.find({ _id: id })
+                .then((Post) => {
+                if (Post.n > 0) {
+                    resolve({ status: 200, post: Post });
+                }
+                else {
+                    resolve({ status: 404, error: "Not Found" });
+                }
+            })
+                .catch(e => reject({ status: 500, error: e }));
+        });
+    });
+}
+exports.getPost = getPost;
+function deletePost(id) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return new Promise((resolve, reject) => {
+            models.Post.deleteOne({ _id: id })
+                .then((Post) => {
+                if (Post.n > 0) {
+                    resolve({ status: 200 });
+                }
+                else {
+                    resolve({ status: 404, error: "Not Found" });
+                }
+            })
+                .catch(e => reject({ status: 500, error: e }));
+        });
+    });
+}
+exports.deletePost = deletePost;
+function acceptPost(id) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return new Promise((resolve, reject) => {
+            models.Post.updateOne({ _id: id }, { submitted: 'true' })
+                .then((Post) => {
+                if (Post.n > 0) {
+                    resolve({ status: 200 });
+                }
+                else {
+                    resolve({ status: 404, error: "Not Found" });
+                }
+            })
+                .catch(e => reject({ status: 500, error: e }));
+        });
+    });
+}
+exports.acceptPost = acceptPost;
+function archivePost(id) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return new Promise((resolve, reject) => {
+            models.Post.updateOne({ _id: id }, { submitted: 'false' })
+                .then((Post) => {
+                if (Post.n > 0) {
+                    resolve({ status: 200 });
+                }
+                else {
+                    resolve({ status: 404, error: "Not Found" });
+                }
+            })
+                .catch(e => reject({ status: 500, error: e }));
+        });
+    });
+}
+exports.archivePost = archivePost;
 //# sourceMappingURL=views.js.map

@@ -4,10 +4,6 @@ exports.User = exports.Post = void 0;
 const mongoose_1 = require("mongoose");
 const uuid_1 = require("uuid");
 const PostSchema = new mongoose_1.Schema({
-    uid: {
-        type: String,
-        default: uuid_1.uuid
-    },
     imageSrc: {
         type: String,
         required: true

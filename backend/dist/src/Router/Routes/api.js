@@ -33,11 +33,27 @@ const views = __importStar(require("../../app/api/views"));
 const apiRoutes = express_1.Router();
 apiRoutes.post('/createPost', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     let result = yield views.createPost(req.body.imageSrc, req.body.imageAlt, req.body.username, req.body.email, req.body.description);
-    res.send(result);
+    res.status(result.status).send(result);
 }));
 apiRoutes.get('/getPosts', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     let result = yield views.getPosts();
-    res.send(result);
+    res.status(result.status).send(result);
+}));
+apiRoutes.get('/getPost/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    let result = yield views.getPost(req.params.id);
+    res.status(result.status).send(result);
+}));
+apiRoutes.get('/deletePost/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    let result = yield views.deletePost(req.params.id);
+    res.status(result.status).send(result);
+}));
+apiRoutes.get('/acceptPost/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    let result = yield views.acceptPost(req.params.id);
+    res.status(result.status).send(result);
+}));
+apiRoutes.get('/archivePost/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    let result = yield views.archivePost(req.params.id);
+    res.status(result.status).send(result);
 }));
 exports.default = apiRoutes;
 //# sourceMappingURL=api.js.map

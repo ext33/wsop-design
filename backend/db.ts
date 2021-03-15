@@ -9,15 +9,12 @@ const MONGO_DB: string = 'wsop'
 let url = `mongodb://${MONGO_HOSTNAME}:${MONGO_PORT}`
 // let url: string = `mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_HOSTNAME}:${MONGO_PORT}/${MONGO_DB}?authSource=admin`
 
-async function connectDB() {
+export default async function connectDB() {
   await mongo.connect(url, {useNewUrlParser: true}, (err) => {
       if (err) {
         console.log('Connection error: ', err)
         throw err
       }
-
       console.log('Connected')
   })
 }
-
-export default connectDB

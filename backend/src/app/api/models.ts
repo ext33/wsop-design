@@ -2,10 +2,6 @@ import {Schema, model} from 'mongoose'
 import {uuid} from 'uuid'
 
 const PostSchema = new Schema({
-    uid: {
-        type: String,
-        default: uuid
-    },
     imageSrc: {
         type: String,
         required: true
