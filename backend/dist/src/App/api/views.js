@@ -28,16 +28,33 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = require("express");
-const views = __importStar(require("../../app/api/views"));
-const apiRoutes = express_1.Router();
-apiRoutes.post('/createPost', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    let result = yield views.createPost(req.body.imageSrc, req.body.imageAlt, req.body.username, req.body.email, req.body.description);
-    res.send(result);
-}));
-apiRoutes.get('/getPosts', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    let result = yield views.getPosts();
-    res.send(result);
-}));
-exports.default = apiRoutes;
-//# sourceMappingURL=api.js.map
+exports.getPosts = exports.createPost = void 0;
+const models = __importStar(require("../../app/api/models"));
+function createPost(imageSrc, imageAlt, username, email, description) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return new Promise((resolve, reject) => {
+            const NewPost = new models.Post({
+                imageSrc: imageSrc,
+                imageAlt: imageAlt,
+                username: username,
+                email: email,
+                description: description
+            });
+            NewPost.save()
+                .then(() => resolve({ status: 200 }))
+                .catch(e => reject({ status: 500, error: e }));
+        });
+    });
+}
+exports.createPost = createPost;
+function getPosts() {
+    return __awaiter(this, void 0, void 0, function* () {
+        return new Promise((resolve, reject) => {
+            models.Post.find()
+                .then(Posts => resolve({ status: 200, posts: Posts }))
+                .catch(e => reject({ status: 500, error: e }));
+        });
+    });
+}
+exports.getPosts = getPosts;
+//# sourceMappingURL=views.js.map

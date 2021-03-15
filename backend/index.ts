@@ -1,22 +1,10 @@
-import express from 'express'
-import bodyParser from 'body-parser'
-import connect from './db'
-import router from './src/Router/router'
-var multer = require('multer');
-var upload = multer();
+import app from './src/app'
+import connectDB from './db'
 
-let db
-const app = express()
-const port: number = 8000
+const port: number = 8001
 
-db = connect()
+connectDB()
 
-app.use(bodyParser.urlencoded({ extended: true })); 
-app.use(upload.array()); 
-app.use(express.static('public'));
-app.use(bodyParser.json())
-
-app.use(router)
 app.listen(
     port,
     (err?: any) => {
@@ -27,6 +15,3 @@ app.listen(
         return console.log(`Server is listening on ${port}`)
     }
 )
-
-
-export {db}

@@ -1,6 +1,6 @@
 import {Router} from 'express'
-import apiRoutes from './Routes/api'
-import mainRoutes from './Routes/main'
+import apiRoutes from './routes/api'
+import mainRoutes from './routes/main'
 
 const router = Router()
 

@@ -17,19 +17,16 @@ const MONGO_PORT = '27017';
 const MONGO_DB = 'wsop';
 let url = `mongodb://${MONGO_HOSTNAME}:${MONGO_PORT}`;
 // let url: string = `mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_HOSTNAME}:${MONGO_PORT}/${MONGO_DB}?authSource=admin`
-function connect() {
+function connectDB() {
     return __awaiter(this, void 0, void 0, function* () {
-        let db = null;
-        yield mongo.connect(url, { useNewUrlParser: true }, (err, client) => {
+        yield mongo.connect(url, { useNewUrlParser: true }, (err) => {
             if (err) {
                 console.log('Connection error: ', err);
                 throw err;
             }
-            db = client;
             console.log('Connected');
         });
-        return db;
     });
 }
-exports.default = connect;
+exports.default = connectDB;
 //# sourceMappingURL=db.js.map
