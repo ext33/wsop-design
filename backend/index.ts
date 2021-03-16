@@ -1,5 +1,6 @@
 import app from './src/app'
 import connectDB from './db'
+import log from './src/middleware/consoleMiddlware'
 
 const port: number = 8001
 
@@ -9,9 +10,8 @@ app.listen(
     port,
     (err?: any) => {
         if(err) {
-            return console.error(err)
+            return log('error', err)
         }
-
-        return console.log(`Server is listening on ${port}`)
+        return log('ok', `Server started on port ${port}`)
     }
 )

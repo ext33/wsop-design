@@ -1,10 +1,10 @@
 import * as models from '../../app/api/models'
 
-export async function createPost(imageSrc: String, imageAlt: String, username: String, email: String, description: String) {
+export async function createPost(imageFile: any, username: String, email: String, description: String) {
     return new Promise((resolve, reject) => {
         const NewPost = new models.Post({
-            imageSrc: imageSrc,
-            imageAlt: imageAlt,
+            imageSrc: imageFile.path,
+            imageAlt: imageFile.originalname.slice(1, ),
             username: username,
             email: email,
             description: description
@@ -27,7 +27,7 @@ export async function getPost(id: String) {
     return new Promise((resolve, reject) => {
         models.Post.find({_id: id})
         .then((Post: any) => {
-            if(Post.n > 0) {
+            if(Post.length > 0) {
                 resolve({status: 200, post: Post})
             }
             else {

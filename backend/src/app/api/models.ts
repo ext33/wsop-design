@@ -1,5 +1,4 @@
 import {Schema, model} from 'mongoose'
-import {uuid} from 'uuid'
 
 const PostSchema = new Schema({
     imageSrc: {
@@ -29,7 +28,7 @@ const PostSchema = new Schema({
     uploadDate: {
         type: String,
         default: () => {
-            let date_ob = new Date(Date.now());
+            let date_ob = new Date(Date.now())
             return `${date_ob.getDate()}-${date_ob.getMonth() + 1}-${date_ob.getFullYear()}`
         }
     }
@@ -38,10 +37,6 @@ const PostSchema = new Schema({
 export const Post = model('Post', PostSchema)
 
 const UserSchema = new Schema({
-    uid: {
-        type: String,
-        default: uuid
-    },
     username: {
         type: String,
         required: true

@@ -1,15 +1,22 @@
 import express from 'express'
-import bodyParser from 'body-parser'
 import router from '../router/router'
-var multer = require('multer');
-var upload = multer();
+import cors from 'cors'
+import fileMiddlware from '../middleware/fileMiddleware'
+
+declare module 'express' {
+    interface Request {
+        body: any // Actually should be something like `multer.Body`
+        files: any // Actually should be something like `multer.Files`
+    }
+}
 
 const app = express()
 
-app.use(bodyParser.urlencoded({ extended: true })); 
-app.use(upload.array()); 
-app.use(express.static('public'));
-app.use(bodyParser.json())
+app.use(fileMiddlware.single('image'))
+app.use(cors())
+app.use(express.urlencoded({ extended: true }))
+app.use(express.static('public'))
+app.use(express.json())
 
 app.use(router)
 
