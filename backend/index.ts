@@ -1,17 +1,17 @@
 import app from './src/app'
 import connectDB from './db'
 import log from './src/middleware/consoleMiddlware'
-
-const port: number = 8001
+import config from './config'
 
 connectDB()
 
 app.listen(
-    port,
+    config.server.port,
+    config.server.host,
     (err?: any) => {
         if(err) {
             return log('error', err)
         }
-        return log('ok', `Server started on port ${port}`)
+        return log('ok', `Server started on ${config.server.host}:${config.server.port}`)
     }
 )

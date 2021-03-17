@@ -1,4 +1,8 @@
+import fs from 'fs'
+import path from 'path'
+import config from '../../../config'
 import * as models from '../../app/api/models'
+
 
 export async function createPost(imageFile: any, username: String, email: String, description: String) {
     return new Promise((resolve, reject) => {
@@ -39,10 +43,25 @@ export async function getPost(id: String) {
 }
 
 export async function deletePost(id: String){
+    try {
+        const file: any = await models.Post.findOne({_id: id})
+        if(!file){
+            return ({status: 404, error: "Not Found"})
+        }
+        try{
+            fs.unlinkSync(path.join(config.server.rootDir, String(file.imageSrc)))
+        } catch (e) {
+            return({status: 500, error: e})
+        }
+    } catch (e) {
+        return({status: 500, error: e})
+    }
+
     return new Promise((resolve, reject) => {
         models.Post.deleteOne({_id: id})
         .then((Post: any) => {
             if(Post.n > 0) {
+                
                 resolve({status: 200})
             }
             else {
