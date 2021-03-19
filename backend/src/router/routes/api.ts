@@ -11,6 +11,8 @@ interface Response {
 
 const apiRoutes = Router()
 
+
+// posts urls
 apiRoutes.post('/createPost', async (req?: any, res?: any) => {
     if(!req.file){
         log('api', `/api/createPost {status: 400}`)
@@ -55,6 +57,33 @@ apiRoutes.get('/acceptPost/:id', async (req?: any, res?: any) => {
 apiRoutes.get('/archivePost/:id', async (req?: any, res?: any) => {
     let result: Response = await views.archivePost(req.params.id)
     log('api', `/api/archivePost/${req.params.id} {status: ${result.status}}`)
+    res.status(result.status).send(result)
+})
+
+
+
+// stats urls
+apiRoutes.get('/getViewsStats', async (req?: any, res?: any) => {
+    let result: Response = await views.getViewsStats()
+    log('api', `/api/getViewsStats {status: ${result.status}}`)
+    res.status(result.status).send(result)
+})
+
+apiRoutes.get('/getPostsStats', async (req?: any, res?: any) => {
+    let result: Response = await views.getPostsStats()
+    log('api', `/api/getPostsStats {status: ${result.status}}`)
+    res.status(result.status).send(result)
+})
+
+apiRoutes.get('/addStatsView', async (req?: any, res?: any) => {
+    let result: Response = await views.addStatsView()
+    log('api', `/api/addStatsView {status: ${result.status}}`)
+    res.status(result.status).send(result)
+})
+
+apiRoutes.get('/addPostsView', async (req?: any, res?: any) => {
+    let result: Response = await views.addStatsPost()
+    log('api', `/api/addStatsPost {status: ${result.status}}`)
     res.status(result.status).send(result)
 })
 

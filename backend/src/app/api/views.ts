@@ -4,6 +4,7 @@ import config from '../../../config'
 import * as models from '../../app/api/models'
 
 
+// posts vews
 export async function createPost(imageFile: any, username: String, email: String, description: String) {
     return new Promise((resolve, reject) => {
         const NewPost = new models.Post({
@@ -13,6 +14,7 @@ export async function createPost(imageFile: any, username: String, email: String
             email: email,
             description: description
         })
+        
         NewPost.save()
         .then(() => resolve({status: 200}))
         .catch(e => reject({status: 500, error: e}))
@@ -42,7 +44,7 @@ export async function getPost(id: String) {
     })
 }
 
-export async function deletePost(id: String){
+export async function deletePost(id: String) {
     try {
         const file: any = await models.Post.findOne({_id: id})
         if(!file){
@@ -72,7 +74,7 @@ export async function deletePost(id: String){
     })
 }
 
-export async function acceptPost(id: String){
+export async function acceptPost(id: String) {
     return new Promise((resolve, reject) => {
         models.Post.updateOne({_id: id}, {submitted: 'true'})
         .then((Post: any) => {
@@ -87,7 +89,7 @@ export async function acceptPost(id: String){
     })
 }
 
-export async function archivePost(id: String){
+export async function archivePost(id: String) {
     return new Promise((resolve, reject) => {
         models.Post.updateOne({_id: id}, {submitted: 'false'})
         .then((Post: any) => {
@@ -99,5 +101,30 @@ export async function archivePost(id: String){
             }
         })
         .catch(e => reject({status: 500, error: e}))
+    })
+}
+
+// stats views
+export async function getViewsStats() {
+    return new Promise((resolve, reject) => {
+
+    })
+}
+
+export async function getPostsStats() {
+    return new Promise((resolve, reject) => {
+
+    })
+}
+
+export async function addStatsView() {
+    return new Promise((resolve, reject) => {
+
+    })
+}
+
+export async function addStatsPost() {
+    return new Promise((resolve, reject) => {
+
     })
 }
