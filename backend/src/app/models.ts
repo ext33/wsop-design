@@ -1,5 +1,5 @@
 import {Schema, model} from 'mongoose'
-
+import {getNowDate} from '../middleware/dateMiddleware'
 
 // post models
 const PostSchema = new Schema({
@@ -29,10 +29,7 @@ const PostSchema = new Schema({
     },
     uploadDate: {
         type: String,
-        default: () => {
-            let date_ob = new Date(Date.now())
-            return `${date_ob.getDate()}-${date_ob.getMonth() + 1}-${date_ob.getFullYear()}`
-        }
+        default: getNowDate()
     }
 })
 
@@ -47,10 +44,7 @@ const DayViewsStatsSchema = new Schema({
     },
     date: {
         type: String,
-        default: () => {
-            let date_ob = new Date(Date.now())
-            return `${date_ob.getDate()}-${date_ob.getMonth() + 1}-${date_ob.getFullYear()}`
-        }
+        default: getNowDate()
     }
 })
 
@@ -63,10 +57,7 @@ const DayPostsStatsSchema = new Schema({
     },
     date: {
         type: String,
-        default: () => {
-            let date_ob = new Date(Date.now())
-            return `${date_ob.getDate()}-${date_ob.getMonth() + 1}-${date_ob.getFullYear()}`
-        }
+        default: getNowDate()
     }
 })
 

@@ -1,6 +1,6 @@
 import {Router} from 'express'
-import log from '../../middleware/consoleMiddlware'
-import * as views from '../../app/api/views'
+import log from '../middleware/consoleMiddlware'
+import * as views from './controllers/views'
 
 interface Response {
     status?: number, 

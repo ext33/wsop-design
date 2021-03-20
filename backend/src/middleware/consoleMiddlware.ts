@@ -1,3 +1,4 @@
+import {getNowDate} from './dateMiddleware'
 
 export default function log(type: String, message: String) {
     switch (type) {
@@ -8,14 +9,13 @@ export default function log(type: String, message: String) {
             return console.log(`ℹ️  ${message}.`)
         
         case 'error': 
-            return console.log(`❌ Error: ${message}.`)
+            return console.log(`❌ ${message}.`)
         
         case 'warn':
-            return console.log(`🔶 Warning: ${message}.`)
+            return console.log(`🔶 ${message}.`)
         
         case 'api': 
-            let date_ob = new Date(Date.now())
-            return console.log(`[${date_ob.getDate()}-${date_ob.getMonth() + 1}-${date_ob.getFullYear()} ${date_ob.getHours()}:${date_ob.getMinutes()}:${date_ob.getSeconds()}] ${message}.`)
+            return console.log(`[${getNowDate(true)}] ${message}.`)
         
         default: 
             return console.log(message)
