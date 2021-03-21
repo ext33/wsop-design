@@ -44,6 +44,7 @@ const DayViewsStatsSchema = new Schema({
     },
     date: {
         type: String,
+        unique: true,
         default: getNowDate()
     }
 })
@@ -57,6 +58,7 @@ const DayPostsStatsSchema = new Schema({
     },
     date: {
         type: String,
+        unique: true,
         default: getNowDate()
     }
 })

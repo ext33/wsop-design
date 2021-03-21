@@ -2,10 +2,8 @@ import fs from 'fs'
 import path from 'path'
 import config from '../../../config'
 import * as models from '../models'
-import {getNowDate} from '../../middleware/dateMiddleware'
 
 
-// posts vews
 export async function createPost(imageFile: any, username: String, email: String, description: String) {
     return new Promise((resolve, reject) => {
         const NewPost = new models.Post({
@@ -51,6 +49,7 @@ export async function deletePost(id: String) {
         if(!file){
             return ({status: 404, error: "Not Found"})
         }
+
         try{
             fs.unlinkSync(path.join(config.server.rootDir, String(file.imageSrc)))
         } catch (e) {
@@ -104,53 +103,3 @@ export async function archivePost(id: String) {
         .catch(e => reject({status: 500, error: e}))
     })
 }
-
-// stats views
-export async function getViewsStats() {
-    return new Promise((resolve, reject) => {
-        models.DayViewsStats.find()
-        .then((stats) => {
-            resolve({status: 200, stats: stats})
-        })
-        .catch(e => reject({status: 500, error: e}))
-    })
-}
-
-export async function getPostsStats() {
-    return new Promise((resolve, reject) => {
-        models.DayPostsStats.find()
-        .then((stats) => {
-            resolve({status: 200, stats: stats})
-        })
-        .catch(e => reject({status: 500, error: e}))
-    })
-}
-
-export async function addStatsView() {
-    return new Promise((resolve, reject) => {
-        const views: any = models.DayViewsStats.find({date: getNowDate()})
-        .then(() => {
-            models.DayViewsStats.updateOne({date: views.date}, {viewsCount: views.viewsCount + 1})
-            .then(() => {
-                resolve({status: 200})
-            })
-            .catch(e => reject({status: 500, error: e}))
-        })
-        .catch((e) => reject({status: 500, error: e}))
-    })
-}
-
-export async function addStatsPost() {
-    return new Promise((resolve, reject) => {
-        const posts: any = models.DayPostsStats.find({date: getNowDate()})
-        .then(() => {
-            models.DayViewsStats.updateOne({date: posts.date}, {postsCount: posts.postsCount + 1})
-            .then(() => {
-                resolve({status: 200})
-            })
-            .catch(e => reject({status: 500, error: e}))
-        })
-        .catch((e) => reject({status: 500, error: e}))
-    })
-}
-
