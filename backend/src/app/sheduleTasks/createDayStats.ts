@@ -1,6 +1,6 @@
 import schedule from 'node-schedule'
 import {getNowDate} from '../../middleware/dateMiddleware'
-import log from '../../middleware/consoleMiddlware'
+import log from '../../middleware/consoleMiddleware'
 import * as models from '../models'
 
 async function createTodayViews() {

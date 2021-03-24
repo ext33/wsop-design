@@ -1,7 +1,7 @@
 import multer from 'multer'
 import fs from 'fs'
 import path from 'path'
-import log from './consoleMiddlware'
+import log from './consoleMiddleware'
 
 try {
   fs.mkdirSync(path.join(__dirname, '../../../', 'uploads'))

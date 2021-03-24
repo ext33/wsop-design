@@ -1,12 +1,13 @@
 import {Router} from 'express'
-import log from '../middleware/consoleMiddlware'
+import log from '../middleware/consoleMiddleware'
 import * as postControllers from './controllers/postControllers'
 import * as statsControllers from './controllers/statsConrollers'
+import * as authControllers from './controllers/authControllers'
+import { isAuth, attachUser } from '../middleware/authMiddleware'
 
 interface Response {
     status?: number, 
-    posts?: Array<any>,
-    post?: Array<any>,
+    data?: Array<any>,
     error?: String
 }
 
@@ -38,28 +39,28 @@ apiRoutes.get('/getPosts', async (req?: any, res?: any) => {
     res.status(result.status).send(result)
 })
 
-apiRoutes.get('/getPost/:id', async (req?: any, res?: any) => {
+apiRoutes.get('/getPost/:id', isAuth, attachUser, async (req?: any, res?: any) => {
     let result: Response = await postControllers.getPost(req.params.id)
 
     log('api', `/api/getPost/${req.params.id} {status: ${result.status}}`)
     res.status(result.status).send(result)
 })
 
-apiRoutes.get('/deletePost/:id', async (req?: any, res?: any) => {
+apiRoutes.get('/deletePost/:id', isAuth, attachUser, async (req?: any, res?: any) => {
     let result: Response = await postControllers.deletePost(req.params.id)
 
     log('api', `/api/deletePost/${req.params.id} {status: ${result.status}}`)
     res.status(result.status).send(result)
 })
 
-apiRoutes.get('/acceptPost/:id', async (req?: any, res?: any) => {
+apiRoutes.get('/acceptPost/:id', isAuth, attachUser, async (req?: any, res?: any) => {
     let result: Response = await postControllers.acceptPost(req.params.id)
 
     log('api', `/api/acceptPost/${req.params.id} {status: ${result.status}}`)
     res.status(result.status).send(result)
 })
 
-apiRoutes.get('/archivePost/:id', async (req?: any, res?: any) => {
+apiRoutes.get('/archivePost/:id', isAuth, attachUser, async (req?: any, res?: any) => {
     let result: Response = await postControllers.archivePost(req.params.id)
 
     log('api', `/api/archivePost/${req.params.id} {status: ${result.status}}`)
@@ -97,5 +98,28 @@ apiRoutes.get('/addPostsView', async (req?: any, res?: any) => {
     res.status(result.status).send(result)
 })
 
+// auth routes
+apiRoutes.post('/login', async (req?: any, res?: any) => {
+    let result: Response = await authControllers.login(
+        req.body.email,
+        req.body.password
+    )
+
+    log('api', `/api/login {status: ${result.status}}`)
+    res.status(result.status).send(result)
+})
+
+apiRoutes.post('/signUp', async (req?: any, res?: any) => {
+    
+    let result: Response = await authControllers.signUp(
+        req.body.username,
+        req.body.password,
+        req.body.email, 
+        req.body.userImage   
+    )
+
+    log('api', `/api/signUp {status: ${result.status}})`)
+    res.status(result.status).send(result)
+})
 
 export default apiRoutes

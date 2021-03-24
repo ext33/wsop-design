@@ -1,6 +1,6 @@
 import app from './src/app/app'
 import connectDB from './db'
-import log from './src/middleware/consoleMiddlware'
+import log from './src/middleware/consoleMiddleware'
 import config from './config'
 import createStatsJob from './src/app/sheduleTasks/createDayStats'
 
