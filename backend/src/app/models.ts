@@ -66,7 +66,7 @@ const DayPostsStatsSchema = new Schema({
 export const DayPostsStats = model('DayPostsStats', DayPostsStatsSchema)
 
 
-// user models
+// auth models
 const UserSchema = new Schema({
     username: {
         type: String,
@@ -87,3 +87,26 @@ const UserSchema = new Schema({
 })
 
 export const User = model('User', UserSchema)
+
+const SessionShema = new Schema({
+    userId: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    username: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true
+    },
+    token: {
+        type: String,
+        required: true,
+        unique: true
+    }
+})
+
+export const Session = model('Session', SessionShema)

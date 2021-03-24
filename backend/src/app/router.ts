@@ -3,7 +3,7 @@ import log from '../middleware/consoleMiddleware'
 import * as postControllers from './controllers/postControllers'
 import * as statsControllers from './controllers/statsConrollers'
 import * as authControllers from './controllers/authControllers'
-import { isAuth, attachUser } from '../middleware/authMiddleware'
+import { checkAuth } from '../middleware/authMiddleware'
 
 interface Response {
     status?: number, 
@@ -39,28 +39,28 @@ apiRoutes.get('/getPosts', async (req?: any, res?: any) => {
     res.status(result.status).send(result)
 })
 
-apiRoutes.get('/getPost/:id', isAuth, attachUser, async (req?: any, res?: any) => {
+apiRoutes.get('/getPost/:id', checkAuth, async (req?: any, res?: any) => {
     let result: Response = await postControllers.getPost(req.params.id)
 
     log('api', `/api/getPost/${req.params.id} {status: ${result.status}}`)
     res.status(result.status).send(result)
 })
 
-apiRoutes.get('/deletePost/:id', isAuth, attachUser, async (req?: any, res?: any) => {
+apiRoutes.get('/deletePost/:id', checkAuth, async (req?: any, res?: any) => {
     let result: Response = await postControllers.deletePost(req.params.id)
 
     log('api', `/api/deletePost/${req.params.id} {status: ${result.status}}`)
     res.status(result.status).send(result)
 })
 
-apiRoutes.get('/acceptPost/:id', isAuth, attachUser, async (req?: any, res?: any) => {
+apiRoutes.get('/acceptPost/:id', checkAuth, async (req?: any, res?: any) => {
     let result: Response = await postControllers.acceptPost(req.params.id)
 
     log('api', `/api/acceptPost/${req.params.id} {status: ${result.status}}`)
     res.status(result.status).send(result)
 })
 
-apiRoutes.get('/archivePost/:id', isAuth, attachUser, async (req?: any, res?: any) => {
+apiRoutes.get('/archivePost/:id', checkAuth, async (req?: any, res?: any) => {
     let result: Response = await postControllers.archivePost(req.params.id)
 
     log('api', `/api/archivePost/${req.params.id} {status: ${result.status}}`)
