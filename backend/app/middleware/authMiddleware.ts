@@ -1,4 +1,4 @@
-import * as models from '../app/models'
+import * as models from '../models'
 
 
 export async function checkAuth(req, res, next) {

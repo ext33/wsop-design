@@ -1,5 +1,5 @@
 import {Schema, model} from 'mongoose'
-import {getNowDate} from '../middleware/dateMiddleware'
+import {getNowDate} from './middleware/dateMiddleware'
 
 // post models
 const PostSchema = new Schema({

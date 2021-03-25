@@ -1,4 +1,4 @@
-import log from './src/middleware/consoleMiddleware'
+import log from './app/middleware/consoleMiddleware'
 const mongo = require('mongoose')
 import config from './config'
 

@@ -1,5 +1,5 @@
 import * as models from '../models'
-import {getNowDate} from '../../middleware/dateMiddleware'
+import {getNowDate} from '../middleware/dateMiddleware'
 
 
 export async function getViewsStats() {

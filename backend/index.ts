@@ -1,12 +1,13 @@
-import app from './src/app/app'
+import app from './app/app'
 import connectDB from './db'
-import log from './src/middleware/consoleMiddleware'
+import log from './app/middleware/consoleMiddleware'
 import config from './config'
-import createStatsJob from './src/app/sheduleTasks/createDayStats'
+import createStatsJob from './app/sheduleTasks/createDayStats'
 
 // connecting db
 connectDB(() => {
     
+    // create stats objects
     createStatsJob()
 
     // start express server

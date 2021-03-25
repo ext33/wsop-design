@@ -1,9 +1,9 @@
 import {Router} from 'express'
-import log from '../middleware/consoleMiddleware'
+import log from './middleware/consoleMiddleware'
 import * as postControllers from './controllers/postControllers'
 import * as statsControllers from './controllers/statsConrollers'
 import * as authControllers from './controllers/authControllers'
-import { checkAuth } from '../middleware/authMiddleware'
+import { checkAuth } from './middleware/authMiddleware'
 
 interface Response {
     status?: number, 
@@ -107,6 +107,10 @@ apiRoutes.post('/login', async (req?: any, res?: any) => {
 
     log('api', `/api/login {status: ${result.status}}`)
     res.status(result.status).send(result)
+})
+
+apiRoutes.post('/logout', async (req, res) => {
+    
 })
 
 apiRoutes.post('/signUp', async (req?: any, res?: any) => {

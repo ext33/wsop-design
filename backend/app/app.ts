@@ -1,7 +1,7 @@
 import express from 'express'
-import router from '../router/router'
+import router from '../router'
 import cors from 'cors'
-import fileMiddlware from '../middleware/fileMiddleware'
+import fileMiddlware from './middleware/fileMiddleware'
 
 declare module 'express' {
     interface Request {
