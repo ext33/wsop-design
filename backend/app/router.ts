@@ -27,7 +27,7 @@ apiRoutes.post('/createPost', async (req?: any, res?: any) => {
             req.body.username, 
             req.body.email, 
             req.body.description
-        )
+        ).catch(e => {res.status(500).send({status: 500, error: e})})
         log('api', `/api/createPost {status: ${result.status}}`)
         res.status(result.status).send(result)
     }
@@ -109,8 +109,11 @@ apiRoutes.post('/login', async (req?: any, res?: any) => {
     res.status(result.status).send(result)
 })
 
-apiRoutes.post('/logout', async (req, res) => {
-    
+apiRoutes.get('/logout', checkAuth, async (req, res) => {
+    let result: Response = await authControllers.logout(req.headers.authorization)
+
+    log('api', `/api/logout {status: ${result.status}}`)
+    res.status(result.status).send(result)
 })
 
 apiRoutes.post('/signUp', async (req?: any, res?: any) => {

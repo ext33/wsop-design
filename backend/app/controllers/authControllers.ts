@@ -49,8 +49,14 @@ async function verifyLogin(User, password) {
 
 async function deleteSession(token: string) {
     try {
-        await models.Session.deleteOne({token: token})
-        return {status: 200}
+        const session = await models.Session.deleteOne({token: token})
+        if(session.n > 0) {
+                
+            return({status: 200})
+        }
+        else {
+            return({status: 404, error: "Not Found"})
+        }
     } catch (e) {
         return {status: 500, error: e}
     }
@@ -105,10 +111,11 @@ export async function login(email: String, password: string) {
 
 export async function logout(token: string) {
     return new Promise((resolve, reject) => {
+        
         models.Session.find({token: token})
         .then((Session: any) => {
             if(Session.length > 0) {
-                resolve(deleteSession(Session.token))
+                resolve(deleteSession(token))
             } else {
                 resolve({status: 404, error: "Session not found"})
             }

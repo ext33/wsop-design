@@ -2,9 +2,10 @@ import multer from 'multer'
 import fs from 'fs'
 import path from 'path'
 import log from './consoleMiddleware'
+import config from '../../config'
 
 try {
-  fs.mkdirSync(path.join(__dirname, '../../../', 'uploads'))
+  fs.mkdirSync(path.join(config.server.rootDir, 'uploads'))
   log('ok', 'Filestore folder created')
 } catch (e) {
   if(e.code === 'EEXIST'){

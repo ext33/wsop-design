@@ -8,7 +8,6 @@ export async function createPost(imageFile: any, username: String, email: String
     return new Promise((resolve, reject) => {
         const NewPost = new models.Post({
             imageSrc: imageFile.path,
-            imageAlt: imageFile.originalname.slice(1, ),
             username: username,
             email: email,
             description: description
