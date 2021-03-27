@@ -1,7 +1,7 @@
 import React, {useEffect, useRef} from 'react'
 import {connect} from 'react-redux'
 import LineChart from './LineChart'
-import {NavLink, useHistory} from "react-router-dom"
+import {NavLink} from "react-router-dom"
 import {fetchImageData} from '../../../../Store/actions/fetchImages'
 import {fetchStatsData} from '../../../../Store/actions/fetchDashboardStats'
 import Loading from '../../../UI/Loading'
@@ -10,20 +10,10 @@ function DashboardPage(props) {
 
     let rendered = useRef(false)
 
-    let history = useHistory()
-
     useEffect(()=>{
         if(rendered.current === false) {
             props.fetchStatsData()
             props.fetchImagesData()
-            if(props.statsError || props.imagesError) {
-                history.push({
-                    pathname: "/error",
-                    state: {
-                        type: 500,
-                    }
-                })
-            }
             rendered.current = true
         }
     })

@@ -1,7 +1,6 @@
 const initialState={
     allTimeData: null,
     daysTimeData: null,
-    error: null
 }
 
 export default function dashboardReducer(state = initialState, action) {
@@ -15,7 +14,6 @@ export default function dashboardReducer(state = initialState, action) {
           return {
             allTimeData: null,
             daysTimeData: null,
-            error: action.error
           }
         default:
             return state

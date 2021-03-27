@@ -10,15 +10,15 @@ export default function submitFormReducer(state = initialState, action){
                 ...state,
                 message: 'Post submitted!'
             }
-            case 'FORM-ERROR':
+        case 'FORM-ERROR':
             return {
                 message: null,
                 error: action.error
             }
-            case 'FORM-CLEAR':
-                return {
-                    initialState    
-                }
+        case 'FORM-CLEAR':
+            return {
+                initialState    
+            }
         default:
             return state
     }

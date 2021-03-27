@@ -1,6 +1,5 @@
 const initialState = {
     post: {},
-    errorStatus: null,
 }
 
 export default function postReducer(state = initialState, action){
@@ -8,10 +7,6 @@ export default function postReducer(state = initialState, action){
         case 'POST-FETCH':
             return {
                 post: action.post,
-            }
-        case 'POST-ERROR':
-            return {
-                errorStatus: action.errorStatus
             }
         case 'POST-UPDATE':
             return {

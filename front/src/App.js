@@ -1,10 +1,8 @@
-import React, {useEffect, useState} from 'react';
-import './Styles/Root.sass';
-import 'animate.css';
-import {withRouter} from 'react-router-dom';
-import {connect} from 'react-redux';
-import RouterView from './Router';
-import {clearState} from './Store/actions/submitPost';
+import React, {useEffect, useState} from 'react'
+import './Styles/Root.sass'
+import 'animate.css'
+import {withRouter} from 'react-router-dom'
+import RouterView from './Router'
 import Nav from './Components/Nav'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -16,15 +14,8 @@ function App(props) {
   let [styles, setStyles] = useState(true)
 
   useEffect(()=>{
-    if (props.location.pathname !== '/submit-post') {
-      props.clearState()
-    }
-    if (props.location.pathname.includes('admin')) {
-      setStyles(false)
-    }
-    else {
-      setStyles(true)
-    }
+    if (props.location.pathname.includes('admin')) setStyles(false)
+    else setStyles(true)
   }, [props])
 
   return (
@@ -38,10 +29,4 @@ function App(props) {
 
 }
 
-function mapDispatchToProps(dispatch){
-  return{
-      clearState: () => dispatch(clearState()),
-  }
-}
-
-export default connect(null, mapDispatchToProps)(withRouter(App));
+export default withRouter(App)

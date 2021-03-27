@@ -9,15 +9,10 @@ import ProfilePage from './AdminProfile/ProfilePage'
 function AdminPage(props) {
 
     let page = 'Dashboard'
-    if (props.location.pathname === '/admin/profile'){
-        page = 'Profile'
-    }
-    if (props.location.pathname === '/admin/post-list'){
-        page = 'Posts'
-    }
-    if (props.location.pathname.includes('/post/')){
-        page = 'Post'
-    }
+    if (props.location.pathname === '/admin/profile') page = 'Profile'
+    if (props.location.pathname === '/admin/post-list') page = 'Posts'
+    if (props.location.pathname.includes('/post/')) page = 'Post'
+    
 
     
     return (

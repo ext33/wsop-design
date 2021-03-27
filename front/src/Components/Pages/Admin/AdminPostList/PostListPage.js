@@ -3,25 +3,15 @@ import PostListItem from './PostListItem'
 import {connect} from 'react-redux'
 import {fetchImageData} from '../../../../Store/actions/fetchImages'
 import Loading from '../../../UI/Loading'
-import { useHistory } from 'react-router'
 
 function PostListPage(props) {
 
-    let history = useHistory()
 
     let rendered = useRef(false)
 
     useEffect(()=>{
         if(rendered.current === false) {
             props.fetchImagesData()
-            if (props.imagesError){
-                history.push({
-                    pathname: "/error",
-                    state: {
-                        type: 500,
-                    }
-                })
-            }
             rendered.current = true
         }
     })

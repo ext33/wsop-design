@@ -1,21 +1,15 @@
-import React, {useState, useEffect,} from "react"
+import React from "react"
+import {connect} from "react-redux"
 
 function ErrorPage(props){
 
-    let [title, setTitle] = useState(null)
+    let title = null
 
-    useEffect(() => {
-        if (props.location.state) {
-            if (props.location.state.type === 500){
-                setTitle('500 | Server connection error')
-            } else {
-                setTitle('404 | Page not found')
-            }
-        } else {
-            setTitle('404 | Page not found')
-        }
-    }, [props])
+    if (props.location.state) title = `${props.location.state.status} | ${props.location.state.error}`
+    else title = '404 | Page not found'
 
+    setTimeout(() => props.clearError(), 100)
+    
     function goHome(){
         return(
             props.history.push('/')
@@ -31,5 +25,10 @@ function ErrorPage(props){
     )
 }
 
+function mapDispatchToProps(dispatch){
+    return{
+        clearError: () => dispatch({type: 'ERROR-CLEAR'}),
+    }
+  }
 
-export default ErrorPage
+export default connect(null, mapDispatchToProps)(ErrorPage)

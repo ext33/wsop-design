@@ -26,9 +26,3 @@ export function submitPostAction(data) {
         }
     }
 }
-
-export function clearState(){
-    return async (dispatch) => {
-        return dispatch ({type: 'FORM-CLEAR'})
-    }
-}

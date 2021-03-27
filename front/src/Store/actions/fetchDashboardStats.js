@@ -6,7 +6,7 @@ export function fetchStatsData() {
         if (result.status === 200){
             dispatch({type: 'DASHBOARD-FETCH', allTimeData: result.allTimeData, daysTimeData: result.daysTimeData})
         } else {
-            dispatch({type: 'DASHBOARD-ERROR', error: result.error})
+            dispatch({type: 'ERROR-ADD', status: result.status, error: result.error})
         }
     }
 }

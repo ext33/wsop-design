@@ -6,7 +6,8 @@ export function fetchImageData () {
         if (result.status === 200) {
             dispatch({type: 'IMAGE-FETCH', images: result.images})
         } else {
-            dispatch({type: 'IMAGE-ERROR', error: result.error})
+            console.log(result.status)
+            dispatch({type: 'ERROR-ADD', status: result.status, error: result.error})
         }
     }
 }

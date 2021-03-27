@@ -14,18 +14,6 @@ function PostPage(props) {
     useEffect(() => {
         if(rendered.current === false) {
             props.fetchPostData(id)
-            if(props.error) {
-                if(props.error===500){
-                    history.push({
-                        pathname: "/error",
-                        state: {
-                            type: 500,
-                        }
-                    })
-                } else {
-                    history.push('/error')
-                }
-            }
             rendered.current = true
         }
     })

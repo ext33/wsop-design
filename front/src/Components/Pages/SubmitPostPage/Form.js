@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { connect } from 'react-redux'
-import {submitPostAction, clearState} from '../../../Store/actions/submitPost'
+import { submitPostAction } from '../../../Store/actions/submitPost'
 import Info from "../../UI/FormMessage";
 import { CSSTransition } from "react-transition-group"
 
@@ -116,7 +116,7 @@ function mapStateToProps(state){
 function mapDispatchToProps(dispatch){
     return{
         submitPostAction: (data)=> dispatch(submitPostAction(data)),
-        clearState: () => dispatch(clearState())
+        clearState: () => dispatch ({type: 'FORM-CLEAR'})
     }
 }
 
