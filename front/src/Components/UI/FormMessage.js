@@ -1,9 +1,9 @@
 import React from 'react'
 
 function Info(props) {
-    let cls = ['modal']
+    let cls = ['form_modal']
     if (props.message) {
-        cls.push('modal-message')
+        cls.push('from_modal-message')
     }
 
     return (

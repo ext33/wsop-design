@@ -19,7 +19,7 @@ function App(props) {
   }, [props])
 
   return (
-    <div className="App animate__animated animate__fadeIn">
+    <div className="app animate__animated animate__fadeIn">
       <Nav />
       <div className={ styles ? 'main container' : 'admin' }>
           <RouterView />

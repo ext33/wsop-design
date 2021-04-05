@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { connect } from 'react-redux'
 import { submitPostAction } from '../../../Store/actions/submitPost'
 import Info from "../../UI/FormMessage";
@@ -22,13 +22,17 @@ function Form (props){
 
     const [successModal, setSuccessModal] = useState(false)
 
+    const rendered = useRef(false)
+
     useEffect(()=>{
-        document.getElementById('image').addEventListener('change', changeImageHandler)
-        if (props.error){
-            setModal(true)
-        } else if (props.message && !props.error){
-            setSuccessModal(true)
+        if(!rendered.current) {
+            document.getElementById('image').addEventListener('change', changeImageHandler)
+            rendered.current = true
         }
+
+        if (props.error) setModal(true)
+        else if (props.message && !props.error) setSuccessModal(true)
+        
     }, [props])
 
     function ChangeInput(newValue, param){
@@ -66,8 +70,8 @@ function Form (props){
     }
     
     return(
-        <form id='submitForm'>
-            <div className='error-cont'>
+        <form className='form_submit-form'>
+            <div className='form_message'>
                 { modal ? 
                     <Info 
                         message={props.message} 
@@ -85,14 +89,14 @@ function Form (props){
             </CSSTransition>
 
             <CSSTransition in={!successModal} timeout={500} classNames='form-main' unmountOnExit>
-                <div className='form-main-cont'>
+                <div className='form_main-container'>
                     <label>Username</label>
                     <input className='input input-main' type={'text'} id={'username'} onChange={(event)=>ChangeInput(event.target.value, event.target.id)} />
                     <label>Email</label>
                     <input className='input input-main' type={'email'} id={'email'} onChange={(event)=>ChangeInput(event.target.value, event.target.id)} />
                     <label>Image</label>
-                    <div className='imageprev' onClick={()=>{document.getElementById('image').click()}}>
-                        { image ? <img className='prev' src={image.base64} alt={image.alt}/> : null }
+                    <div className='form_image-prev-div' onClick={()=>{document.getElementById('image').click()}}>
+                        { image ? <img className='form_image-prev' src={image.base64} alt={image.alt}/> : null }
                     </div>
                     <input className='input input-main' type={'file'} id={'image'} onChange={(event)=>ChangeInput(event.target.value, event.target.id)} />
                     <label>Description</label>

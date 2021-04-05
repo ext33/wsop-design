@@ -1,9 +1,9 @@
 import React from 'react'
-import {NavLink, withRouter} from "react-router-dom";
+import {NavLink, withRouter} from "react-router-dom"
 
 function Nav(props) {
 
-    let navTopStyles = ['nav-top', 'animate__animated ', 'animate__fadeIn']
+    let navTopStyles = ['nav_nav-top', 'animate__animated ', 'animate__fadeIn']
 
     if(props.location.pathname.includes('admin')){
         navTopStyles.push('nav-top-adm')
@@ -11,16 +11,16 @@ function Nav(props) {
 
     return(
         <>
-            { props.location.pathname === '/' || props.location.pathname === '/submit-post' ?
+            { props.location.pathname === '/' ?
             <>
-               <div className="nav-left animate__animated animate__fadeIn">
-                   <div className="sub">
-                       <NavLink to="/submit-post" exact className="logo">SUBMIT.POST</NavLink>
+               <div className="nav_nav-left animate__animated animate__fadeIn">
+                   <div className="nav_sub-link">
+                       <NavLink to="/submit-post" exact className="logo_logo">SUBMIT.POST</NavLink>
                    </div>
                </div>
-               <div className="nav-right animate__animated animate__fadeIn" >
-                   <div className="adm">
-                       <NavLink to="/admin" exact className="logo">GO.MODERS</NavLink>
+               <div className="nav_nav-right animate__animated animate__fadeIn" >
+                   <div className="nav_admin-link">
+                       <NavLink to="/login" exact className="logo_logo">GO.MODERS</NavLink>
                    </div>
                </div>
             </> 
@@ -28,8 +28,8 @@ function Nav(props) {
             
             { props.location.pathname.includes('admin') ? null :
             <div className={navTopStyles.join(' ')}>
-                <div className="div-logo">
-                    <NavLink to="/" exact className="logo">WSOP.DESIGN</NavLink>
+                <div className="logo_div-logo">
+                    <NavLink to="/" exact className="logo_logo">WSOP.DESIGN</NavLink>
                 </div>
             </div>
             }

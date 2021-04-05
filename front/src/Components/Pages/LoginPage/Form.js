@@ -47,8 +47,8 @@ function LoginForm(props) {
     
     }
     return (
-            <form id='login-form' className='flex'>
-                <div className='error-cont'>
+            <form className='flex from_login-form'>
+                <div className='form_login-error'>
                     { modal ? 
                         <Info 
                             message={props.message} 
@@ -57,11 +57,11 @@ function LoginForm(props) {
                     : null
                     }
                 </div>
-                <span>Email</span>
+                <lanel>Email</lanel>
                 <input className='input input-main' id='email' type='email' onChange={(event) => ChangeInput(event.target.value, event.target.id)} />
-                <span>Password</span>
+                <label>Password</label>
                 <input className='input input-main' id='password' type='password' onChange={(event) => ChangeInput(event.target.value, event.target.id)} />
-                <button type='button' onClick={() => loginHandler()}>Login</button>
+                <button className='input input-submit' type='button' onClick={() => loginHandler()}>Login</button>
             </form>
     )
 }

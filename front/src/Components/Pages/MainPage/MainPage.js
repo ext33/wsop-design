@@ -16,7 +16,7 @@ function MainPage(props) {
     })
 
     return(
-        <div id='MainPage' className='animate__animated animate__fadeIn'>
+        <div className='pages_mainPage animate__animated animate__fadeIn'>
             { props.imagesObj ? 
                 props.imagesObj.map((elem, index) => {
                     return(

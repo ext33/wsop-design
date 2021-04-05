@@ -1,11 +1,11 @@
 import React, { useEffect, useRef } from 'react'
-import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
+import { Redirect, Route, Switch, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import MainPage from "./Components/Pages/MainPage/MainPage";
-import SubmitPostPage from "./Components/Pages/SubmitPostPage/SubmitPostPage";
-import ErrorPage from "./Components/Pages/Error/ErrorPage";
-import AdminPage from './Components/Pages/Admin/AdminPage';
-import LoginPage from './Components/Pages/LoginPage/LoginPage';
+import MainPage from "./Components/Pages/MainPage/MainPage"
+import SubmitPostPage from "./Components/Pages/SubmitPostPage/SubmitPostPage"
+import ErrorPage from "./Components/Pages/Error/ErrorPage"
+import AdminPage from './Components/Pages/Admin/AdminPage'
+import LoginPage from './Components/Pages/LoginPage/LoginPage'
 
 function RouterView(props) {
 
@@ -49,9 +49,8 @@ function RouterView(props) {
             />
             <Route 
                 path='/admin' 
-                render={ () => (
-                    localStorage.getItem('token') ? <AdminPage /> : <Redirect to={{pathname: '/login'}} />
-                    )
+                render={ 
+                    () => localStorage.getItem('token') ? <AdminPage /> : <Redirect to={{pathname: '/login'}} />
                 }
             />
             <Route 
@@ -62,7 +61,9 @@ function RouterView(props) {
             <Route 
                 path='/login'
                 exact
-                component={LoginPage}
+                render={ 
+                    () => localStorage.getItem('token') ? <AdminPage /> : <LoginPage />
+                }
             />
             
             <Redirect 
