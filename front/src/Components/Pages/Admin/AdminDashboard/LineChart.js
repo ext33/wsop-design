@@ -6,7 +6,7 @@ function LineChart(props) {
     return (
         <ResponsiveLine
         data={props.data}
-        margin={{ top: 50, right: 40, bottom: 50, left: 60 }}
+        margin={{ top: 50, right: 20, bottom: 50, left: 40 }}
         xScale={{ type: 'point' }}
         yScale={{ type: 'linear', min: 'auto', max: 'auto', stacked: true, reverse: false }}
         yFormat=" >-.2f"

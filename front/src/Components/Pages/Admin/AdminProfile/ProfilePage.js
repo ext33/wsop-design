@@ -14,11 +14,11 @@ function ProfilePage(props) {
     return (
         <div className='animate__animated animate__fadeIn'>
             { localStorage.username ? 
-            <div className='flex profile-container'>
-                <div className='profile-image'>
+            <div className='flex profile_container'>
+                <div className='profile_image'>
                     <img className='user-image' alt='' src={localStorage.userImage} />
                 </div>
-                <div className='profile-info flex'>
+                <div className='profile_info flex'>
                     <p>Username: {localStorage.username}</p>
                     <p>Email: {localStorage.email}</p>
                     <button type='button' className='input-submit' onClick={() => logoutHandler()}>Exit from account</button>

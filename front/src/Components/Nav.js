@@ -26,12 +26,13 @@ function Nav(props) {
             </> 
             : null}
             
-            { props.location.pathname.includes('admin') ? null :
+            { props.location.pathname === '/' || props.location.pathname === '/submit-post' || props.location.pathname === '/login' ? 
             <div className={navTopStyles.join(' ')}>
                 <div className="logo_div-logo">
                     <NavLink to="/" exact className="logo_logo">WSOP.DESIGN</NavLink>
                 </div>
             </div>
+            : null
             }
         </>
     )

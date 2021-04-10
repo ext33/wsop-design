@@ -15,23 +15,23 @@ function AdminNav(props) {
 
     return (
         <>
-            <div className='admin-nav-sidebar'>
-                <div className='nav-logo'>
-                    <NavLink to="/" exact className="admin-logo logo">WSOP.DESIGN</NavLink>
+            <div className='admin_nav-sidebar'>
+                <div className='admin_nav-logo'>
+                    <NavLink to="/" exact className="admin-logo logo_logo">WSOP.DESIGN</NavLink>
                 </div>
-                <NavLink to="/admin/profile" strict className="admin-nav-link">
+                <NavLink to="/admin/profile" strict className="admin_nav-link">
                     <FontAwesomeIcon icon={['fas', 'user-circle']} /> PROFILE
                 </NavLink>
-                <NavLink to="/admin" strict className="admin-nav-link">
+                <NavLink to="/admin" strict className="admin_nav-link">
                     <FontAwesomeIcon icon={['fas', 'tachometer-alt']} /> DASHBOARD
                 </NavLink>
-                <NavLink to="/admin/post-list" strict className="admin-nav-link">
+                <NavLink to="/admin/post-list" strict className="admin_nav-link">
                     <FontAwesomeIcon icon={['fas', 'images']} /> POSTS
                 </NavLink>
             </div>
-            <div className='admin-nav-top'>
-                <div className='nav-top-items'>
-                    <div className='nav-top-item admin-title animate__animated animate__fadeIn'>
+            <div className='admin_nav-top'>
+                <div className='admin_nav-top-items'>
+                    <div className='admin_nav-top-item admin_admin-title'>
                         {props.pageTitle}
                     </div>
                     <div onClick={() => logoutHandler()} className='nav-top-item nav-top-icon'>

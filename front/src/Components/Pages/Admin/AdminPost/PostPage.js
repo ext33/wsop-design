@@ -27,21 +27,21 @@ function PostPage(props) {
         <div className='animate__animated animate__fadeIn'>
             {
                 props.post ?
-                    <div className='flex post-container'>
-                        <div className='post-head'>
+                    <div className='flex post_container'>
+                        <div className='post_head'>
                             <h3>Post ID {props.post.id}</h3>
                         </div>
-                        <div className='flex post-body'>
-                            <div className='post-image'>
+                        <div className='flex post_body'>
+                            <div className='post_image'>
                                 <img src={props.post.imageSrc} alt={props.post.imageAlt} />
                             </div>
-                            <div className='flex post-description'>
+                            <div className='flex post_description'>
                                 <p>Username: {props.post.username}</p>
                                 <p>Email: {props.post.email}</p>
                                 <p>Upload Date: {props.post.uploadDate}</p>
                                 <p>Description: {props.post.description}</p>
                                 <p>Submitted: {props.post.submitted}</p>
-                                <div className='flex post-button-container'>
+                                <div className='flex post_button-container'>
                                     <button onClick={() => props.updatePostData(props.post.id)}>
                                         Submit post
                                     </button>

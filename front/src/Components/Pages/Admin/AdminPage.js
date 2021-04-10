@@ -16,9 +16,9 @@ function AdminPage(props) {
 
     
     return (
-        <div className='admin-main animate__animated animate__fadeIn'>
+        <div className='animate__animated animate__fadeIn'>
             <AdminNav pageTitle={page} />
-            <div className='main-admin container'>
+            <div className='admin_main container'>
                 <Switch>
                     <Route 
                         path='/admin'  
