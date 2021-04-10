@@ -19,7 +19,7 @@ function DashboardPage(props) {
     })
 
     return (
-        <div className='flex dashboard_dashnoard-page animate__animated animate__fadeIn'>
+        <div className='dashboard_dashnoard-page flex animate__animated animate__fadeIn'>
         { props.imagesData.length > 0 && props.allTimeData ?
             <>
             <div className='dashboard_dashboard-item dashboard_line-chart flex'>
