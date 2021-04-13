@@ -1,91 +1,38 @@
-// import axios from 'axios'
+import axios from 'axios'
 
-// emulating data fetch
-// emulate fetching images
-export async function fetchImages() {
-    const img = [
-        {
-            imageSrc: 'https://i.pinimg.com/236x/df/df/6c/dfdf6ca5c620a7981d8b2da2fd22d37a.jpg', 
-            imageAlt: '1',
-            id: '121', 
-            username: 'user',
-            email: 'email',
-            description: 'description',
-            uploadDate: '01-02-2021',
-            submitted: 'true'
-        },
-        {
-            imageSrc: 'https://i.pinimg.com/236x/df/df/6c/dfdf6ca5c620a7981d8b2da2fd22d37a.jpg', 
-            imageAlt: '1', 
-            id: '122',
-            username: 'user',
-            email: 'email',
-            description: 'description',
-            uploadDate: '01-02-2021',
-            submitted: 'true'
-        },
-        {
-            imageSrc: 'https://i.pinimg.com/236x/df/df/6c/dfdf6ca5c620a7981d8b2da2fd22d37a.jpg', 
-            imageAlt: '1',
-            id: '123', 
-            username: 'user',
-            email: 'email',
-            description: 'description',
-            uploadDate: '01-02-2021',
-            submitted: 'true'
-        },
-        {
-            imageSrc: 'https://i.pinimg.com/236x/df/df/6c/dfdf6ca5c620a7981d8b2da2fd22d37a.jpg', 
-            imageAlt: '1', 
-            id: '124',
-            username: 'user',
-            email: 'email',
-            description: 'description',
-            uploadDate: '01-02-2021',
-            submitted: 'true'
-        },
-        {
-            imageSrc: 'https://i.pinimg.com/236x/df/df/6c/dfdf6ca5c620a7981d8b2da2fd22d37a.jpg', 
-            imageAlt: '1', 
-            id: '125',
-            username: 'user',
-            email: 'email',
-            description: 'description',
-            uploadDate: '01-02-2021',
-            submitted: 'false'
-        },
-    ]
-    let response = {
-        status: 200,
-        images: img
-    }
-    // response = {
-    //     status: 500,
-    //     error: 'Server connection error'
-    // }
-    return response
+const url = 'http://127.0.0.1:8000/api/'
+
+function errorsHandler(error) {
+  if (error.response) 
+    return {status: error.response.data.status, error: error.response.data.error}
+  else if (error.request) 
+    return {status: 500, error: error.message}
+  else 
+    return {status: 400, error: error.message}
+}
+
+export async function fetchImages() { 
+  let response
+
+  await axios.get(url + 'getPosts/')
+  .then(res => {response = res.data})
+  .catch((e) => {
+      response = errorsHandler(e)
+  })
+
+  return response
 }
 
 export async function fetchImageById(id) {
-    let data = {
-      imageSrc: 'https://i.pinimg.com/236x/df/df/6c/dfdf6ca5c620a7981d8b2da2fd22d37a.jpg', 
-      imageAlt: '1', 
-      id: id,
-      username: 'user',
-      email: 'email',
-      description: 'description',
-      uploadDate: '01-02-2021',
-      submitted: 'false'
-    }
-    let response = {
-      status: 200,
-      image: data
-    }
-    // response = {
-    //     status: 404,
-    //     error: 'Not found'
-    // }
-    return response
+  let response
+
+  await axios.get(url + 'getPost/' + id)
+  .then(res => {response = res.data})
+  .catch((e) => {
+      response = errorsHandler(e)
+  })
+  console.log(response)
+  return response
 }
 
 export async function updateImageById(id) {

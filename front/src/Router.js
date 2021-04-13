@@ -12,10 +12,10 @@ function RouterView(props) {
     let errorCheck = useRef(false)
     let formClearCheck = useRef(false)
 
-    useEffect(()=>{
+    useEffect(() => {
 
-        if (errorCheck.current === false){
-            if (props.error){
+        if (errorCheck.current === false) {
+            if (props.error) {
                 props.history.push({
                     pathname: "/error",
                     state: {

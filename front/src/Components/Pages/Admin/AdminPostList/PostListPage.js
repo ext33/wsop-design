@@ -37,7 +37,7 @@ function PostListPage(props) {
                             return(
                                 <PostListItem 
                                     key={i}
-                                    id={elem.id}
+                                    id={elem._id}
                                     username={elem.username}
                                     email={elem.email}
                                     imageSrc={elem.imageSrc}

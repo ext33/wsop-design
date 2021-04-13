@@ -34,7 +34,7 @@ function AdminNav(props) {
                     <div className='admin_nav-top-item admin_admin-title'>
                         {props.pageTitle}
                     </div>
-                    <div onClick={() => logoutHandler()} className='nav-top-item nav-top-icon'>
+                    <div onClick={() => logoutHandler()} className='admin_nav-top-item admin_nav-top-icon'>
                         <FontAwesomeIcon icon={['fas', 'sign-out-alt']} />
                     </div>
                 </div>

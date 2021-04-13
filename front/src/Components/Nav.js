@@ -24,9 +24,14 @@ function Nav(props) {
                    </div>
                </div>
             </> 
-            : null}
+            : null
+            }
             
-            { props.location.pathname === '/' || props.location.pathname === '/submit-post' || props.location.pathname === '/login' || props.forceShowNav === true ? 
+            { 
+            props.location.pathname === '/' || 
+            props.location.pathname === '/submit-post' || 
+            props.location.pathname === '/login' || 
+            props.forceShowNav === true ? 
             <div className={navTopStyles.join(' ')}>
                 <div className="logo_div-logo">
                     <NavLink to="/" exact className="logo_logo">WSOP.DESIGN</NavLink>

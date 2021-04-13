@@ -33,7 +33,7 @@ function PostPage(props) {
                         </div>
                         <div className='flex post_body'>
                             <div className='post_image'>
-                                <img src={props.post.imageSrc} alt={props.post.imageAlt} />
+                                <img src={'http://127.0.0.1:8000/' + props.post.imageSrc} alt={props.post.imageAlt} />
                             </div>
                             <div className='flex post_description'>
                                 <p>Username: {props.post.username}</p>

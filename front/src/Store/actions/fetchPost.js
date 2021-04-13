@@ -4,9 +4,9 @@ export function fetchPost(id) {
     return async (dispatch) => {
         let result = await fetchImageById(id)
         if (result.status === 200) {
-            dispatch({type: 'POST-FETCH', post: result.image})
+            dispatch({type: 'POST-FETCH', post: result.posts})
         } else {
-            dispatch({type: 'POST-ERROR', errorStatus: result.status})
+            dispatch({type: 'ERROR-ADD', status: result.status, error: result.error})
         }
     }
 }
@@ -16,9 +16,9 @@ export function updatePost(id) {
         dispatch({type: 'POST-CLEAR'})
         let result = await updateImageById(id)
         if (result.status === 200) {
-            dispatch({type: 'POST-UPDATE', post: result.image})
+            dispatch({type: 'POST-UPDATE', post: result.posts})
         } else {
-            dispatch({type: 'POST-ERROR', errorStatus: result.status})
+            dispatch({type: 'ERROR-ADD', status: result.status, error: result.error})
         }
     }
 }
@@ -29,7 +29,7 @@ export function deletePost(id) {
         if (result.status === 200) {
             dispatch({type: 'POST-DELETE'})
         } else {
-            dispatch({type: 'POST-ERROR', errorStatus: result.status})
+            dispatch({type: 'ERROR-ADD', status: result.status, error: result.error})
         }
     }
 }
