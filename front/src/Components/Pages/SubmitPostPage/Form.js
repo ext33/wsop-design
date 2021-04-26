@@ -98,7 +98,7 @@ function Form (props){
                     <div className='form_image-prev-div' onClick={()=>{document.getElementById('image').click()}}>
                         { image ? <img className='form_image-prev' src={image.base64} alt={image.alt}/> : null }
                     </div>
-                    <input className='input input-main' type={'file'} id={'image'} onChange={(event)=>ChangeInput(event.target.value, event.target.id)} />
+                    <input className='input input-main' type={'file'} id={'image'} onChange={(event)=>ChangeInput(event.target.files[0], event.target.id)} />
                     <label>Description</label>
                     <textarea className='input' id={'description'} onChange={(event)=>ChangeInput(event.target.value, event.target.id)} />
                     <button className='input input-submit' type='button' onClick={()=>SubmitForm()}>

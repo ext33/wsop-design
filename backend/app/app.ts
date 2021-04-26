@@ -13,8 +13,16 @@ declare module 'express' {
 const app = express()
 
 app.use(fileMiddlware.single('image'))
-app.use(cors())
-app.use(express.urlencoded({ extended: true }))
+// change ORIGIN in future...
+app.use(cors({
+    credentials: true,
+    origin: '*'
+    }
+))
+app.use(express.urlencoded({ 
+    extended: true 
+    }
+))
 app.use(express.static('public'))
 app.use(express.json())
 
