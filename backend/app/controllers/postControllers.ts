@@ -6,13 +6,19 @@ import * as models from '../models'
 
 export async function createPost(imageFile: any, username: String, email: String, description: String) {
     return new Promise((resolve, reject) => {
-        const NewPost = new models.Post({
-            imageSrc: imageFile.path,
-            username: username,
-            email: email,
-            description: description
-        })
-        
+        let NewPost = null
+
+        try {
+            NewPost = new models.Post({
+                imageSrc: imageFile.path,
+                username: username,
+                email: email,
+                description: description
+            })
+        } catch (e) {
+            reject({status: 500, error: e})
+        }
+
         NewPost.save()
         .then(() => resolve({status: 200}))
         .catch(e => reject({status: 500, error: e}))

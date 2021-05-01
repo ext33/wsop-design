@@ -2,6 +2,8 @@ import axios from 'axios'
 
 const url = 'http://127.0.0.1:8080/api/'
 
+
+// Middlware API functions
 function errorsHandler(error) {
   if (error.response) 
     return {status: error.response.data.status, error: error.response.data.error}
@@ -11,10 +13,16 @@ function errorsHandler(error) {
     return {status: 400, error: error.message}
 }
 
+
+// API functions
+// fetch all images functions
 export async function fetchImages() { 
   let response
 
-  await axios.get(url + 'getPosts/')
+  await axios({
+    method: 'GET',
+    url: `${url}getPosts/`
+  })
   .then(res => {response = res.data})
   .catch((e) => {
       response = errorsHandler(e)
@@ -23,10 +31,14 @@ export async function fetchImages() {
   return response
 }
 
+// fetch image by id fucntion
 export async function fetchImageById(id) {
   let response
 
-  await axios.get(url + 'getPost/' + id)
+  await axios({
+    method: 'GET',
+    url: `${url}getPosts/${id}`
+  })
   .then(res => {response = res.data})
   .catch((e) => {
       response = errorsHandler(e)
@@ -34,6 +46,33 @@ export async function fetchImageById(id) {
   
   return response
 }
+
+// post submit function
+export async function sendSubmitPost(data) {
+  let response
+  let formData = new FormData() 
+
+  formData.append('username', data.username)
+  formData.append('email', data.email)
+  formData.append('description', data.description)
+  formData.append('image', data.image)
+  
+  await axios({
+    method: 'POST',
+    url: `${url}createPost/`,
+    headers: {
+      ...formData.getHeaders,
+    },
+    data: formData, 
+  })
+  .then(res => {response = res.data})
+  .catch((e) => {
+      response = errorsHandler(e)
+  })
+  
+  return response
+}
+
 
 export async function updateImageById(id) {
   let data = {
@@ -57,34 +96,11 @@ export async function updateImageById(id) {
   return response
 }
 
+
 export async function deleteImageById(id) {
   let response = {
     status: 200,
   }
-  return response
-}
-
-export async function sendSubmitPost(data) {
-  let response
-  let formData = new FormData()
-
-  formData.append('username', data.username)
-  formData.append('email', data.email)
-  formData.append('description', data.description)
-  formData.append('file', data.image)
-
-  await axios.post({
-    url: url + 'createPost/', 
-    data: formData, 
-    headers: {
-        ...formData.getHeaders
-    }
-  })
-  .then(res => {response = res.data})
-  .catch((e) => {
-      response = errorsHandler(e)
-  })
-  
   return response
 }
 
@@ -173,6 +189,7 @@ export async function getStatsData () {
 
     return response
 }
+
 
 export async function loginUser(data) {
   

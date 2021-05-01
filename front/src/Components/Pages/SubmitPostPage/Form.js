@@ -40,7 +40,7 @@ function Form (props){
             setModal(false)
             props.clearState()
         }
-        setFormData((prevState)=>{
+        setFormData((prevState) => {
             return{
                 ...prevState,
                 [param]: newValue
@@ -57,7 +57,7 @@ function Form (props){
         files.forEach(file => {
             const reader = new FileReader()
             reader.onload = (ev) => {
-                setImage((prevState)=>{
+                setImage((prevState) => {
                     return{
                         ...prevState,
                         base64: ev.target.result,
@@ -119,7 +119,7 @@ function mapStateToProps(state){
 
 function mapDispatchToProps(dispatch){
     return{
-        submitPostAction: (data)=> dispatch(submitPostAction(data)),
+        submitPostAction: (data) => dispatch(submitPostAction(data)),
         clearState: () => dispatch ({type: 'FORM-CLEAR'})
     }
 }

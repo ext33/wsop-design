@@ -12,19 +12,14 @@ declare module 'express' {
 
 const app = express()
 
+app.use(cors({credentials: true}))
+
 app.use(fileMiddlware.single('image'))
-// change ORIGIN in future...
-app.use(cors({
-    credentials: true,
-    origin: '*'
-    }
-))
-app.use(express.urlencoded({ 
-    extended: true 
-    }
-))
-app.use(express.static('public'))
+
 app.use(express.json())
+app.use(express.urlencoded({extended: true}))
+
+app.use(express.static('public'))
 
 app.use(router)
 
