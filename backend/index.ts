@@ -3,12 +3,16 @@ import connectDB from './db'
 import log from './app/middleware/consoleMiddleware'
 import config from './config'
 import createStatsJob from './app/sheduleTasks/createDayStats'
+import createSuperUser from './app/sheduleTasks/createAdminUser'
 
 // connecting db
 connectDB(() => {
     
     // create stats objects
     createStatsJob()
+
+    // create superuser
+    createSuperUser(config.administration)
 
     // start express server
     app.listen(

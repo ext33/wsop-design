@@ -8,5 +8,10 @@ export default {
     "database": {
         "host": "db",
         "port": 27017
+    },
+    "administration": {
+        "username": "admin",
+        "email": "admin@test.com",
+        "password": "123456"
     }
 }
