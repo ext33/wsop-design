@@ -18,22 +18,37 @@ function DashboardPage(props) {
         }
     })
 
+
     return (
         <div className='dashboard_dashnoard-page flex animate__animated animate__fadeIn'>
-        { props.imagesData.length > 0 && props.allTimeData ?
-            <>
+        
+            
             <div className='dashboard_dashboard-item dashboard_line-chart flex'>
                 <span>Today</span>
                 <div className='dashboard_chart-container'>
-                    <LineChart data={props.daysTimeData} />
+                    {
+                        props.daysTimeData ?
+                            <LineChart data={props.daysTimeData} />
+                        :   <p>
+                                No stats data yet...
+                            </p>
+                    }
                 </div>
             </div>
             <div className='dashboard_dashboard-item dashboard_total-view'>
                 <span>All time</span>
                 <div className='dashboard_total-info'>
-                    <p>{props.allTimeData.visits} views</p>
-                    <p>{props.allTimeData.posts} posts</p>
-                    <p className='total-info-date'>on 02.03.2021</p>
+                    { 
+                        props.allTimeData ?
+                            <>
+                                <p>{props.allTimeData.visits} views</p>
+                                <p>{props.allTimeData.posts} posts</p>
+                                <p className='total-info-date'>on 02.03.2021</p>
+                            </> 
+                        :   <p>
+                                No data yet...
+                            </p>
+                    }
                 </div>
             </div>
             <div className='dashboard_dashboard-item dashboard_posts-ds-view'>
@@ -47,6 +62,7 @@ function DashboardPage(props) {
                         <div className='table_table-cell'>upload date</div>
                     </div>
                     {
+                        props.imagesData.length > 0 ?
                         props.imagesData.map((elem, index) => {
                             return(
                                 <div className='table_posts-table-row' key={index}>
@@ -57,6 +73,9 @@ function DashboardPage(props) {
                                 </div>
                             )
                         })
+                        :   <div className='table_posts-table-info'>
+                                No posts yet...
+                            </div>
                     }
                 </div>
             
@@ -66,9 +85,8 @@ function DashboardPage(props) {
                     </NavLink>
                 </div>
             </div>
-            </>
-            : <Loading />
-        }
+            
+            
         </div>
     )
 }

@@ -23,9 +23,7 @@ function PostListPage(props) {
 
             </div> */}
             <div className='list-container'>
-                { 
-                    props.imagesData ?
-                    <>
+                
                     <div className='list-item list-head'>
                         <div className='list-item-prop'>image</div>
                         <div className='list-item-prop'>username</div>
@@ -33,22 +31,25 @@ function PostListPage(props) {
                         <div className='list-item-prop'>upload date</div>
                         <div className='list-item-prop'>approved</div>
                     </div>
-                        { props.imagesData.map((elem, i)=>{
-                            return(
-                                <PostListItem 
-                                    key={i}
-                                    id={elem._id}
-                                    username={elem.username}
-                                    email={elem.email}
-                                    imageSrc={elem.imageSrc}
-                                    uploadDate={elem.uploadDate}
-                                    submitted={elem.submitted}
-                                />
-                            )
-                        }) }
-                    </>
-                    : <Loading />
-                }
+                        { 
+                            props.imagesData.length > 0 ?
+                            props.imagesData.map((elem, i)=>{
+                                return(
+                                    <PostListItem 
+                                        key={i}
+                                        id={elem._id}
+                                        username={elem.username}
+                                        email={elem.email}
+                                        imageSrc={elem.imageSrc}
+                                        uploadDate={elem.uploadDate}
+                                        submitted={elem.submitted}
+                                    />
+                                )
+                            }) 
+                            :   <div className='table_posts-table-info'>
+                                    No posts yet...
+                                </div>    
+                        }
             </div>
         </div>
     )

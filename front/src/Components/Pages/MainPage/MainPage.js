@@ -17,7 +17,8 @@ function MainPage(props) {
 
     return(
         <div className='pages_mainPage animate__animated animate__fadeIn'>
-            { props.imagesObj ? 
+            { 
+                props.imagesObj.length > 0 ? 
                 props.imagesObj.map((elem, index) => {
                     return(
                         <ImageBlock 
@@ -26,7 +27,10 @@ function MainPage(props) {
                             alt={elem.imageAlt} 
                         />
                     )
-                }) : <Loading/>
+                }) 
+                :   <div className='images_img-info'>
+                        <p>No posts yet...</p>
+                    </div>
             }
         </div>
     )
