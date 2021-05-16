@@ -88,7 +88,6 @@ const SessionShema = new Schema({
     userId: {
         type: String,
         required: true,
-        unique: true
     },
     username: {
         type: String,

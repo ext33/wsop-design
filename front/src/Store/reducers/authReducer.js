@@ -1,11 +1,14 @@
+import {setCookie, deleteCookie} from '../middleware/cookies'
+
+
 const initialState = {
     userLogined: false,
     error: null
 }
 
 function clearData() {
-    localStorage.clear('token')
-    localStorage.clear('refreshToken')
+    deleteCookie('token')
+    deleteCookie('refreshToken')
     localStorage.clear('uid')
     localStorage.clear('username')
     localStorage.clear('email')
@@ -15,8 +18,8 @@ function clearData() {
 export default function authReducer(state = initialState, action){
     switch (action.type) {
         case 'AUTH-SUCCESS':
-            localStorage.setItem('token', action.token)
-            localStorage.setItem('refreshToken', action.refreshToken)
+            setCookie('token', action.token)
+            setCookie('refreshToken', action.refreshToken)
             localStorage.setItem('uid', action.user.uid)
             localStorage.setItem('username', action.user.username)
             localStorage.setItem('email', action.user.email)

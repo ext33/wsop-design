@@ -1,5 +1,7 @@
 import is from 'is_js'
+import {readCookie} from '../middleware/cookies'
 import {loginUser, logoutUser} from '../../Api/axios'
+
 
 export function login(data) {
     return async (dispatch) => {
@@ -30,7 +32,7 @@ export function login(data) {
 
 export function logout() {
     return async (dispatch) => {
-        const token = localStorage.token
+        const token = readCookie('token')
 
         let response = await logoutUser(token)   
         if (response.status === 200) {

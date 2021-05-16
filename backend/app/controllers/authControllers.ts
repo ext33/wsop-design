@@ -15,11 +15,32 @@ function generateToken(user) {
 
     return jwt.sign({ data, }, signature, { expiresIn: expiration });
 }
+
+async function checkSession(User) {
+    try {
+        const session: any = await models.Session.findOne({userId: User._id})
+        if (session.length > 0) {
+            await models.Session.deleteOne({userId: User._id})
+            .then(() => {
+                return true
+            })
+            .catch(e => {
+                console.log(e)
+                return false
+            })
+        }
+    } catch (e) {
+        console.log(e)
+        return false
+    }
+}
   
 async function verifyLogin(User, password) {
     try {
-        const correctPassword = argon2.verify(User.password, password)
-        if(correctPassword) {
+        if (!checkSession(User))
+            return {status: 500, error: "Internal session create error"}
+
+        if(argon2.verify(password, User.password)) {
             const token = generateToken(User)
             const NewSession = new models.Session({
                 userId: User._id,
@@ -99,7 +120,6 @@ export async function login(email: String, password: string) {
         models.User.find({email: email})
         .then((User: any) => {
             if(User.length > 0) {
-                
                 resolve(verifyLogin(User[0], password))
             } else {
                 resolve ({status: 404, error: "User not found"})

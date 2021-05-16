@@ -50,7 +50,7 @@ function RouterView(props) {
             <Route 
                 path='/admin' 
                 render={ 
-                    () => localStorage.getItem('token') ? <AdminPage /> : <Redirect to={{pathname: '/login'}} />
+                    () => localStorage.getItem('username') ? <AdminPage /> : <Redirect to={{pathname: '/login'}} />
                 }
             />
             <Route 
@@ -62,7 +62,7 @@ function RouterView(props) {
                 path='/login'
                 exact
                 render={ 
-                    () => localStorage.getItem('token') ? <Redirect to='/admin' /> : <LoginPage />
+                    () => localStorage.getItem('username') ? <Redirect to='/admin' /> : <LoginPage />
                 }
             />
             
