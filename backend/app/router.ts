@@ -100,21 +100,12 @@ apiRoutes.get('/archivePost/:id', checkAuth, async (req?: any, res?: any) => {
 
 
 // stats urls
-apiRoutes.get('/getViewsStats', checkAuth, async (req?: any, res?: any) => {
+apiRoutes.get('/getStats', checkAuth, async (req?: any, res?: any) => {
     res.set('Access-Control-Allow-Origin', allowOriginValue)
 
-    let result: Response = await statsControllers.getViewsStats()
+    let result: Response = await statsControllers.getStats()
 
     log('api', `/api/getViewsStats {status: ${result.status}}`)
-    res.status(result.status).send(result)
-})
-
-apiRoutes.get('/getPostsStats', checkAuth, async (req?: any, res?: any) => {
-    res.set('Access-Control-Allow-Origin', allowOriginValue)
-
-    let result: Response = await statsControllers.getPostsStats()
-
-    log('api', `/api/getPostsStats {status: ${result.status}}`)
     res.status(result.status).send(result)
 })
 

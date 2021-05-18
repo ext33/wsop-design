@@ -16,6 +16,28 @@ function PostListPage(props) {
         }
     })
 
+    function displayPosts() {
+        if(props.imagesData.length > 0)
+            return props.imagesData.map((elem, i)=>{
+                return(
+                    <PostListItem 
+                        key={i}
+                        id={elem._id}
+                        username={elem.username}
+                        email={elem.email}
+                        imageSrc={elem.imageSrc}
+                        uploadDate={elem.uploadDate}
+                        submitted={elem.submitted}
+                    />
+                )
+            }) 
+            else return (
+                <div className='table_posts-table-info'>
+                    No posts yet...
+                </div>
+            )
+    }
+
     return (
         <div className='flex animate__animated animate__fadeIn'>
             {/* TODO: add search and filters */}
@@ -32,23 +54,7 @@ function PostListPage(props) {
                         <div className='list-item-prop'>approved</div>
                     </div>
                         { 
-                            props.imagesData.length > 0 ?
-                            props.imagesData.map((elem, i)=>{
-                                return(
-                                    <PostListItem 
-                                        key={i}
-                                        id={elem._id}
-                                        username={elem.username}
-                                        email={elem.email}
-                                        imageSrc={elem.imageSrc}
-                                        uploadDate={elem.uploadDate}
-                                        submitted={elem.submitted}
-                                    />
-                                )
-                            }) 
-                            :   <div className='table_posts-table-info'>
-                                    No posts yet...
-                                </div>    
+                            props.imagesData ? displayPosts() : <Loading />
                         }
             </div>
         </div>

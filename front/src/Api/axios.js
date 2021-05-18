@@ -194,89 +194,104 @@ export async function deleteImageById(id, token) {
 }
 
 
-export async function getStatsData () {
-    let response = {
-        status: 200,
-        allTimeData: {
-            visits: 1200,
-            posts: 220
-        },
-        daysTimeData: [
-            {
-              "id": "new posts",
-              "data": [
-                {
-                  "x": '01.02',
-                  "y": 21
-                },
-                {
-                  "x": '02.02',
-                  "y": 56
-                },
-                {
-                  "x": '03.02',
-                  "y": 104
-                },
-                {
-                  "x": '04.02',
-                  "y": 119
-                },
-                {
-                  "x": '05.02',
-                  "y": 258
-                },
-                {
-                  "x": '06.02',
-                  "y": 269
-                },
-                {
-                  "x": '07.02',
-                  "y": 265
-                },
-              ]
-            },
-            {
-              "id": "visits",
-              "data": [
-                {
-                  "x": '01.02',
-                  "y": 248
-                },
-                {
-                  "x": '02.02',
-                  "y": 76
-                },
-                {
-                  "x": '03.02',
-                  "y": 29
-                },
-                {
-                  "x": '04.02',
-                  "y": 100
-                },
-                {
-                  "x": '05.02',
-                  "y": 89
-                },
-                {
-                  "x": '06.02',
-                  "y": 278
-                },
-                {
-                  "x": '07.02',
-                  "y": 213
-                },
-              ]
-            },
-        ]
-    }
+export async function getStatsData (token) {
+    // let response = {
+    //     status: 200,
+    //     allTimeData: {
+    //         visits: 1200,
+    //         posts: 220
+    //     },
+    //     daysTimeData: [
+    //         {
+    //           "id": "new posts",
+    //           "data": [
+    //             {
+    //               "x": '01.02',
+    //               "y": 21
+    //             },
+    //             {
+    //               "x": '02.02',
+    //               "y": 56
+    //             },
+    //             {
+    //               "x": '03.02',
+    //               "y": 104
+    //             },
+    //             {
+    //               "x": '04.02',
+    //               "y": 119
+    //             },
+    //             {
+    //               "x": '05.02',
+    //               "y": 258
+    //             },
+    //             {
+    //               "x": '06.02',
+    //               "y": 269
+    //             },
+    //             {
+    //               "x": '07.02',
+    //               "y": 265
+    //             },
+    //           ]
+    //         },
+    //         {
+    //           "id": "visits",
+    //           "data": [
+    //             {
+    //               "x": '01.02',
+    //               "y": 248
+    //             },
+    //             {
+    //               "x": '02.02',
+    //               "y": 76
+    //             },
+    //             {
+    //               "x": '03.02',
+    //               "y": 29
+    //             },
+    //             {
+    //               "x": '04.02',
+    //               "y": 100
+    //             },
+    //             {
+    //               "x": '05.02',
+    //               "y": 89
+    //             },
+    //             {
+    //               "x": '06.02',
+    //               "y": 278
+    //             },
+    //             {
+    //               "x": '07.02',
+    //               "y": 213
+    //             },
+    //           ]
+    //         },
+    //     ]
+    // }
 
     // response = {
     //     status: 500,
     //     error: 'Server connection error'
     // }
+  let response
 
-    return response
+  await axios({
+    method: 'GET',
+    url: `${url}getStats/`,
+    headers: {
+      authorization: token
+    },
+  })
+  .then(res => {response = res.data})
+  .catch((e) => {
+      response = errorsHandler(e)
+  })
+  console.log(response)
+  
+  return response
+    
 }
 
 

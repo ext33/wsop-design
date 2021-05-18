@@ -18,6 +18,24 @@ function DashboardPage(props) {
         }
     })
 
+    function displaPosts() {
+        if (props.imagesData.length > 0)
+            return props.imagesData.map((elem, index) => {
+                return(
+                    <div className='table_posts-table-row' key={index}>
+                        <div className='table_table-cell'>{elem.username}</div>
+                        <div className='table_table-cell'>{elem.email}</div>
+                        <div className='table_table-cell'>{elem.imageSrc.length>15 ? elem.imageSrc.slice(0, 15)+'...' : elem.imageSrc}</div>
+                        <div className='table_table-cell'>{elem.uploadDate}</div>
+                    </div>
+                )
+            })
+        else return (   
+            <div className='table_posts-table-info'>
+                No posts yet...
+            </div>
+        )
+    }
 
     return (
         <div className='dashboard_dashnoard-page flex animate__animated animate__fadeIn'>
@@ -29,9 +47,9 @@ function DashboardPage(props) {
                     {
                         props.daysTimeData ?
                             <LineChart data={props.daysTimeData} />
-                        :   <p>
+                        :   <div className='table_posts-table-info'>
                                 No stats data yet...
-                            </p>
+                            </div>
                     }
                 </div>
             </div>
@@ -45,9 +63,9 @@ function DashboardPage(props) {
                                 <p>{props.allTimeData.posts} posts</p>
                                 <p className='total-info-date'>on 02.03.2021</p>
                             </> 
-                        :   <p>
+                        :   <div className='table_posts-table-info'>
                                 No data yet...
-                            </p>
+                            </div>
                     }
                 </div>
             </div>
@@ -62,20 +80,7 @@ function DashboardPage(props) {
                         <div className='table_table-cell'>upload date</div>
                     </div>
                     {
-                        props.imagesData.length > 0 ?
-                        props.imagesData.map((elem, index) => {
-                            return(
-                                <div className='table_posts-table-row' key={index}>
-                                    <div className='table_table-cell'>{elem.username}</div>
-                                    <div className='table_table-cell'>{elem.email}</div>
-                                    <div className='table_table-cell'>{elem.imageSrc.length>15 ? elem.imageSrc.slice(0, 15)+'...' : elem.imageSrc}</div>
-                                    <div className='table_table-cell'>{elem.uploadDate}</div>
-                                </div>
-                            )
-                        })
-                        :   <div className='table_posts-table-info'>
-                                No posts yet...
-                            </div>
+                        props.imagesData ? displaPosts() : <Loading />
                     }
                 </div>
             
