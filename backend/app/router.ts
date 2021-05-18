@@ -30,7 +30,16 @@ apiRoutes.post('/createPost', async (req?: any, res?: any) => {
             req.body.username, 
             req.body.email, 
             req.body.description
-        ).catch(e => {res.status(500).send({status: 500, error: e})})
+        )
+        .catch(e => {res.status(500).send({status: 500, error: e})})
+
+        let statResult: Response = await statsControllers.addStatsPost()
+        .catch(e => {
+            log('error', `/api/acceptPost/${req.params.id}  {status: ${e}}`)
+        })
+        if (statResult.status !== 200) 
+            log('warn', `/api/acceptPost/${req.params.id}  {status: stats object save error}`)
+
         log('api', `/api/createPost {status: ${result.status}}`)
         res.status(result.status).send(result)
     }
@@ -66,9 +75,6 @@ apiRoutes.get('/acceptPost/:id', checkAuth, async (req?: any, res?: any) => {
     res.set('Access-Control-Allow-Origin', allowOriginValue)
 
     let result: Response = await postControllers.acceptPost(req.params.id)
-    let statResult: Response = await statsControllers.addStatsPost()
-    if (statResult.status !== 200) 
-        log('warn', `/api/acceptPost/${req.params.id}  {status: stats object save error}`)
 
     log('api', `/api/acceptPost/${req.params.id} {status: ${result.status}}`)
     res.status(result.status).send(result)

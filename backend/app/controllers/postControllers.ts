@@ -84,7 +84,11 @@ export async function acceptPost(id: String) {
         models.Post.updateOne({_id: id}, {submitted: 'true'})
         .then((Post: any) => {
             if(Post.n > 0) {
-                resolve({status: 200})
+                models.Post.findOne({_id: id})
+                .then((Post: any) => {
+                    resolve({status: 200, image: Post})
+                })
+                .catch(e => reject({status: 500, error: e}))
             }
             else {
                 resolve({status: 404, error: "Not Found"})
@@ -99,7 +103,11 @@ export async function archivePost(id: String) {
         models.Post.updateOne({_id: id}, {submitted: 'false'})
         .then((Post: any) => {
             if(Post.n > 0) {
-                resolve({status: 200})
+                models.Post.findOne({_id: id})
+                .then((Post: any) => {
+                    resolve({status: 200, image: Post})
+                })
+                .catch(e => reject({status: 500, error: e}))
             }
             else {
                 resolve({status: 404, error: "Not Found"})

@@ -10,7 +10,7 @@ export default function postReducer(state = initialState, action){
             }
         case 'POST-UPDATE':
             return {
-                post: action.post,
+                post: Array(action.post),
             }
         case 'POST-DELETE':
             return state

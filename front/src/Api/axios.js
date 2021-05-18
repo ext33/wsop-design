@@ -32,12 +32,15 @@ export async function fetchImages() {
 }
 
 // fetch image by id fucntion
-export async function fetchImageById(id) {
+export async function fetchImageById(id, token) {
   let response
 
   await axios({
     method: 'GET',
-    url: `${url}getPosts/${id}`
+    url: `${url}getPost/${id}`,
+    headers: {
+      authorization: token
+    }
   })
   .then(res => {response = res.data})
   .catch((e) => {
@@ -97,6 +100,7 @@ export async function loginUser(data) {
   return response
 }
 
+// logout user
 export async function logoutUser(token) {
   let response
 
@@ -115,33 +119,58 @@ export async function logoutUser(token) {
   return response
 }
 
-export async function updateImageById(id) {
-  let data = {
-    imageSrc: 'https://i.pinimg.com/236x/df/df/6c/dfdf6ca5c620a7981d8b2da2fd22d37a.jpg', 
-    imageAlt: '1', 
-    id: id,
-    username: 'user',
-    email: 'email',
-    description: 'description',
-    uploadDate: '01-02-2021',
-    submitted: 'true'
-  }
-  let response = {
-    status: 200,
-    image: data
-  }
-  // response = {
-  //     status: 500,
-  //     error: 'Server connection error'
-  // }
+
+export async function submitImageById(id, token) {
+  let response
+
+  await axios({
+    method: 'GET',
+    url: `${url}acceptPost/${id}`,
+    headers: {
+      authorization: token
+    },
+  })
+  .then(res => {response = res.data})
+  .catch((e) => {
+      response = errorsHandler(e)
+  })
+
   return response
 }
 
+export async function archiveImageById(id, token) {
+  let response
 
-export async function deleteImageById(id) {
-  let response = {
-    status: 200,
-  }
+  await axios({
+    method: 'GET',
+    url: `${url}archivePost/${id}`,
+    headers: {
+      authorization: token
+    },
+  })
+  .then(res => {response = res.data})
+  .catch((e) => {
+      response = errorsHandler(e)
+  })
+  
+  return response
+}
+
+export async function deleteImageById(id, token) {
+  let response
+
+  await axios({
+    method: 'GET',
+    url: `${url}deletePost/${id}`,
+    headers: {
+      authorization: token
+    },
+  })
+  .then(res => {response = res.data})
+  .catch((e) => {
+      response = errorsHandler(e)
+  })
+  
   return response
 }
 
