@@ -20,7 +20,7 @@ function LoginForm(props) {
         if (props.error) {
             setModal(true)
         } else {
-            if (localStorage.getItem('token')) {
+            if (localStorage.getItem('ws_d_username')) {
                 history.push('/admin')
             }
         }

@@ -19,6 +19,8 @@ services:
             context: .
             dockerfile: dockerfile
         restart: unless-stopped
+        volumes:
+            - ./backend/uploads :/home/node/app/backend/uploads
         ports:
             - 8000:8000
         networks:

@@ -9,10 +9,10 @@ const initialState = {
 function clearData() {
     deleteCookie('token')
     deleteCookie('refreshToken')
-    localStorage.clear('uid')
-    localStorage.clear('username')
-    localStorage.clear('email')
-    localStorage.clear('userImage')
+    localStorage.clear('ws_d_uid')
+    localStorage.clear('ws_d_username')
+    localStorage.clear('ws_d_email')
+    localStorage.clear('ws_d_userImage')
 }
 
 export default function authReducer(state = initialState, action){
@@ -20,13 +20,13 @@ export default function authReducer(state = initialState, action){
         case 'AUTH-SUCCESS':
             setCookie('token', action.token)
             setCookie('refreshToken', action.refreshToken)
-            localStorage.setItem('uid', action.user.uid)
-            localStorage.setItem('username', action.user.username)
-            localStorage.setItem('email', action.user.email)
+            localStorage.setItem('ws_d_uid', action.user.uid)
+            localStorage.setItem('ws_d_username', action.user.username)
+            localStorage.setItem('ws_d_email', action.user.email)
             if (action.user.userImage){
-                localStorage.setItem('userImage', action.user.userImage)
+                localStorage.setItem('ws_d_userImage', action.user.userImage)
             } else {
-                localStorage.setItem('userImage', '')
+                localStorage.setItem('ws_d_userImage', '')
             }
             return {
                 userLogined: true,

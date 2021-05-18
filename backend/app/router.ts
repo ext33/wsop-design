@@ -66,6 +66,9 @@ apiRoutes.get('/acceptPost/:id', checkAuth, async (req?: any, res?: any) => {
     res.set('Access-Control-Allow-Origin', allowOriginValue)
 
     let result: Response = await postControllers.acceptPost(req.params.id)
+    let statResult: Response = await statsControllers.addStatsPost()
+    if (statResult.status !== 200) 
+        log('warn', `/api/acceptPost/${req.params.id}  {status: stats object save error}`)
 
     log('api', `/api/acceptPost/${req.params.id} {status: ${result.status}}`)
     res.status(result.status).send(result)
@@ -83,7 +86,7 @@ apiRoutes.get('/archivePost/:id', checkAuth, async (req?: any, res?: any) => {
 
 
 // stats urls
-apiRoutes.get('/getViewsStats', async (req?: any, res?: any) => {
+apiRoutes.get('/getViewsStats', checkAuth, async (req?: any, res?: any) => {
     res.set('Access-Control-Allow-Origin', allowOriginValue)
 
     let result: Response = await statsControllers.getViewsStats()
@@ -92,7 +95,7 @@ apiRoutes.get('/getViewsStats', async (req?: any, res?: any) => {
     res.status(result.status).send(result)
 })
 
-apiRoutes.get('/getPostsStats', async (req?: any, res?: any) => {
+apiRoutes.get('/getPostsStats', checkAuth, async (req?: any, res?: any) => {
     res.set('Access-Control-Allow-Origin', allowOriginValue)
 
     let result: Response = await statsControllers.getPostsStats()
@@ -107,15 +110,6 @@ apiRoutes.get('/addStatsView', async (req?: any, res?: any) => {
     let result: Response = await statsControllers.addStatsView()
 
     log('api', `/api/addStatsView {status: ${result.status}}`)
-    res.status(result.status).send(result)
-})
-
-apiRoutes.get('/addPostsView', async (req?: any, res?: any) => {
-    res.set('Access-Control-Allow-Origin', allowOriginValue)
-
-    let result: Response = await statsControllers.addStatsPost()
-
-    log('api', `/api/addStatsPost {status: ${result.status}}`)
     res.status(result.status).send(result)
 })
 
