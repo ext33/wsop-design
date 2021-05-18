@@ -16,12 +16,31 @@ function errorsHandler(error) {
 
 // API functions
 // fetch all images functions
-export async function fetchImages() { 
+export async function fetchSubmittedImages() {
   let response
 
   await axios({
     method: 'GET',
-    url: `${url}getPosts/`
+    url: `${url}getSubmittedPosts/`,
+  })
+  .then(res => {response = res.data})
+  .catch((e) => {
+      response = errorsHandler(e)
+  })
+
+  return response
+}
+
+// fetch images in admin panel
+export async function fetchImages(token) { 
+  let response
+
+  await axios({
+    method: 'GET',
+    url: `${url}getPosts/`,
+    headers: {
+      authorization: token
+    }
   })
   .then(res => {response = res.data})
   .catch((e) => {

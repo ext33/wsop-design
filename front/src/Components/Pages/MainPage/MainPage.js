@@ -2,7 +2,7 @@ import React, {useEffect, useRef} from 'react'
 import ImageBlock from './ImageBlock'
 import Loading from '../../UI/Loading'
 import {connect} from 'react-redux'
-import {fetchImageData} from '../../../Store/actions/fetchImages'
+import {fetchSubmittedImageData} from '../../../Store/actions/fetchImages'
 
 function MainPage(props) {
 
@@ -15,10 +15,9 @@ function MainPage(props) {
         }
     })
 
-    return(
-        <div className='pages_mainPage animate__animated animate__fadeIn'>
-            { 
-                props.imagesObj.length > 0 ? 
+    function displayImages() {
+        if (props.imagesObj.length > 0)
+            return (
                 props.imagesObj.map((elem, index) => {
                     return(
                         <ImageBlock 
@@ -28,9 +27,20 @@ function MainPage(props) {
                         />
                     )
                 }) 
-                :   <div className='images_img-info'>
-                        <p>No posts yet...</p>
-                    </div>
+            )
+        else
+            return (
+                <div className='images_img-info'>
+                    <p>No posts yet...</p>
+                </div>
+            )
+    }
+
+    return(
+        <div className='pages_mainPage animate__animated animate__fadeIn'>
+            {   props.imagesObj ?
+                    displayImages()
+                : <Loading />
             }
         </div>
     )
@@ -44,7 +54,7 @@ function mapStateToProps(state){
 
 function mapDispatchToProps(dispatch){
     return{
-        fetchImages: () => dispatch(fetchImageData())
+        fetchImages: () => dispatch(fetchSubmittedImageData())
     }
 }
 

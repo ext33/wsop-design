@@ -8,6 +8,8 @@ export default function imagesReducer(state = initialState, action){
             return {
                 imagesObj: action.images,
             }
+        case 'IMAGE-CLEAR':
+            return state
         default:
             return state
     }

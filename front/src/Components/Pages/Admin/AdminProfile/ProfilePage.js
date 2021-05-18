@@ -13,8 +13,8 @@ function ProfilePage(props) {
     }
 
     function avatarDispaly() {
-        if (!!localStorage.userImage) {
-            return <img className='user-image' alt='' src={localStorage.userImage} />
+        if (localStorage.ws_d_userImage) {
+            return <img className='user-image' alt='' src={localStorage.ws_d_userImage} />
         } else {
             return <FontAwesomeIcon className='user-image' icon={['fas', 'user-circle']} />
         }
@@ -22,14 +22,14 @@ function ProfilePage(props) {
 
     return (
         <div className='animate__animated animate__fadeIn'>
-            { localStorage.username ? 
+            { localStorage.ws_d_username ? 
             <div className='flex profile_container'>
                 <div className='profile_image'>
                     {avatarDispaly()}
                 </div>
                 <div className='profile_info flex'>
-                    <p>Username: {localStorage.username}</p>
-                    <p>Email: {localStorage.email}</p>
+                    <p>Username: {localStorage.ws_d_username}</p>
+                    <p>Email: {localStorage.ws_d_email}</p>
                     <button type='button' className='input-submit' onClick={() => logoutHandler()}>Exit from account</button>
                 </div>
             </div>

@@ -66,7 +66,6 @@ function PostPage(props) {
 }
 
 function mapStateToProps(state){
-    console.log(state.postReducer.post)
     return {
         error: state.postReducer.errorStatus,
         post: state.postReducer.post,

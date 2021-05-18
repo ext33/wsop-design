@@ -33,6 +33,14 @@ export async function getPosts() {
     })
 }
 
+export async function getSubmittedPosts() {
+    return new Promise((resolve, reject) => {
+        models.Post.find({'submitted': 'true'})
+        .then(Posts => resolve({status: 200, posts: Posts}))
+        .catch(e => reject({status: 500, error: e}))
+    })
+}
+
 export async function getPost(id: String) {
     return new Promise((resolve, reject) => {
         models.Post.find({_id: id})

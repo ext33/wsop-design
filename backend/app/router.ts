@@ -45,10 +45,18 @@ apiRoutes.post('/createPost', async (req?: any, res?: any) => {
     }
 });
 
-apiRoutes.get('/getPosts', async (req?: any, res?: any) => {
+apiRoutes.get('/getPosts', checkAuth, async (req?: any, res?: any) => {
     res.set('Access-Control-Allow-Origin', allowOriginValue)
 
     let result: Response = await postControllers.getPosts()
+    log('api', `/api/getPosts {status: ${result.status}}`)
+    res.status(result.status).send(result)
+})
+
+apiRoutes.get('/getSubmittedPosts', async (req?: any, res?: any) => {
+    res.set('Access-Control-Allow-Origin', allowOriginValue)
+
+    let result: Response = await postControllers.getSubmittedPosts()
     log('api', `/api/getPosts {status: ${result.status}}`)
     res.status(result.status).send(result)
 })
