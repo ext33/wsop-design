@@ -1,7 +1,7 @@
 export default {
     "server": {
         "host": "nodejs",
-        "port": 8080,
+        "port": 8000,
         "rootDir": String(process.cwd() + "/"),
         "secretKey": "foo"
     },

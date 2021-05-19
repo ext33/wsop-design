@@ -17,7 +17,7 @@ services:
         container_name: nodejs
         build:
             context: .
-            dockerfile: dockerfile
+            dockerfile: api.dockerfile
         restart: unless-stopped
         volumes:
             - ./backend/uploads :/home/node/app/backend/uploads
@@ -25,9 +25,25 @@ services:
             - 8000:8000
         networks:
             - app-network
+        working_dir: /home/node/app/backend/
         links:
             - db
 
+    client:
+        image: node:14-alpine
+        container_name: client
+        build:
+            context: .
+            dockerfile: client.dockerfile
+        restart: unless-stopped
+        ports:
+            - 3000:3000
+        networks:
+            - app-network
+        working_dir: /home/node/app/front-server/
+        command: server.js
+        links:
+            - webserver
 
     webserver:
         image: nginx:mainline-alpine
