@@ -10,6 +10,8 @@ function DashboardPage(props) {
 
     let rendered = useRef(false)
 
+    let today = new Date()
+
     useEffect(()=>{
         if(rendered.current === false) {
             props.fetchStatsData()
@@ -61,7 +63,7 @@ function DashboardPage(props) {
                             <>
                                 <p>{props.allTimeData.visits} views</p>
                                 <p>{props.allTimeData.posts} posts</p>
-                                <p className='total-info-date'>on 02.03.2021</p>
+                                <p className='total-info-date'>on {today.getDate()}-{today.getMonth()+1}-{today.getFullYear()}</p>
                             </> 
                         :   <div className='table_posts-table-info'>
                                 No data yet...
